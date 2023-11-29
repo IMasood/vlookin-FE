@@ -72,21 +72,21 @@ const home = {
 };
 
 export const apiRoutes = {
-  postUser: "http://203.161.57.248:4000/auth/login",
-  getUsers: "http://203.161.57.248:4000/user?all=true",
-  createUsers: "http://203.161.57.248:4000/user",
-  createVisitor: "http://203.161.57.248:4000/visitor/createVisit",
-  getVisitor: `http://203.161.57.248:4000/visitor?all=true`,
-  deleteVisitor: "http://203.161.57.248:4000/visitor/",
-  getTenant: "http://203.161.57.248:4000/tenant?all=true",
-  postTenant: "http://203.161.57.248:4000/tenant",
-  getBuilding: "http://203.161.57.248:4000/building?all=true",
-  getApartment: "http://203.161.57.248:4000/apartment?all=true",
-  createBuilding: "http://203.161.57.248:4000/building",
-  createApartment: "http://203.161.57.248:4000/apartment",
-  getComplaints: "http://203.161.57.248:4000/maintenance/getComplaint?all=true",
-  createComplaints: "http://203.161.57.248:4000/maintenance/addComplaint",
-  getReceipts: "http://203.161.57.248:4000/receipt?all=true",
+  postUser: "http://195.35.45.131:4000/auth/login",
+  getUsers: "http://195.35.45.131:4000/user?all=true",
+  createUsers: "http://195.35.45.131:4000/user",
+  createVisitor: "http://195.35.45.131:4000/visitor/createVisit",
+  getVisitor: `http://195.35.45.131:4000/visitor?all=true`,
+  deleteVisitor: "http://195.35.45.131:4000/visitor/",
+  getTenant: "http://195.35.45.131:4000/tenant?all=true",
+  postTenant: "http://195.35.45.131:4000/tenant",
+  getBuilding: "http://195.35.45.131:4000/building?all=true",
+  getApartment: "http://195.35.45.131:4000/apartment?all=true",
+  createBuilding: "http://195.35.45.131:4000/building",
+  createApartment: "http://195.35.45.131:4000/apartment",
+  getComplaints: "http://195.35.45.131:4000/maintenance/getComplaint?all=true",
+  createComplaints: "http://195.35.45.131:4000/maintenance/addComplaint",
+  getReceipts: "http://195.35.45.131:4000/receipt?all=true",
 };
 
 export const routePaths = {
