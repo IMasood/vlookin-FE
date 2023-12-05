@@ -47,29 +47,19 @@ import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceip
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
 import AuthenticatedRoute from "./authenticate";
 const Authetication = () => {
-  console.log(routePaths.Admin.login);
-
   // const { cookies } = LoginForm;
   const cookies = new Cookies();
   const token = cookies.get("token");
-  console.log(LoginForm);
 
-  return (
+  return (    
     <Router>
       <Routes>
-        {/* AAdmin Routes */}
-        {/* <AuthenticatedRoute     
-          token={token}  
-          path={routePaths.Admin.login}
-          element={<Login/>} 
-          /> */}
         <Route path={routePaths.Admin.login} exact element={<Login />} />
         <Route
           path={routePaths.Admin.dashboard}
           exact
           element={token ? <AdminDashboard /> : <Navigate to="/login" exact />}
         />
-
         <Route
           path={routePaths.Admin.addUser}
           exact
@@ -125,7 +115,7 @@ const Authetication = () => {
           exact
           element={token ? <DashboardScr /> : <Navigate to="/login" exact />}
         />
-        <Route path={routePaths.Tenant.login} exact element={<LoginScr />} />
+        {/* <Route path={routePaths.Tenant.login} exact element={<LoginScr />} /> */}
         <Route
           path={routePaths.Tenant.listTenant}
           exact

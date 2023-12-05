@@ -143,7 +143,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
       <div>
         {isMobile ? (
           <MobileHeader
-            route={routePaths.Visitor.login}
+            route={routePaths.Admin.login}
             showDrawer={showDrawer}
           />
         ) : (
@@ -169,7 +169,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               {category}
             </Dropdown.Button>
             <br />
-            {role == "Super Admin" && (
+            {category == 'admin' && (
               <>
                 <div className="form-check d-flex align-items-end col-md-6 w-100">
                   <input
@@ -249,7 +249,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 </Radio.Group>
               </div>
               <br />
-              <br />
               <p style={{ color: "#4A0D37" }}>Real Estate</p>
               <Input
                 placeholder="Real Estate Name"
@@ -259,11 +258,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 onChange={handleInputs}
                 disabled={category == "tenant" ? true : false}
               />
-              {/* <BuildingDropDown
-                placeholder={"Select a Real Estate"}
-                disabled={category == "tenant" ? true : false}
-              /> */}
-              <br />
               <p style={{ color: "#4A0D37" }}>Building</p>
               <BuildingDropDown
                 setSelectedBuilding={setSelectedBuilding}
@@ -272,7 +266,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
             </Form.Item>
           </Col>
         </Row>
-        <div className="addform_btn">
+        <div>
           {category == "tenant" ? (
             <CustomButton
               handleClick={handleGoTo}

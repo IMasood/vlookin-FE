@@ -6,7 +6,7 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-.header {
+.profile-header {
   /* min-height: 60vh; */
   background: #009FFF;
   background: linear-gradient(to right, #950c20, #6A164F);
