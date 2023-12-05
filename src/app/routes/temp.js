@@ -45,7 +45,6 @@ import { LoginForm } from "../components/Login/form";
 import { Cookies } from "react-cookie";
 import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceipt";
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
-import AuthenticatedRoute from "./authenticate";
 const Authetication = () => {
   console.log(routePaths.Admin.login);
 
@@ -58,11 +57,6 @@ const Authetication = () => {
     <Router>
       <Routes>
         {/* AAdmin Routes */}
-        {/* <AuthenticatedRoute     
-          token={token}  
-          path={routePaths.Admin.login}
-          element={<Login/>} 
-          /> */}
         <Route path={routePaths.Admin.login} exact element={<Login />} />
         <Route
           path={routePaths.Admin.dashboard}
@@ -78,43 +72,43 @@ const Authetication = () => {
         <Route
           path={routePaths.Admin.listUser}
           exact
-          element={token ? <ListUser /> : <Navigate to="/login" exact />}
+          element={ <ListUser />}
         />
         <Route
           path={routePaths.Admin.listAppartment}
           exact
-          element={token ? <ListAppartment /> : <Navigate to="/login" exact />}
+          element={ <ListAppartment />}
         />
         <Route
           path={routePaths.Admin.listBuilding}
           exact
-          element={token ? <ListBuilding /> : <Navigate to="/login" exact />}
+          element={ <ListBuilding />}
         />
         <Route
           path={routePaths.Admin.addAppartment}
           exact
-          element={token ? <AddAppartment /> : <Navigate to="/login" exact />}
+          element={ <AddAppartment />}
         />
         <Route
           path={routePaths.Admin.addbuilding}
           exact
-          element={token ? <AddBuilding /> : <Navigate to="/login" exact />}
+          element={ <AddBuilding />}
         />
         <Route
           path={routePaths.Admin.editBuilding}
           exact
-          element={token ? <EditBuilding /> : <Navigate to="/login" exact />}
+          element={ <EditBuilding />}
         />
         <Route
           path={routePaths.Admin.editApartment}
           exact
-          element={token ? <EditApartment /> : <Navigate to="/login" exact />}
+          element={ <EditApartment />}
         />
         <Route
           path={routePaths.Admin.adminListComplaint}
           exact
           element={
-            token ? <AdminListComplaint /> : <Navigate to="/login" exact />
+             <AdminListComplaint />
           }
         />
 

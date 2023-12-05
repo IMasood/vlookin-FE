@@ -1,19 +1,9 @@
 import React, { useState } from 'react'
-import { Col, Input, Row, Form, Checkbox } from "antd";
-import { CustomButton } from '../Button';
-import './style.css';
-import { Header } from '../Header';
-import { apiRoutes, routePaths } from '../../routes/config';
-import TextArea from 'antd/es/input/TextArea';
-import axios from 'axios';
-import CounterBtn from '../CounterBtn/CounterBtn';
-import { SaveModal } from '../Modal/SaveModal';
-import { CustomAlert } from '../Alert';
-import BuildingDropDown from '../DropDown';
-import { toast } from 'react-toastify';
+import './profile.css';
 import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
-import MobileHeader from '../Header/MobileHeader';
+import { RiMailFill, RiUser2Line, RiDragMove2Fill } from 'react-icons/ri';
+import { Col } from 'antd';
 
 const Profile = ({ title, showDrawer, data }) => {
     const navigate = useNavigate()
@@ -21,44 +11,37 @@ const Profile = ({ title, showDrawer, data }) => {
 
     return (
         <>
-            <div>
-                {isMobile ? <MobileHeader route={routePaths.Visitor.login} showDrawer={showDrawer} /> :
-                    <Header title={'Add Visitor'} subtitle={'welcome to visitor panel'} route={routePaths.Visitor.login} />
-                }
-                <div className='mb_form_heading'>
-                    <h2>User Profile</h2>
-                    <p className='headerText'>welcome to visitor panel</p>
+            <div class="container">
+                <div className='profileHeader'>
+                    <h1>Profile</h1>
                 </div>
-            </div>
-            <div className="visitor-body">
-                <Form>
-                    <Row >
-                        <Col
-                            // span={10}
-                            sm={16} md={10}>
-                                <h2>User Id </h2>
-                                <h3 style={{color:'gray'}}>{data.userId}</h3>
+                <div  class="profile">
+                        <header class="header">
+                            <div class="details">
+                                <img src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=b38c22a46932485790a3f52c61fcbe5a" alt="John Doe" class="profile-pic"/>
+                                <h1 class="heading">{data.userName}</h1>
+                                <div class="location">       
+                                    <p>{data.userId}</p>
+                                </div>
+                                <div class="stats">
+                                    <Col
+                                        // span={10}
+                                        offset={isMobile ? 0 : 4}
+                                        md={10} sm={16}>
+                                        <div class="col-4">
+                                            <h4><RiUser2Line/></h4>
+                                            <p>{data.role}</p>
+                                        </div>
 
-                                <br/>
-
-                                <h2>Name</h2>
-                                <h3 style={{color:'gray'}}>{data.userName}</h3>
-
-                                <br/>
-                                <h2>Role</h2>
-                                <h3 style={{color:'gray'}}>{data.role}</h3>
-
-                                <br/>
-                                <h2>Email</h2>
-                                <h3 style={{color:'gray'}}>{data.email}</h3>                                
-                                <br/>
-
-                        </Col>
-                    </Row>
-                    <div >
-                        <CustomAlert/>
-                    </div>
-                </Form>
+                                        <div class="col-4">
+                                            <h4><RiMailFill /></h4>
+                                            <p>{data.email}</p>
+                                        </div>
+                                        </Col>
+                                </div>
+                            </div>
+                        </header>
+                </div>
             </div>
         </>
     )

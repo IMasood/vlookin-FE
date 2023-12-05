@@ -46,24 +46,6 @@ export const LoginForm = (props) => {
     }
   };
 
-  const tempUserSignup = (inputs) => {
-    // userEmail.includes('@admin.com')
-    if (inputs.userId.includes("admin") && role == "admin") {
-      navigate(routePaths.Admin.dashboard);
-    } else if (inputs.userId.includes("tenant") && role == "tenant") {
-      navigate(routePaths.User.dashboard);
-    } else if (inputs.userId.includes("visitor") && role == "visitor") {
-      navigate(routePaths.Visitor.dashboard);
-    } else if (inputs.userId.includes("maintenance") && role == "maintenance") {
-      navigate(routePaths.Maintenance.dashboard);
-    } else if (inputs.userId.includes("superAdmin") && role == "superAdmin") {
-      navigate(routePaths.SuperAdmin.dashboard);
-    } else {
-      setLoading(false);
-      toast.error("Enter correct credentials");
-    }
-  };
-
   const userSignUp = async (inputs) => {
     const config = {
       headers: {
@@ -84,7 +66,6 @@ export const LoginForm = (props) => {
         if (response.status == 200) {
           toast.success("Logged in successfully");
           setLoading(false);
-          console.log(response);
           const expirationDate = new Date();
           expirationDate.setTime(expirationDate.getTime() + 8 * 60 * 60 * 1000); // 8 hours in milliseconds
           setCookies("token", response.data.token, {
@@ -94,6 +75,7 @@ export const LoginForm = (props) => {
             expires: expirationDate,
           }); // optional data
           setCookies("role", response.data.data.role);
+          console.log(cookies, 'cookiees')
           switch (response.data.data.role) {
             case "admin":
               navigate(routePaths.Admin.dashboard);
