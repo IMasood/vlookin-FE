@@ -6,8 +6,13 @@ import { HiUserAdd } from 'react-icons/hi';
 import { routePaths } from '../../routes/config';
 import MobileHeader from '../../components/Header/MobileHeader';
 import { useMediaQuery } from 'react-responsive';
+import { Cookies } from 'react-cookie';
 
 const MaintanceDashboard = ({ data }) => {
+    const cookies = new Cookies();
+    const role = cookies.get("role"); 
+    const userName = cookies.get('name');
+  
     const [open, setOpen] = useState(false);
     const showDrawer = () => {
         setOpen(true);

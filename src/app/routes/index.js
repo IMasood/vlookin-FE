@@ -51,6 +51,8 @@ const Authetication = () => {
   const cookies = new Cookies();
   const token = cookies.get("token");
 
+  console.log(token, 'cookies in route file debugging')
+
   return (    
     <Router>
       <Routes>

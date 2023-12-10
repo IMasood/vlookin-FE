@@ -12,9 +12,14 @@ import { superAdminSidebar } from "../../../utils/superAdminSideBar";
 import { apiRoutes, routePaths } from "../../../routes/config";
 import { EditOutlined } from "@ant-design/icons";
 import SuperAdminCompliantModal from "../../../components/Modal/SuperAdminComplaintModal";
+import { Cookies } from "react-cookie";
 
 export const ListUser = () => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
+
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([
     {
@@ -127,6 +132,8 @@ export const ListUser = () => {
         open={open}
         setOpen={setOpen}
         items={superAdminSidebar}
+        role = {role}
+        userName = {userName}
       />
       <CustomAlert />
       <SuperAdminCompliantModal

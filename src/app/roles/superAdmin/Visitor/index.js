@@ -12,8 +12,13 @@ import { getItem } from "../../../utils/functions";
 import SideBar from "../../../components/Layouts/SideBar";
 import { superAdminSidebar } from "../../../utils/superAdminSideBar";
 import VisitorModal from "../../../components/Modal/VisitorModal";
+import { Cookies } from "react-cookie";
 
 const SuperAdminListVisitor = () => {
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
+
   const [visitor, setVisitor] = useState([
     {
       visitorName: "",
@@ -129,6 +134,8 @@ const SuperAdminListVisitor = () => {
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
+        role = {role}
+        userName = {userName}
       />
       <VisitorModal
         id={id}

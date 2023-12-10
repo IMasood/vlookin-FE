@@ -9,9 +9,14 @@ import { CustomAlert } from "../../components/Alert";
 import { useNavigate } from "react-router";
 import SideBar from "../../components/Layouts/SideBar";
 import { adminSidebar } from "../../utils/roleSidebar";
+import { Cookies } from "react-cookie";
 
 export const ListAppartment = () => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
@@ -113,6 +118,8 @@ export const ListAppartment = () => {
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
+        role = {role}
+        userName = {userName}
       />
       <CustomAlert />
     </div>

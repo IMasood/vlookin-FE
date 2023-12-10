@@ -77,7 +77,7 @@ export const LoginForm = (props) => {
           }); // optional data
           setCookies("role", response.data.data.role);
           const role = cookie.get("role");
-          console.log(cookies,role, 'cookies');
+          console.log(cookies,role, 'cookies in login form');
         
           switch (role) {
             case "admin":

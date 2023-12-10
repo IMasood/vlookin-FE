@@ -10,8 +10,12 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { DeleteModal } from "../../components/Modal";
 import { EditOutlined } from "@ant-design/icons";
+import { Cookies } from "react-cookie";
 
 const ListVisitor = () => {
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
   const [visitor, setVisitor] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -117,6 +121,9 @@ const ListVisitor = () => {
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
+        role = {role}
+        userName = {userName}
+
       />
     </div>
   );

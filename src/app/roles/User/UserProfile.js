@@ -51,8 +51,8 @@ const UserProfile = () => {
 
   return (
     <div>
-      <SideBar children={<Profile data={tenantData} showDrawer={showDrawer}/>} items={items} showDrawer={showDrawer} open={open} setOpen={setOpen}/>
-      {/* <Dashboard data={<Profile data={tenantData} />} tenantData={tenantData} /> */}
+      <SideBar children={<Profile data={tenantData} showDrawer={showDrawer}/>} 
+     role = {tenantData.role} userName= {tenantData.userName} items={items} showDrawer={showDrawer} open={open} setOpen={setOpen}/>
       <CustomAlert />
     </div>
   );
