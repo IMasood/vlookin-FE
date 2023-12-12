@@ -20,7 +20,7 @@ const AccountsDirectoryForm = (props) => {
         )}
       </div>
       <div className="container-fluid">
-        <div className="d-flex flex-row-reverse col-md-12 border-top border-bottom pt-4 pb-5 align-items-end">
+        <div className="d-flex flex-row-reverse col-md-12 border-top border-bottom pt-2 pb-2 align-items-end">
           <CustomButton
             className="col-md-6"
             bgColor={"#4A0D37"}
