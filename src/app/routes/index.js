@@ -45,13 +45,13 @@ import { LoginForm } from "../components/Login/form";
 import { Cookies } from "react-cookie";
 import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceipt";
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
-import AuthenticatedRoute from "./authenticate";
+// import AuthenticatedRoute from "./authenticate";
 const Authetication = () => {
   // const { cookies } = LoginForm;
   const cookies = new Cookies();
   const token = cookies.get("token");
 
-  return (    
+  return (
     <Router>
       <Routes>
         <Route path={routePaths.Admin.login} exact element={<Login />} />
