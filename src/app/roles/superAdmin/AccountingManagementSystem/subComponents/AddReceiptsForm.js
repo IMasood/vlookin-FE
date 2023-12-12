@@ -11,41 +11,38 @@ const AddReceiptsForm = (showDrawer) => {
       <div>
         {isMobile ? (
           <MobileHeader
-            route={routePaths.SuperAdmin.addReceipt}
+            route={routePaths.Admin.login}
             showDrawer={showDrawer}
           />
         ) : (
-          <Header
-            title={"Add Receipts"}
-            route={routePaths.SuperAdmin.addReceipt}
-          />
+          <Header title={"Add Receipts"} route={routePaths.Admin.login} />
         )}
       </div>
-      <div className="container pb-0">
+      <div className="container-fluid pb-0">
         <div className="d-flex justify-content-between top-bar col-md-12">
           <div className="col-md-4">
             <span className="d-flex flex-row">
-              <p>Date : </p>16-09-2023
+              <div className="fw-bold">Date : </div>16-09-2023
             </span>
             <span className="d-flex flex-row">
-              <p>Voucher No : </p>2023000715
+              <div className="fw-bold">Voucher No : </div>2023000715
             </span>
           </div>
           <div className="d-flex flex-column col-md-4">
             <div class="form-group d-flex flex-row">
-              <label for="buidlingCode" className="col-md-4">
+              <label for="buidlingCode" className="fw-bold col-md-4">
                 Building Code
               </label>
               <input type="text" class="form-control" id="buidlingCode" />
             </div>
             <div class="form-group d-flex flex-row">
-              <label for="buidlingCode" className="col-md-4">
+              <label for="buidlingCode" className="fw-bold col-md-4">
                 Building Name
               </label>
               <input type="text" class="form-control" id="buidlingCode" />
             </div>
             <div class="form-group d-flex flex-row">
-              <label for="buidlingCode" className="col-md-4 ">
+              <label for="buidlingCode" className="fw-bold col-md-4 ">
                 Flat #
               </label>
               <input className="form-control" type="text" id="buidlingCode" />
@@ -58,7 +55,7 @@ const AddReceiptsForm = (showDrawer) => {
             <div>
               <h5>Tenent Details</h5>
               <div>
-                <p className="mb-1">Tenant Account</p>
+                <div className="fw-bold  mb-1">Tenant Account</div>
                 <div className="d-flex flex-row">
                   <input
                     style={{
@@ -109,7 +106,7 @@ const AddReceiptsForm = (showDrawer) => {
               <h5>Contract Details</h5>
               <div>
                 <div class="form-group d-flex flex-row mb-1">
-                  <label for="buidlingCode" className="col-md-4 ">
+                  <label for="buidlingCode" className="fw-bold  col-md-4 ">
                     Period Of Contract
                   </label>
                   <input
@@ -119,7 +116,7 @@ const AddReceiptsForm = (showDrawer) => {
                   />
                 </div>
                 <div class="form-group d-flex flex-row mb-1">
-                  <label for="buidlingCode" className="col-md-4 ">
+                  <label for="buidlingCode" className="fw-bold  col-md-4 ">
                     Total Rent
                   </label>
                   <input
@@ -129,7 +126,7 @@ const AddReceiptsForm = (showDrawer) => {
                   />
                 </div>
                 <div class="form-group d-flex flex-row mb-1">
-                  <label for="buidlingCode" className="col-md-4 ">
+                  <label for="buidlingCode" className="fw-bold col-md-4 ">
                     F.A.S Date
                   </label>
                   <input
@@ -139,7 +136,7 @@ const AddReceiptsForm = (showDrawer) => {
                   />
                 </div>
                 <div class="form-group d-flex flex-row mb-1">
-                  <label for="buidlingCode" className="col-md-4 ">
+                  <label for="buidlingCode" className="fw-bold  col-md-4 ">
                     Parking Charges 1
                   </label>
                   <input
@@ -149,7 +146,7 @@ const AddReceiptsForm = (showDrawer) => {
                   />
                 </div>
                 <div class="form-group d-flex flex-row mb-1">
-                  <label for="buidlingCode" className="col-md-4 ">
+                  <label for="buidlingCode" className="fw-bold col-md-4 ">
                     Parking Charges 2
                   </label>
                   <input
@@ -159,11 +156,11 @@ const AddReceiptsForm = (showDrawer) => {
                   />
                 </div>
                 <div class="form-group d-flex flex-column mb-1">
-                  <label for="buidlingCode" className="col-md-4 ">
+                  <label for="buidlingCode" className="fw-bold col-md-4 ">
                     Period Range
                   </label>
                   <div className="d-flex flex-row">
-                    <p className="col-md-4">From</p>
+                    <div className="fw-bold col-md-4">From</div>
                     <input
                       className="form-control"
                       type="text"
@@ -171,7 +168,7 @@ const AddReceiptsForm = (showDrawer) => {
                     />
                   </div>
                   <div className="d-flex flex-row">
-                    <p className="col-md-4">To</p>
+                    <div className="fw-bold col-md-4">To</div>
                     <input
                       className="form-control"
                       type="text"
@@ -184,7 +181,7 @@ const AddReceiptsForm = (showDrawer) => {
             <div>
               <h5>Additional Information</h5>
               <div class="form-group d-flex flex-row mb-1">
-                <label for="buidlingCode" className="col-md-4 ">
+                <label for="buidlingCode" className="fw-bold col-md-4 ">
                   Receipt Description
                 </label>
                 <textarea
