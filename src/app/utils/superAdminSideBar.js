@@ -3,6 +3,9 @@ import { MdOutlineReceiptLong } from "react-icons/md";
 import { CgPlayListAdd } from "react-icons/cg";
 import { RiFileList2Line } from "react-icons/ri";
 import { HiUserAdd } from "react-icons/hi";
+import { MdOutlineAccountBalanceWallet } from "react-icons/md";
+import { TbReceipt } from "react-icons/tb";
+import { RiFileList3Line } from "react-icons/ri";
 import { getItem } from "./functions";
 
 export const superAdminSidebar = [
@@ -26,5 +29,13 @@ export const superAdminSidebar = [
   getItem("Bank Receipts", "6", <MdOutlineReceiptLong />, [
     getItem("Add Receipts", "addReceipt", <CgPlayListAdd />),
     getItem("List Receipts", "listReceipt", <RiFileList2Line />),
+    getItem(
+      "Accounts Directory",
+      "accountsDirectory",
+      <MdOutlineAccountBalanceWallet />
+    ),
+    getItem("Tenancy Expiry List", "tenancyExpiryList", <RiFileList3Line />),
+    getItem("Bank Voucher", "bankVoucher", <TbReceipt />),
+    getItem("Journal Voucher", "journalVoucher", <TbReceipt />),
   ]),
 ];

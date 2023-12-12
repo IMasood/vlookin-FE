@@ -15,20 +15,17 @@ const ListReceiptsForm = (showDrawer) => {
       <div>
         {isMobile ? (
           <MobileHeader
-            route={routePaths.SuperAdmin.listReceipt}
+            route={routePaths.Admin.login}
             showDrawer={showDrawer}
           />
         ) : (
-          <Header
-            title={"List Receipts"}
-            route={routePaths.SuperAdmin.listReceipt}
-          />
+          <Header title={"List Receipts"} route={routePaths.Admin.login} />
         )}
       </div>
       <div className="container-fluid pb-0">
         <div className="d-flex flex-row col-md-12 border-top border-bottom pt-4 pb-5 align-items-end">
           <div class="form-group d-flex flex-column me-2">
-            <label for="buidlingCode" className="col-md-4">
+            <label for="buidlingCode" className="fw-bold col-md-4">
               Voucher #
             </label>
             <input
@@ -38,25 +35,25 @@ const ListReceiptsForm = (showDrawer) => {
             />
           </div>
           <div class="form-group d-flex flex-column me-2">
-            <label for="buidlingCode" className="col-md-4">
+            <label for="buidlingCode" className="fw-bold col-md-4">
               Flat #
             </label>
             <input type="text" class="form-control" id="buidlingCode" />
           </div>
           <div class="form-group d-flex flex-column me-2">
-            <label for="buidlingCode" className="col-md-4">
+            <label for="buidlingCode" className="fw-bold col-md-4">
               Account #
             </label>
             <input type="text" class="form-control" id="buidlingCode" />
           </div>
           <div class="form-group d-flex flex-column me-2">
-            <label for="buidlingCode" className="col-md-4">
+            <label for="buidlingCode" className="fw-bold col-md-4">
               Date
             </label>
             <input type="text" class="form-control" id="buidlingCode" />
           </div>
           <div class="form-group d-flex flex-column me-5">
-            <label for="buidlingCode" className="col-md-4">
+            <label for="buidlingCode" className="fw-bold col-md-4">
               Amount
             </label>
             <input type="text" class="form-control" id="buidlingCode" />

@@ -46,6 +46,11 @@ import { Cookies } from "react-cookie";
 import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceipt";
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
 // import AuthenticatedRoute from "./authenticate";
+import AccountsDirectory from "../roles/superAdmin/AccountingManagementSystem/AccountsDirectory";
+import BankPaymentVoucher from "../roles/superAdmin/AccountingManagementSystem/BankPaymentVoucher";
+import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/JournalVoucher";
+import TenancyExpiryList from "../roles/superAdmin/AccountingManagementSystem/TenancyExpiryList";
+import AuthenticatedRoute from "./authenticate";
 const Authetication = () => {
   // const { cookies } = LoginForm;
   const cookies = new Cookies();
@@ -215,10 +220,32 @@ const Authetication = () => {
         <Route
           path={routePaths.SuperAdmin.listReceipt}
           exact
+          element={token ? <ListReceipt /> : <Navigate to="/login" exact />}
+        />
+        <Route
+          path={routePaths.SuperAdmin.accountsDirectory}
+          exact
           element={
-            // token ?
-            <ListReceipt />
-            // : <Navigate to="/login" exact />
+            token ? <AccountsDirectory /> : <Navigate to="/login" exact />
+          }
+        />
+        <Route
+          path={routePaths.SuperAdmin.bankPaymentVoucher}
+          exact
+          element={
+            token ? <BankPaymentVoucher /> : <Navigate to="/login" exact />
+          }
+        />
+        <Route
+          path={routePaths.SuperAdmin.journalVoucher}
+          exact
+          element={token ? <JournalVoucher /> : <Navigate to="/login" exact />}
+        />
+        <Route
+          path={routePaths.SuperAdmin.tenancyExpiryList}
+          exact
+          element={
+            token ? <TenancyExpiryList /> : <Navigate to="/login" exact />
           }
         />
 

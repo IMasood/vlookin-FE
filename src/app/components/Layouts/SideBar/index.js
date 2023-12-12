@@ -93,6 +93,14 @@ const SideBar = ({
       navigate(routePaths.SuperAdmin.addReceipt);
     } else if (e.key === "listReceipt") {
       navigate(routePaths.SuperAdmin.listReceipt);
+    } else if (e.key === "accountsDirectory") {
+      navigate(routePaths.SuperAdmin.accountsDirectory);
+    } else if (e.key === "tenancyExpiryList") {
+      navigate(routePaths.SuperAdmin.tenancyExpiryList);
+    } else if (e.key === "bankPaymentVoucher") {
+      navigate(routePaths.SuperAdmin.bankPaymentVoucher);
+    } else if (e.key === "journalVoucher") {
+      navigate(routePaths.SuperAdmin.journalVoucher);
     }
   };
   return (
