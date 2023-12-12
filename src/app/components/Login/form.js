@@ -9,7 +9,7 @@ import { RolesSelector } from "../DropDown/rolesSelector";
 import { toast } from "react-toastify";
 import { CustomAlert } from "../Alert";
 import { createContext, useContext, useMemo } from "react";
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 
 export const LoginForm = (props) => {
   const navigate = useNavigate();
@@ -21,6 +21,9 @@ export const LoginForm = (props) => {
   const [role, setRole] = useState("");
   const [user, setUser] = useState([]);
   const [cookies, setCookies, removeCookie] = useCookies();
+
+  const cookie = new Cookies();
+
 
   const handleChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -38,29 +41,9 @@ export const LoginForm = (props) => {
     setLoading(true);
     e.preventDefault();
     try {
-      const res = userSignUp(inputs);
-      // const temp = tempUserSignup(inputs);
+        userSignUp(inputs);
     } catch (er) {
       setLoading(false);
-      console.log("er", er);
-    }
-  };
-
-  const tempUserSignup = (inputs) => {
-    // userEmail.includes('@admin.com')
-    if (inputs.userId.includes("admin") && role == "admin") {
-      navigate(routePaths.Admin.dashboard);
-    } else if (inputs.userId.includes("tenant") && role == "tenant") {
-      navigate(routePaths.User.dashboard);
-    } else if (inputs.userId.includes("visitor") && role == "visitor") {
-      navigate(routePaths.Visitor.dashboard);
-    } else if (inputs.userId.includes("maintenance") && role == "maintenance") {
-      navigate(routePaths.Maintenance.dashboard);
-    } else if (inputs.userId.includes("superAdmin") && role == "superAdmin") {
-      navigate(routePaths.SuperAdmin.dashboard);
-    } else {
-      setLoading(false);
-      toast.error("Enter correct credentials");
     }
   };
 
@@ -84,7 +67,6 @@ export const LoginForm = (props) => {
         if (response.status == 200) {
           toast.success("Logged in successfully");
           setLoading(false);
-          console.log(response);
           const expirationDate = new Date();
           expirationDate.setTime(expirationDate.getTime() + 8 * 60 * 60 * 1000); // 8 hours in milliseconds
           setCookies("token", response.data.token, {
@@ -94,7 +76,10 @@ export const LoginForm = (props) => {
             expires: expirationDate,
           }); // optional data
           setCookies("role", response.data.data.role);
-          switch (response.data.data.role) {
+          const role = cookie.get("role");
+          console.log(cookies,role, 'cookies');
+        
+          switch (role) {
             case "admin":
               navigate(routePaths.Admin.dashboard);
               localStorage.setItem("adminRole", response.data.data.role);
@@ -115,8 +100,9 @@ export const LoginForm = (props) => {
               localStorage.setItem("upKeeperRole", response.data.data.role);
               localStorage.setItem("upkeeperName", response.data.data.userName);
               break;
-            case "superAdmin":
-              navigate(routePaths.SuperAdmin.dashboard);
+            case "superadmin":
+            case "superadmin":
+              navigate(routePaths.SuperAdmin.addUser);
               localStorage.setItem("superAdminRole", response.data.data.role);
               localStorage.setItem(
                 "superAdminName",
@@ -132,8 +118,9 @@ export const LoginForm = (props) => {
         }
       })
       .catch((error) => {
+        console.log('error', error)
         setLoading(false);
-        toast.error(error.response.data.message);
+        toast.error(error?.response?.data?.message);
       });
   };
 

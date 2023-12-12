@@ -45,25 +45,25 @@ import { LoginForm } from "../components/Login/form";
 import { Cookies } from "react-cookie";
 import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceipt";
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
-import AccountsDirectory from "../roles/superAdmin/AccountingManagementSystem/AccountsDirectory";
-import BankPaymentVoucher from "../roles/superAdmin/AccountingManagementSystem/BankPaymentVoucher";
-import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/JournalVoucher";
-import TenancyExpiryList from "../roles/superAdmin/AccountingManagementSystem/TenancyExpiryList";
-import AuthenticatedRoute from "./authenticate";
 const Authetication = () => {
+  console.log(routePaths.Admin.login);
+
   // const { cookies } = LoginForm;
   const cookies = new Cookies();
   const token = cookies.get("token");
+  console.log(LoginForm);
 
   return (
     <Router>
       <Routes>
+        {/* AAdmin Routes */}
         <Route path={routePaths.Admin.login} exact element={<Login />} />
         <Route
           path={routePaths.Admin.dashboard}
           exact
           element={token ? <AdminDashboard /> : <Navigate to="/login" exact />}
         />
+
         <Route
           path={routePaths.Admin.addUser}
           exact
@@ -72,43 +72,43 @@ const Authetication = () => {
         <Route
           path={routePaths.Admin.listUser}
           exact
-          element={token ? <ListUser /> : <Navigate to="/login" exact />}
+          element={ <ListUser />}
         />
         <Route
           path={routePaths.Admin.listAppartment}
           exact
-          element={token ? <ListAppartment /> : <Navigate to="/login" exact />}
+          element={ <ListAppartment />}
         />
         <Route
           path={routePaths.Admin.listBuilding}
           exact
-          element={token ? <ListBuilding /> : <Navigate to="/login" exact />}
+          element={ <ListBuilding />}
         />
         <Route
           path={routePaths.Admin.addAppartment}
           exact
-          element={token ? <AddAppartment /> : <Navigate to="/login" exact />}
+          element={ <AddAppartment />}
         />
         <Route
           path={routePaths.Admin.addbuilding}
           exact
-          element={token ? <AddBuilding /> : <Navigate to="/login" exact />}
+          element={ <AddBuilding />}
         />
         <Route
           path={routePaths.Admin.editBuilding}
           exact
-          element={token ? <EditBuilding /> : <Navigate to="/login" exact />}
+          element={ <EditBuilding />}
         />
         <Route
           path={routePaths.Admin.editApartment}
           exact
-          element={token ? <EditApartment /> : <Navigate to="/login" exact />}
+          element={ <EditApartment />}
         />
         <Route
           path={routePaths.Admin.adminListComplaint}
           exact
           element={
-            token ? <AdminListComplaint /> : <Navigate to="/login" exact />
+             <AdminListComplaint />
           }
         />
 
@@ -119,7 +119,7 @@ const Authetication = () => {
           exact
           element={token ? <DashboardScr /> : <Navigate to="/login" exact />}
         />
-        {/* <Route path={routePaths.Tenant.login} exact element={<LoginScr />} /> */}
+        <Route path={routePaths.Tenant.login} exact element={<LoginScr />} />
         <Route
           path={routePaths.Tenant.listTenant}
           exact
@@ -219,32 +219,10 @@ const Authetication = () => {
         <Route
           path={routePaths.SuperAdmin.listReceipt}
           exact
-          element={token ? <ListReceipt /> : <Navigate to="/login" exact />}
-        />
-        <Route
-          path={routePaths.SuperAdmin.accountsDirectory}
-          exact
           element={
-            token ? <AccountsDirectory /> : <Navigate to="/login" exact />
-          }
-        />
-        <Route
-          path={routePaths.SuperAdmin.bankPaymentVoucher}
-          exact
-          element={
-            token ? <BankPaymentVoucher /> : <Navigate to="/login" exact />
-          }
-        />
-        <Route
-          path={routePaths.SuperAdmin.journalVoucher}
-          exact
-          element={token ? <JournalVoucher /> : <Navigate to="/login" exact />}
-        />
-        <Route
-          path={routePaths.SuperAdmin.tenancyExpiryList}
-          exact
-          element={
-            token ? <TenancyExpiryList /> : <Navigate to="/login" exact />
+            // token ?
+            <ListReceipt />
+            // : <Navigate to="/login" exact />
           }
         />
 
