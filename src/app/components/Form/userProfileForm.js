@@ -23,7 +23,7 @@ const Profile = ({ title, showDrawer, data }) => {
         <div>
             {isMobile ? <MobileHeader route={routePaths.Admin.login} showDrawer={showDrawer} /> :
             <div className='profileLogoutBtn'>
-                <Button type="text" className='button'
+                <Button type="text" 
                     onClick={handleLogout}
                 >
                     Logout

@@ -7,7 +7,7 @@ body {
 }
 
 .profile-head {
-  min-height: 60vh;
+  min-height: 66vh;
   background: #009FFF;
   background: linear-gradient(to right, #420B31, #721655);
   color: white;
@@ -100,7 +100,3 @@ body {
   justify-content: flex-end;
 }
 
-.button{
-  font-weight: 400;
-  font-size: 20px;
-}
