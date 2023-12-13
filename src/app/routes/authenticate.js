@@ -1,14 +1,26 @@
 // AuthenticatedRoute.js - A reusable component to handle authentication logic
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Cookies } from 'react-cookie';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import WebRoutes from '.';
+import { Login } from '../components/Login';
+import { routePaths } from './config';
 
-const AuthenticatedRoute = ({ token, path, element }) => {
+const AuthenticatedRoute = ({path, element }) => {
   return (
-    <Route
-      path={path}
-      exact
-      element={token ? element : <Navigate to="/login" />}
-    />
+    <div>
+      <Router>
+        <Routes>
+          <Route path={routePaths.Admin.login} exact element={<Login />} />
+        </Routes>
+      </Router>
+    </div>
+    
   );
 };
 

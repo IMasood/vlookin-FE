@@ -48,6 +48,8 @@ const SideBar = ({
     token: { colorBgContainer },
   } = theme.useToken();
 
+  console.log(userName, role);
+
   const onClick = (e) => {
     if (e.key === "add_visitor") {
       navigate(routePaths.Visitor.dashboard);
@@ -144,8 +146,8 @@ const SideBar = ({
               {userName ? userName.charAt(0) : ""}
             </Avatar>
             <div className="user_role">
-              <p>{data?.userName}</p>
-              <small> {data?.role}</small>
+              <p>{data?.userName ?? data?.userName ?? userName}</p>
+              <small> {data?.role ?? data?.role ?? role}</small>
             </div>
           </div>
           {collapsed && (

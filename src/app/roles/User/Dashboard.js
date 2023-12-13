@@ -10,8 +10,13 @@ import { BiMessageError } from 'react-icons/bi';
 import { MdOutlineDomainDisabled } from 'react-icons/md';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Cookies } from 'react-cookie';
 
 const Dashboard = ({ data, tenantData }) => {
+    const cookies = new Cookies();
+    const role = cookies.get("role"); 
+    const userName = cookies.get('name');
+  
     const [open, setOpen] = useState(false);
     const showDrawer = () => {
         setOpen(true);
@@ -32,7 +37,7 @@ const Dashboard = ({ data, tenantData }) => {
     return (
         <div>
             {isMobile ? <MobileHeader route={routePaths.Admin.login} showDrawer={showDrawer} /> :
-                <SideBar children={data} items={items} data = {tenantData} />
+                <SideBar children={data} items={items} data = {tenantData} open={open} role={role} userName={userName}/>
             }
         </div>
     )

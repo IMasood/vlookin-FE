@@ -12,9 +12,13 @@ import ViewCompliantModal from "../../components/Modal/ViewCompliantModal";
 import { DeleteModal } from "../../components/Modal";
 import { FaThList, FaWarehouse, FaBuilding } from "react-icons/fa";
 import { getItem } from "../../utils/functions";
+import { Cookies } from "react-cookie";
 
 export const MaintenanceListComplaint = () => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([
     {
@@ -132,6 +136,9 @@ export const MaintenanceListComplaint = () => {
         open={open}
         setOpen={setOpen}
         items={items}
+        role = {role}
+        userName = {userName}
+
       />
       <CustomAlert />
       <ViewCompliantModal

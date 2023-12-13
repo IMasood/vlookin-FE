@@ -5,15 +5,17 @@ import { HiUserAdd } from 'react-icons/hi';
 import { RiWalkFill } from 'react-icons/ri';
 import SideBar from '../../components/Layouts/SideBar';
 import AddVisitorForm from '../../components/Form/addVisitorForm';
+import { Cookies } from 'react-cookie';
 
 const VistorDashboard = () => {
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
+
     const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
   };
-
-    const role = localStorage.getItem('visitorRole');
-    const userName = localStorage.getItem('visitorName');
 
     const items = [
         getItem('Visitor', '1', <RiWalkFill />,

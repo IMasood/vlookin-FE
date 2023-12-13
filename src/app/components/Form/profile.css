@@ -9,7 +9,7 @@ body {
 .profile-head {
   min-height: 60vh;
   background: #009FFF;
-  background: linear-gradient(to right, #950c20, #6A164F);
+  background: linear-gradient(to right, #420B31, #721655);
   color: white;
   clip-path: ellipse(100vw 60vh at 50% 50%);
   display: flex;
@@ -41,11 +41,14 @@ body {
 .stats {
   display: flex;
   align-items: center;
+  /* justify-content: center; */
+  padding: 12px;
 }
 
 .stats .col-4 {
   width: 6rem;
   text-align: center;
+  margin-bottom: 7px;
 }
 
 .heading {
@@ -70,7 +73,6 @@ body {
 
 .profileHeader {
   font-weight: 600;
-  font-size: 50px;
   text-align: center; /* Center align the text */
   margin-bottom: 20px; /* Add margin for spacing */
   margin-top: 74px;
@@ -82,14 +84,23 @@ body {
     width: 90%; /* Adjust width for smaller screens */
     height: auto; /* Allow height to adjust as per content */
   }
-
-  .profileHeader {
-    font-size: 20px; /* Adjust font size for smaller screens */
+  .stats{
+    justify-content: center;
   }
-}
+
+ }
 
 .container {
   width: 100%; /* Ensure full width */
   padding: 0 15px; /* Add some padding for better mobile view */
   box-sizing: border-box; /* Include padding in the width */
+}
+.profileLogoutBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button{
+  font-weight: 400;
+  font-size: 20px;
 }

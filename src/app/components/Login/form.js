@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, Form, Checkbox } from "antd";
 import { CustomButton } from "../Button";
 import { routePaths, apiRoutes } from "../../routes/config";
@@ -8,7 +8,6 @@ import { Oval } from "react-loader-spinner";
 import { RolesSelector } from "../DropDown/rolesSelector";
 import { toast } from "react-toastify";
 import { CustomAlert } from "../Alert";
-import { createContext, useContext, useMemo } from "react";
 import { Cookies, useCookies } from "react-cookie";
 
 export const LoginForm = (props) => {
@@ -47,6 +46,10 @@ export const LoginForm = (props) => {
     }
   };
 
+  useEffect(() => {
+    cookie.get('token');    
+  }, []);
+
   const userSignUp = async (inputs) => {
     const config = {
       headers: {
@@ -69,45 +72,32 @@ export const LoginForm = (props) => {
           setLoading(false);
           const expirationDate = new Date();
           expirationDate.setTime(expirationDate.getTime() + 8 * 60 * 60 * 1000); // 8 hours in milliseconds
-          setCookies("token", response.data.token, {
+          setCookies("token", response.data.token,
+          {
             expires: expirationDate,
-          }); // your token
+          });           // your token
           setCookies("name", response.data.data.userName, {
             expires: expirationDate,
           }); // optional data
           setCookies("role", response.data.data.role);
           const role = cookie.get("role");
-          console.log(cookies,role, 'cookies');
         
           switch (role) {
             case "admin":
               navigate(routePaths.Admin.dashboard);
-              localStorage.setItem("adminRole", response.data.data.role);
-              localStorage.setItem("adminName", response.data.data.userName);
               break;
             case "tenant":
               navigate(routePaths.User.dashboard);
-              localStorage.setItem("tenantRole", response.data.data.role);
-              localStorage.setItem("tenantId", response.data.data.id);
               break;
             case "visitor":
               navigate(routePaths.Visitor.dashboard);
-              localStorage.setItem("visitorRole", response.data.data.role);
-              localStorage.setItem("visitorName", response.data.data.userName);
               break;
             case "maintenance":
               navigate(routePaths.Maintenance.dashboard);
-              localStorage.setItem("upKeeperRole", response.data.data.role);
-              localStorage.setItem("upkeeperName", response.data.data.userName);
               break;
             case "superadmin":
             case "superadmin":
-              navigate(routePaths.SuperAdmin.addUser);
-              localStorage.setItem("superAdminRole", response.data.data.role);
-              localStorage.setItem(
-                "superAdminName",
-                response.data.data.userName
-              );
+              navigate( routePaths.SuperAdmin.addUser);
               break;
             default:
               break;
