@@ -26,9 +26,7 @@ export const UserProvider = ({ children }) => {
     );
 
     setCookies("token", res.token); // your token
-    setCookies("name", res.data.name); // optional data
-
-    navigate("/admin/dashboard");
+    navigate("/login");
   };
 
   const logout = () => {

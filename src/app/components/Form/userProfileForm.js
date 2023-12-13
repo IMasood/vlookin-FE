@@ -30,7 +30,7 @@ const Profile = ({ title, showDrawer, data }) => {
                 </Button>
             </div>
         }
-            <div class="container">
+            <div className="container">
                 <div className='profileHeader'>
                     <h2>Profile</h2>
                 </div>
