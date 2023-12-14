@@ -36,6 +36,6 @@ export const superAdminSidebar = [
     ),
     getItem("Tenancy Expiry List", "tenancyExpiryList", <RiFileList3Line />),
     getItem("Journal Voucher", "journalVoucher", <TbReceipt />),
-    getItem("Bank Payment Voucher", "bankPaymentVoucher", <TbReceipt />),
+    getItem("Bank Voucher", "bankPaymentVoucher", <TbReceipt />),
   ]),
 ];
