@@ -53,7 +53,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
         event.preventDefault();
         if (inputs.name && inputs.email && selectedBuilding && inputs.flatNo && inputs.mobileNo
             && maxRooms && inputs.comment) {
-            const createVisit = postVisit(inputs);
+             postVisit(inputs);
         } else {
             toast.error('Complete Form')
         }

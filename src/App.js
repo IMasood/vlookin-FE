@@ -1,10 +1,10 @@
 import "./App.css";
-import Authetication from "./app/routes";
+import WebRoutes from "./app/routes";
 
 function App() {
   return (
     <div>
-      <Authetication />
+      <WebRoutes />
     </div>
   );
 }

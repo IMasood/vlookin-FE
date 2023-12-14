@@ -7,17 +7,18 @@ import { HiUserAdd } from 'react-icons/hi';
 import { MdApartment } from 'react-icons/md';
 import { RiWalkFill } from 'react-icons/ri';
 import { BsBuildingFillAdd } from 'react-icons/bs';
+import { Cookies } from 'react-cookie';
 
 
 const DashboardScr = () => {
+    const cookies = new Cookies();
+    const role = cookies.get("role"); 
+    const userName = cookies.get('name');
+  
     const [open, setOpen] = useState(false);
     const showDrawer = () => {
         setOpen(true);
     };
-
-    const role = localStorage.getItem('tenantRole');
-    const userName = localStorage.getItem('tenantName');
-    const adminRole = localStorage.getItem('adminRole');
 
     const items = [
         getItem('Tenant', '1', <FaWarehouse />,

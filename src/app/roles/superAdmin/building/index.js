@@ -9,9 +9,14 @@ import CusTable from "../../../components/Table/Table";
 import SideBar from "../../../components/Layouts/SideBar";
 import { CustomAlert } from "../../../components/Alert";
 import { DeleteModal } from "../../../components/Modal";
+import { Cookies } from "react-cookie";
 
 export const Building = () => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
@@ -115,6 +120,8 @@ export const Building = () => {
         open={open}
         setOpen={setOpen}
         items={superAdminSidebar}
+        role = {role}
+        userName = {userName}
       />
       <CustomAlert />
     </div>
