@@ -41,6 +41,7 @@ import { LoginForm } from "../components/Login/form";
 import { Cookies } from "react-cookie";
 import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceipt";
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
+import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/JournalVoucher";
 
 
 const WebRoutes = () => {
@@ -220,6 +221,13 @@ const WebRoutes = () => {
               <ListReceipt />
               // : <Navigate to="/login" exact />
             }
+          />
+          <Route 
+          path={routePaths.SuperAdmin.journalVoucher}
+          exact 
+          element={
+            <JournalVoucher/>
+          }
           />
 
           {/* Visitor Routes */}
