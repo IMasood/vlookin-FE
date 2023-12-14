@@ -241,6 +241,7 @@ const Authetication = () => {
           exact
           element={token ? <JournalVoucher /> : <Navigate to="/login" exact />}
         />
+        {/* Routes Present */}
         <Route
           path={routePaths.SuperAdmin.tenancyExpiryList}
           exact
