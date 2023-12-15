@@ -35,7 +35,7 @@ export const superAdminSidebar = [
       <MdOutlineAccountBalanceWallet />
     ),
     getItem("Tenancy Expiry List", "tenancyExpiryList", <RiFileList3Line />),
-    getItem("Bank Voucher", "bankVoucher", <TbReceipt />),
     getItem("Journal Voucher", "journalVoucher", <TbReceipt />),
+    getItem("Bank Voucher", "bankPaymentVoucher", <TbReceipt />),
   ]),
 ];

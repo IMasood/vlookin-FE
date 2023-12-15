@@ -42,15 +42,17 @@ import { Cookies } from "react-cookie";
 import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceipt";
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
 import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/JournalVoucher";
-
+import AccountsDirectory from "../roles/superAdmin/AccountingManagementSystem/AccountsDirectory";
+import TenancyExpiryList from "../roles/superAdmin/AccountingManagementSystem/TenancyExpiryList";
+import BankPaymentVoucher from "../roles/superAdmin/AccountingManagementSystem/BankPaymentVoucher";
 
 const WebRoutes = () => {
   const cookies = new Cookies();
   const token = cookies.get("token");
 
-  console.log(token,cookies,  'cookies in route file debugging')
+  console.log(token, cookies, "cookies in route file debugging");
 
-  return (    
+  return (
     <>
       <Router>
         <Routes>
@@ -59,7 +61,9 @@ const WebRoutes = () => {
           <Route
             path={routePaths.Admin.dashboard}
             exact
-            element={token ? <AdminDashboard /> : <Navigate to="/login" exact />}
+            element={
+              token ? <AdminDashboard /> : <Navigate to="/login" exact />
+            }
           />
           <Route
             path={routePaths.Admin.addUser}
@@ -74,7 +78,9 @@ const WebRoutes = () => {
           <Route
             path={routePaths.Admin.listAppartment}
             exact
-            element={token ? <ListAppartment /> : <Navigate to="/login" exact />}
+            element={
+              token ? <ListAppartment /> : <Navigate to="/login" exact />
+            }
           />
           <Route
             path={routePaths.Admin.listBuilding}
@@ -201,7 +207,9 @@ const WebRoutes = () => {
           <Route
             path={routePaths.SuperAdmin.editUser}
             exact
-            element={token ? <EditSuperAdmin /> : <Navigate to="/login" exact />}
+            element={
+              token ? <EditSuperAdmin /> : <Navigate to="/login" exact />
+            }
           />
           <Route
             path={routePaths.SuperAdmin.building}
@@ -216,18 +224,39 @@ const WebRoutes = () => {
           <Route
             path={routePaths.SuperAdmin.listReceipt}
             exact
+            element={token ? <ListReceipt /> : <Navigate to="/login" exact />}
+          />
+          {/* <Route
+            path={routePaths.SuperAdmin.listReceipt}
+            exact
             element={
               // token ?
               <ListReceipt />
               // : <Navigate to="/login" exact />
             }
+          /> */}
+          <Route
+            path={routePaths.SuperAdmin.accountsDirectory}
+            exact
+            element={<AccountsDirectory />}
           />
-          <Route 
-          path={routePaths.SuperAdmin.journalVoucher}
-          exact 
-          element={
-            <JournalVoucher/>
-          }
+          <Route
+            path={routePaths.SuperAdmin.journalVoucher}
+            exact
+            element={
+              token ? <JournalVoucher /> : <Navigate to="/login" exact />
+            }
+          />
+          {/* Routes Present */}
+          <Route
+            path={routePaths.SuperAdmin.tenancyExpiryList}
+            exact
+            element={<TenancyExpiryList />}
+          />
+          <Route
+            path={routePaths.SuperAdmin.bankPaymentVoucher}
+            exact
+            element={<BankPaymentVoucher />}
           />
 
           {/* Visitor Routes */}
