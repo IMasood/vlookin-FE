@@ -36,7 +36,6 @@ export const LoginForm = (props) => {
     console.log(`checked = ${e.target.checked}`);
   };
 
-
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -47,6 +46,9 @@ export const LoginForm = (props) => {
     }
   };
 
+  useEffect(() => {
+    cookie.get('token');    
+  }, []);
 
   const userSignUp = async (inputs) => {
     const config = {
@@ -94,7 +96,7 @@ export const LoginForm = (props) => {
               navigate(routePaths.Maintenance.dashboard);
               break;
             case "superadmin":
-            case "superadmin":
+            case "superAdmin":
               navigate( routePaths.SuperAdmin.addUser);
               break;
             default:
@@ -111,10 +113,6 @@ export const LoginForm = (props) => {
         toast.error(error?.response?.data?.message);
       });
   };
-
-  useEffect(() => {
-    cookie.get('token');    
-  }, []);
 
   return (
     <div>
