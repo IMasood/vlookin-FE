@@ -87,7 +87,7 @@ export const apiRoutes = {
   getBuilding: "http://195.35.45.131:4000/building?all=true",
   getApartment: "http://195.35.45.131:4000/apartment?all=true",
   createBuilding: "http://195.35.45.131:4000/building",
-  createApartment: "http://127.0.0.1:4000/apartment",
+  createApartment: "http://195.35.45.131:4000/apartment",
   getComplaints: "http://195.35.45.131:4000/maintenance/getComplaint?all=true",
   createComplaints: "http://195.35.45.131:4000/maintenance/addComplaint",
   getReceipts: "http://195.35.45.131:4000/receipt?all=true",
