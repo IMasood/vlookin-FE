@@ -196,7 +196,7 @@ const ReceiptModal = ({ open, setOpen, route, onCancel, handleButton, setTableSh
                                 }}
                             >
                                 <Form.Item label="Building Code">
-                                    <BuildingDropDown value={selectedBuilding} handleChange={handleBuildingChange} />
+                                    <BuildingDropDown setSelectedBuilding={setSelectedBuilding} />
                                 </Form.Item>
                                 <Form.Item label="Receipt Details">
                                     <Input.TextArea showCount

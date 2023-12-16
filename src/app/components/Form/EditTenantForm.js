@@ -161,9 +161,8 @@ const EditTenantForm = ({ title, showDrawer }) => {
           </Col>
           <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
             <BuildingDropDown
-              value={selectedBuilding}
-              handleChange={handleBuildingChange}
-            />
+                setSelectedBuilding={setSelectedBuilding}
+                />
             <Input
               placeholder="Flat no"
               className="form_input"

@@ -45,14 +45,10 @@ const AddVisitorForm = ({ title, showDrawer }) => {
         }
     }
 
-    const handleBuildingChange = (value) => {
-        setSelectedBuilding(value);
-    };
-
     const handleSave = (event) => {
         event.preventDefault();
         if (inputs.name && inputs.email && selectedBuilding && inputs.flatNo && inputs.mobileNo
-            && maxRooms && inputs.comment) {
+            && inputs.comment) {
              postVisit(inputs);
         } else {
             toast.error('Complete Form')
@@ -194,7 +190,9 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                             </Form.Item>
                             <Form.Item>
                                 <label style={{ color: '#4A0D37' }}>Building Name</label>
-                                <BuildingDropDown value={selectedBuilding} handleChange={handleBuildingChange} />
+                                <BuildingDropDown 
+                                    setSelectedBuilding={setSelectedBuilding}
+                                 />
                             </Form.Item>
                             <Form.Item
                                 name='flatNo'

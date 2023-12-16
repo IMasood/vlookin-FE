@@ -13,8 +13,9 @@ import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import MobileHeader from '../Header/MobileHeader';
 import ReceiptModal from '../Modal/ReceiptModal';
+import ApartmentsDropdown from '../DropDown/apartmentDropDown';
 
-const TenateForm = ({ title, showDrawer }) => {
+const TenateForm = ({ title, showDrawer, role }) => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const [modalOpen, setModalOpen] = useState(false);
@@ -33,6 +34,7 @@ const TenateForm = ({ title, showDrawer }) => {
     const [receiptModal, setReceiptModal] = useState(false);
     const [tableShow, setTableShow] = useState(false)
     const [buildingSelected, setBuildingSelected] = useState(false);
+    const [selectedApartment, setSelectedApartment] = useState('');
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -51,7 +53,7 @@ const TenateForm = ({ title, showDrawer }) => {
 
     const handleSave = (event) => {
         event.preventDefault();
-        if (inputs.name && inputs.email && selectedBuilding && inputs.flatNo && inputs.mobileNo
+        if (inputs.name && inputs.email && selectedBuilding && selectedApartment && inputs.mobileNo
             && inputs.nationality && inputs.officeNo) {
                 createTenant(inputs);
         } else {
@@ -72,11 +74,12 @@ const TenateForm = ({ title, showDrawer }) => {
                     {
                         tenantName: inputs.name,
                         email: inputs.email,
-                        buildingName: selectedBuilding,
-                        flatNo: inputs.flatNo,
+                        buildingId: selectedBuilding,
+                        apartmentId: selectedApartment,
                         contact: inputs.mobileNo,
+                        officeNo: inputs.officeNo,
+                        createdBy: role,
                         nationality: inputs.nationality,
-                        officeNo: inputs.officeNo
                     }
                     , config)
                 .then((response) => {
@@ -140,15 +143,9 @@ const TenateForm = ({ title, showDrawer }) => {
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <label style={{ color: '#4A0D37' }}>Building Name</label>
-                        <BuildingDropDown setSelectedBuilding={setSelectedBuilding} isBuildingSelected = {setBuildingSelected} buildingSelected={buildingSelected} />
+                        <BuildingDropDown setSelectedBuilding={setSelectedBuilding} isBuildingSelected = {setBuildingSelected}/>
                         {buildingSelected && 
-                            <Input
-                                placeholder="Flat no"
-                                className="form_input"
-                                name='flatNo'
-                                value={inputs.flatNo}
-                                onChange={handleChange}
-                            /> 
+                            <ApartmentsDropdown  setSelectedApartment={setSelectedApartment}/>
                         }
                         <Input
                             placeholder="Office No. "

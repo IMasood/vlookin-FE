@@ -58,7 +58,9 @@ const BuildingDropDown = ({
   const handleChange = (value) => {
     console.log(value);
     setSelectedBuilding(value);
-    isBuildingSelected(true)
+    if(isBuildingSelected){
+      isBuildingSelected(true)
+    }
   };
 
   return (

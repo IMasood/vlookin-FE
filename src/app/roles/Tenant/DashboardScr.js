@@ -42,7 +42,7 @@ const DashboardScr = () => {
 
     return (
         <div>
-            <SideBar children={<TenateForm showDrawer={showDrawer}/>} items={adminItems} role={role ? role : ''} userName={userName ? userName : ''}  showDrawer={showDrawer} open={open} setOpen={setOpen}/>
+            <SideBar children={<TenateForm showDrawer={showDrawer} role={role}/> } items={adminItems} role={role ? role : ''} userName={userName ? userName : ''}  showDrawer={showDrawer} open={open} setOpen={setOpen}/>
         </div>
     )
 }

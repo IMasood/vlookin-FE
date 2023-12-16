@@ -11,42 +11,41 @@ const ApartmentsDropdown = ({
   // handleChange,
   placeholder,
   disabled,
-  setSelectedBuilding,
+  setSelectedApartment,
 }) => {
   const [apartments, setApartments] = useState([]);
 
   useEffect(() => {
     // Fetch building data from the API and update state
-    fetchBuildingData();
+    fetchApartmentData();
   }, []);
 
-  const fetchBuildingData = async () => {
+  const fetchApartmentData = async () => {
     try {
       axios.get(apiRoutes.getApartment).then((response) => {
         const data = response.data.data;
         setApartments(data);
       });
     } catch (error) {
-      console.error("Error fetching building data:", error);
+      console.error("Error fetching apartment data:", error);
     }
   };
 
   const handleChange = (value) => {
     console.log(value);
-    setSelectedBuilding(value);
+    setSelectedApartment(value);
   };
 
   return (
     <Select
       placeholder={placeholder ? placeholder : "Select an Apartment"}
       onChange={handleChange}
-      // value={value}
       className="building_selector"
       disabled={disabled && disabled}
     >
-      {apartments?.map((building) => (
-        <Option key={building._id} value={building._id}>
-          {building.buildingName} - {building.buildingCode}
+      {apartments?.map((apartment) => (
+        <Option key={apartment._id} value={apartment._id}>
+          {apartment.flatNo} - Floor: {apartment.floorNo}
         </Option>
       ))}
     </Select>
