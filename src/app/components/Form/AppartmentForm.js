@@ -115,7 +115,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
         <>
             <div>
                 {isMobile ? <MobileHeader route={routePaths.Visitor.login} showDrawer={showDrawer} /> :
-                    <Header title={'Add Appartment Details'} subtitle={'welcome to admin panel'} route={routePaths.Tenant.login} />
+                    <Header title={'Add Appartment Details'} subtitle={'welcome to admin panel'} route={routePaths.Admin.login} />
                 }
                 <div className='mb_form_heading'>
                     <h2>Add Appartment Details</h2>

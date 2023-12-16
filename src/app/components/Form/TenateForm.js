@@ -95,7 +95,7 @@ const TenateForm = ({ title, showDrawer }) => {
         <>
             <div>
                 {isMobile ? <MobileHeader route={routePaths.Visitor.login} showDrawer={showDrawer} /> :
-                    <Header title={'Add Tenant Details'} subtitle={'welcome to tenant panel'} route={routePaths.Tenant.login} />
+                    <Header title={'Add Tenant Details'} subtitle={'welcome to tenant panel'} route={routePaths.Admin.login} />
                 }
                 <div className='mb_form_heading'>
                     <h2>Add Tenant Details</h2>

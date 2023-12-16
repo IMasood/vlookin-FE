@@ -122,7 +122,7 @@ const WebRoutes = () => {
             exact
             element={ <DashboardScr /> }
           />
-          {/* <Route path={routePaths.Tenant.login} exact element={<LoginScr />} /> */}
+          {/* <Route path={routePaths.Admin.login} exact element={<LoginScr />} /> */}
           <Route
             path={routePaths.Tenant.listTenant}
             exact

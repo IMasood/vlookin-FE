@@ -111,7 +111,7 @@ const EditBuildingForm = ({ title, showDrawer }) => {
           <Header
             title={"Edit Building Details"}
             subtitle={"welcome to admin panel"}
-            route={routePaths.Tenant.login}
+            route={routePaths.Admin.login}
           />
         )}
         <div className="mb_form_heading">
