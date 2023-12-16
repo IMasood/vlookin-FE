@@ -28,7 +28,14 @@ const MaintanceDashboard = ({ data }) => {
     return (
         <div>
             {isMobile ? <MobileHeader route={routePaths.Admin.login} showDrawer={showDrawer} /> :
-                <SideBar children={data} items={items} />
+                <SideBar 
+                    children={data} 
+                    items={items} 
+                    role={role ?? '' }
+                    userName={userName ?? ""} 
+                    open={open}         
+                    showDrawer={showDrawer}
+                    setOpen={setOpen}/>
             }
         </div>
     )

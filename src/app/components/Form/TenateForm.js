@@ -32,14 +32,10 @@ const TenateForm = ({ title, showDrawer }) => {
     const [selectedBuilding, setSelectedBuilding] = useState('');
     const [receiptModal, setReceiptModal] = useState(false);
     const [tableShow, setTableShow] = useState(false)
+    const [buildingSelected, setBuildingSelected] = useState(false);
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
-
-    };
-
-    const handleBuildingChange = (value) => {
-        setSelectedBuilding(value);
     };
 
     const onCancel = () => {
@@ -144,14 +140,16 @@ const TenateForm = ({ title, showDrawer }) => {
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <label style={{ color: '#4A0D37' }}>Building Name</label>
-                        <BuildingDropDown value={selectedBuilding} handleChange={handleBuildingChange} />
-                        <Input
-                            placeholder="Flat no"
-                            className="form_input"
-                            name='flatNo'
-                            value={inputs.flatNo}
-                            onChange={handleChange}
-                        />
+                        <BuildingDropDown setSelectedBuilding={setSelectedBuilding} isBuildingSelected = {setBuildingSelected} buildingSelected={buildingSelected} />
+                        {buildingSelected && 
+                            <Input
+                                placeholder="Flat no"
+                                className="form_input"
+                                name='flatNo'
+                                value={inputs.flatNo}
+                                onChange={handleChange}
+                            /> 
+                        }
                         <Input
                             placeholder="Office No. "
                             className="form_input"

@@ -13,6 +13,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import BuildingDropDown from "../../../components/DropDown";
 import { Cookies } from "react-cookie";
+import RealEstateDropDown from "../../../components/DropDown/RealEstateDropDown";
 export const AddSuperAdminUser = ({ showDrawer }) => {
   const [checked, setChecked] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
@@ -35,6 +36,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
   });
   const [allowSubUsers, setAllowSubUsers] = useState(false);
   const [allowMultipleBuildings, setAllowMultipleBuildings] = useState(false);
+  const [selectedRealEstate, setSelectedRealEstate] = useState('');
 
   const onChange = (e) => {
     setGender(e.target.value);
@@ -114,7 +116,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
             userId: inputs.userId,
             gender: gender,
             allowAMS: checked,
-            realEstate: inputs.realEstate,
+            realEstate: selectedRealEstate,
             building: selectedBuilding || "",
           },
           config
@@ -134,7 +136,8 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
           }
         });
     } catch (error) {
-      toast.error("Network Error");
+      console.log(error);
+      toast.error(error?.response?.data?.message);
     }
   };
 
@@ -258,18 +261,13 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               </div>
               <br />
               <p style={{ color: "#4A0D37" }}>Real Estate</p>
-              <Input
-                placeholder="Real Estate Name"
-                className="form_input"
-                name="realEstate"
-                value={inputs.realEstate}
-                onChange={handleInputs}
-                disabled={category == "tenant" ? true : false}
-              />
+              <RealEstateDropDown
+                setSelectedRealEstate={setSelectedRealEstate}/>
               <p style={{ color: "#4A0D37" }}>Building</p>
               <BuildingDropDown
                 setSelectedBuilding={setSelectedBuilding}
                 disabled={category == "tenant" ? true : false}
+                realEstateId={setSelectedRealEstate}
               />
             </Form.Item>
           </Col>
