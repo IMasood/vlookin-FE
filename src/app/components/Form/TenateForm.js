@@ -14,11 +14,13 @@ import { useMediaQuery } from 'react-responsive';
 import MobileHeader from '../Header/MobileHeader';
 import ReceiptModal from '../Modal/ReceiptModal';
 import ApartmentsDropdown from '../DropDown/apartmentDropDown';
+import { Cookies } from 'react-cookie';
 
 const TenateForm = ({ title, showDrawer, role }) => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const [modalOpen, setModalOpen] = useState(false);
+    const cookie = new Cookies()
 
     const [inputs, setInputs] = React.useState({
         name: '',
@@ -28,6 +30,9 @@ const TenateForm = ({ title, showDrawer, role }) => {
         mobileNo: '',
         officeNo: '',
         nationality: '',
+        joiningDate:'' , 
+        creationDate:'',
+        password:''
     });
 
     const [selectedBuilding, setSelectedBuilding] = useState('');
@@ -68,6 +73,8 @@ const TenateForm = ({ title, showDrawer, role }) => {
             },
         };
         let url = apiRoutes.postTenant;
+        const createdBy = cookie.get("userId")
+        const role = cookie.get("role");
         try {
             await axios
                 .post(url,
@@ -78,8 +85,11 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         apartmentId: selectedApartment,
                         contact: inputs.mobileNo,
                         officeNo: inputs.officeNo,
-                        createdBy: role,
+                        createdBy: createdBy,
                         nationality: inputs.nationality,
+                        joiningDate:  inputs.joiningDate,
+                        creationDate: inputs.creationDate,
+                        password:inputs.password
                     }
                     , config)
                 .then((response) => {
@@ -124,6 +134,15 @@ const TenateForm = ({ title, showDrawer, role }) => {
                             onChange={handleChange}
 
                         />
+                        <Input
+                            placeholder="Password"
+                            className="form_input"
+                            name='password'
+                            type='password'
+                            value={inputs.password}
+                            onChange={handleChange}
+
+                        />
                         <div>
                             <Input
                                 placeholder="Mobile No."
@@ -154,11 +173,37 @@ const TenateForm = ({ title, showDrawer, role }) => {
                             value={inputs.officeNo}
                             onChange={handleChange}
                         />
+                        <Form.Item
+                                name='creationDate'
+                            >
+                            <label style={{color:'#4A0D37'}}>Creation Date</label>
+                            <Input
+                                placeholder="Creation Date"
+                                className="visitor_form_input"
+                                // className="form_input"
+                                name='creationDate'
+                                type='date'
+                                value={inputs.creationDate}
+                                onChange={handleChange}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                                name='joiningDate'
+                            >
+                            <label style={{color:'#4A0D37'}}>Joining Date</label>
+                                <Input
+                                placeholder="Joining Date"
+                                className="visitor_form_input"
+                                // className="form_input"
+                                name='joiningDate'
+                                type='date'
+                                value={inputs.joiningDate}
+                                onChange={handleChange}
+                            />
+                        </Form.Item>
                     </Col>
                 </Row>
-                <div className='addform_btn'>
-                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
-                </div>
+                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
             </div>
             {/* for receipt modal testing */}
             <ReceiptModal route = {routePaths.Visitor.listVisitor} open={receiptModal} setOpen={setReceiptModal} onCancel={onCancel} handleButton = {handleReceiptButton} setTableShow={setTableShow} tableShow={tableShow}/>

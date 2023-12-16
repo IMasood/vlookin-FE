@@ -14,9 +14,11 @@ import { MdOutlineDomainDisabled } from 'react-icons/md';
 import { routePaths } from '../../routes/config';
 import MobileHeader from '../../components/Header/MobileHeader';
 import SideBar from "../../components/Layouts/SideBar";
+import { Cookies } from "react-cookie";
 
 
 const UserProfile = () => {
+  const cookie = new Cookies()
   const [tenantData, setTenantData] = useState([]);
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
@@ -33,12 +35,9 @@ const UserProfile = () => {
       ),
   ];
   const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
-
-  const tenantId = localStorage.getItem("tenantId");
-
-  const getUsers = async () => {
+  const getUsers = async (tenantId) => {
     axios
-      .get(`http://195.35.45.131:4000/user?id=${tenantId}`)
+      .get(`http://195.35.45.131:4000/tenant?id=${tenantId}`)
       .then((response) => {
         setTenantData(response.data.data);
       })
@@ -46,13 +45,14 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    getUsers();
+    let tenantId = cookie.get('userId');
+    getUsers(tenantId);
   }, []);
 
   return (
     <div>
       <SideBar children={<Profile data={tenantData} showDrawer={showDrawer}/>} 
-     role = {tenantData.role} userName= {tenantData.userName} items={items} showDrawer={showDrawer} open={open} setOpen={setOpen}/>
+     role = {'tenant'} userName= {tenantData.tenantName} items={items} showDrawer={showDrawer} open={open} setOpen={setOpen}/>
       <CustomAlert />
     </div>
   );

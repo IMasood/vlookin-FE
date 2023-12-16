@@ -38,9 +38,9 @@ const Profile = ({ title, showDrawer, data }) => {
                     <header class="profile-head">
                         <div class="details">
                             <img src={avatar} alt="John Doe" class="profile-pic"/>
-                            <h1 class="heading">{data.userName}</h1>
+                            <h1 class="heading">{data.tenantName}</h1>
                             <div class="location">       
-                                <p>{data.userId}</p>
+                                <p>{data.officeNo}</p>
                             </div>
                             <div class="stats">
                                 <Col
@@ -49,7 +49,7 @@ const Profile = ({ title, showDrawer, data }) => {
                                     md={10} sm={16}>
                                     <div class="col-4" >
                                         <h4><RiUser2Line/></h4>
-                                        <p>{data.role}</p>
+                                        <p>{data.role ?? 'tenant'}</p>
                                     </div>
                                     <div class="col-4" >
                                         <h4><RiMailFill /></h4>

@@ -12,8 +12,10 @@ import MobileHeader from '../Header/MobileHeader';
 import { UploadOutlined } from '@ant-design/icons';
 import { apiRoutes, routePaths } from '../../routes/config';
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { Cookies } from 'react-cookie';
 
 const ComplaintForm = ({ showDrawer }) => {
+    const cookie = new Cookies();
     const { TextArea } = Input;
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const navigate = useNavigate();
@@ -35,13 +37,13 @@ const ComplaintForm = ({ showDrawer }) => {
         e.preventDefault();
         try {
             if (inputs.desc && inputs.userName) {
-                const res = submitForm(inputs);
-
+                submitForm(inputs);
             } else {
                 toast.error('Complete Form')
             }
         } catch (error) {
-            toast.error('Something went wrong')
+            console.log(error);
+            toast.error(error?.response?.data?.message)
         }
     }
 
@@ -84,6 +86,7 @@ const ComplaintForm = ({ showDrawer }) => {
     };
 
     const submitForm = async () => {
+        const tenantId = cookie.get('userId')
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -97,7 +100,7 @@ const ComplaintForm = ({ showDrawer }) => {
                         images: fileList,
                         createdBy: inputs.userName,
                         description: inputs.desc,
-                        tenantId: '64a94a7ccd172273800a8c8a',
+                        tenantId: tenantId ,
                         category: category,
                     }
                     , config)
@@ -109,7 +112,7 @@ const ComplaintForm = ({ showDrawer }) => {
                     }
                 });
         } catch (error) {
-            toast.error(error)
+            toast.error(error?.response?.data?.message)
         }
     }
 
