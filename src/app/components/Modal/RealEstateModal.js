@@ -42,8 +42,7 @@ export const AddRealEstateModal = ({open, setOpen, onCancel, setRealEstateAdded}
             await axios
             .post( url,
                 {
-                    "name": inputs.realEstateName,
-                    "code": inputs.code,
+                    "name": inputs.realEstateName
                  } ,config)
             .then((response) => {
                 if(response.data.status == 200){
