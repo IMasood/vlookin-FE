@@ -21,7 +21,7 @@ export const AddRealEstateModal = ({open, setOpen, onCancel, setRealEstateAdded}
     const handleSave = (e) => {
         e.preventDefault();
         try {
-            if(inputs.realEstateName && inputs.code){
+            if(inputs.realEstateName){
                 const res = addRealEstate(inputs);
             }else{
                 toast.error('Complete Form')
