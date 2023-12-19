@@ -31,6 +31,7 @@ const ComplaintForm = ({ showDrawer }) => {
     };
 
     const onChange = (info) => {
+        console.log(info, 'infooooooo')
         setFileList(info.fileList)
     }
     const handleSave = (e) => {
@@ -80,8 +81,8 @@ const ComplaintForm = ({ showDrawer }) => {
         if (Array.isArray(e)) {
             return e;
         }
-        console.log(e?.fileList);
-        return e?.fileList;
+        console.log(e?.fileList, 'eeeeeeeeeeeeee');
+        return e?.file;
 
     };
 
@@ -107,9 +108,7 @@ const ComplaintForm = ({ showDrawer }) => {
                 .then((response) => {
                     if (response.data.status == 200) {
                         toast.success('Complaint Generated Successfully')
-                    } else {
-                        toast.error('Something went wrong')
-                    }
+                    } 
                 });
         } catch (error) {
             toast.error(error?.response?.data?.message)
