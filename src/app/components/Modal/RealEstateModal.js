@@ -80,9 +80,6 @@ export const AddRealEstateModal = ({open, setOpen, onCancel, setRealEstateAdded}
                     <h6>Real Estate Name</h6>
                     <Input name='realEstateName' onChange={handleChange} value={inputs.name} style={{width:'50%'}}/>
                     <br/>
-                    <h6>Real Estate Code</h6>
-                    <Input name='code' onChange={handleChange} value={inputs.code} style={{width:'50%'}}/>                    
-                    <br/>
                     <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />                    
                 </div>
             </Modal>
