@@ -94,6 +94,7 @@ export const apiRoutes = {
   createRealEstate: "http://195.35.45.131:4000/realEstate",
   getRealEstate: "http://195.35.45.131:4000/realEstate?all=true",
   getSelectedBuilding: "http://195.35.45.131:4000/building?",
+  postReceipt : "http://195.35.45.131:4000/receipt"
 };
 
 export const routePaths = {

@@ -12,19 +12,41 @@ const ApartmentsDropdown = ({
   placeholder,
   disabled,
   setSelectedApartment,
+  buildingId = ''
 }) => {
   const [apartments, setApartments] = useState([]);
 
   useEffect(() => {
     // Fetch building data from the API and update state
-    fetchApartmentData();
-  }, []);
+    if(buildingId){
+      fetchSingleApartmentData(buildingId)
+    }else{
+      fetchApartmentData();
+    }
+  }, [buildingId]);
+
+  const fetchSingleApartmentData = async(buildingId) =>
+  {
+    try{
+      axios.get(`http://195.35.45.131:4000/apartment?buildingId=${buildingId}`).then((response) => {
+        const data = response.data.data;
+        console.log(data);
+        setApartments(data);
+      });
+
+    }catch(error){
+      console.error("Error fetching apartment data:", error);
+    }
+
+  }
 
   const fetchApartmentData = async () => {
     try {
       axios.get(apiRoutes.getApartment).then((response) => {
-        const data = response.data.data;
-        setApartments(data);
+        if(response?.data.data.length > 0){
+          const data = response?.data.data;
+          setApartments(data);
+        }
       });
     } catch (error) {
       console.error("Error fetching apartment data:", error);

@@ -35,11 +35,13 @@ const TenateForm = ({ title, showDrawer, role }) => {
         password:''
     });
 
-    const [selectedBuilding, setSelectedBuilding] = useState('');
     const [receiptModal, setReceiptModal] = useState(false);
     const [tableShow, setTableShow] = useState(false)
+    const [selectedBuilding, setSelectedBuilding] = useState('');
     const [buildingSelected, setBuildingSelected] = useState(false);
     const [selectedApartment, setSelectedApartment] = useState('');
+    const [tenantAccount , setTenantAccount] = useState('');
+    const [tenantName , setTenantName] = useState('');
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -58,6 +60,8 @@ const TenateForm = ({ title, showDrawer, role }) => {
 
     const handleSave = (event) => {
         event.preventDefault();
+        setReceiptModal(true)
+
         if (inputs.name && inputs.email && selectedBuilding && selectedApartment && inputs.mobileNo
             && inputs.nationality && inputs.officeNo) {
                 createTenant(inputs);
@@ -94,6 +98,8 @@ const TenateForm = ({ title, showDrawer, role }) => {
                     , config)
                 .then((response) => {
                     if (response?.data?.status == 200) {
+                        setTenantAccount(response?.data?.data._id);
+                        setTenantName(response?.data?.data.tenantName)
                         setReceiptModal(true)
                     } 
                 }).catch((error)=>{
@@ -164,7 +170,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         <label style={{ color: '#4A0D37' }}>Building Name</label>
                         <BuildingDropDown setSelectedBuilding={setSelectedBuilding} isBuildingSelected = {setBuildingSelected}/>
                         {buildingSelected && 
-                            <ApartmentsDropdown  setSelectedApartment={setSelectedApartment}/>
+                            <ApartmentsDropdown  setSelectedApartment={setSelectedApartment} buildingId={selectedBuilding}/>
                         }
                         <Input
                             placeholder="Office No. "
@@ -206,7 +212,13 @@ const TenateForm = ({ title, showDrawer, role }) => {
                 <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
             </div>
             {/* for receipt modal testing */}
-            <ReceiptModal route = {routePaths.Visitor.listVisitor} open={receiptModal} setOpen={setReceiptModal} onCancel={onCancel} handleButton = {handleReceiptButton} setTableShow={setTableShow} tableShow={tableShow}/>
+            <ReceiptModal 
+                route = {routePaths.Visitor.listVisitor} open={receiptModal} 
+                setOpen={setReceiptModal} onCancel={onCancel} 
+                handleButton = {handleReceiptButton} 
+                tenantAccount = {tenantAccount}
+                tenantName = {tenantName}
+                />
             <OTPmodal open={modalOpen} onCancel={onCancel} />
             <CustomAlert />
         </>

@@ -15,7 +15,8 @@ const BuildingDropDown = ({
   disabled,
   setSelectedBuilding,
   realEstateId,
-  isBuildingSelected
+  isBuildingSelected,
+  setBuildingName
 }) => {
   const [buildingData, setBuildingData] = useState([]);
   const [selectedBuildingData, setSelectedBuildingData] = useState([])
@@ -56,7 +57,6 @@ const BuildingDropDown = ({
   };
 
   const handleChange = (value) => {
-    console.log(value);
     setSelectedBuilding(value);
     if(isBuildingSelected){
       isBuildingSelected(true)
