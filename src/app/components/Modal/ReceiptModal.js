@@ -1,23 +1,22 @@
 import React from 'react'
 import './style.css'
-import TextArea from 'antd/es/input/TextArea';
 import { Button, Form, Input, Radio, DatePicker, Modal, Select, Row, Col, Dropdown } from 'antd';
 import { useState } from 'react';
-import { CustomButton } from '../Button';
 import BuildingDropDown from '../DropDown';
-import { ReceiptTable } from '../Table/receiptTable';
 import moment from 'moment'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { SlOptions, SlOption } from "react-icons/sl";
 import { BsThreeDotsVertical } from "react-icons/bs"
-import { apiRoutes } from '../../routes/config';
+import { apiRoutes, routePaths } from '../../routes/config';
+import ReceiptTable from '../Table/receiptTable';
+import { useNavigate } from 'react-router';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
-const ReceiptModal = ({ open, setOpen, route, onCancel, handleButton, tenantAccount, tenantName }) => {
+const ReceiptModal = ({ open, setOpen, route, onCancel,  tenantAccount, tenantName }) => {
     const [form] = Form.useForm();
+    const navigate = useNavigate();
     const [formLayout, setFormLayout] = useState('vertical');
     const [selectedBuilding, setSelectedBuilding] = useState('');
     const [dates, setDates] = useState([]);
@@ -31,6 +30,19 @@ const ReceiptModal = ({ open, setOpen, route, onCancel, handleButton, tenantAcco
         tenantName: ""
     })
 
+    const [tableData, setTableData] = useState([
+        // Initially, you can start with an empty array or pre-existing data
+        {
+          chequeDate: "",
+          chequeNo: "",
+          Amount: "",
+          bankName: "",
+          depositBank: "",
+          drawnBank: "",
+          debitAccount: "",
+        },
+      ]);
+    
     const [roles, setRoles] = useState([
         { "roleId": 0, "name": "Cheque Return" },
         { "roleId": 1, "name": "Cheque Reverse" },
@@ -45,58 +57,11 @@ const ReceiptModal = ({ open, setOpen, route, onCancel, handleButton, tenantAcco
         },
     };
 
-    const data = [
-        {
-            employeeId: '01',
-            name: 'John Doe',
-            email: 'johndoe@email.com',
-            position: 'Frontend Developer',
-        },
-        {
-            employeeId: '02',
-            name: 'Sara',
-            email: 'sara@email.com',
-            position: 'HR Executive',
-        },
-        {
-            employeeId: '03',
-            name: 'Mike',
-            email: 'mike@email.com',
-            position: 'Backend Developer',
-        },
-        {
-            employeeId: '04',
-            name: 'Mike',
-            email: 'mike@email.com',
-            position: 'Backend Developer',
-        },
-        {
-            employeeId: '05',
-            name: 'Mike',
-            email: 'mike@email.com',
-            position: 'Backend Developer',
-        },
-        {
-            employeeId: '06',
-            name: 'Mike',
-            email: 'mike@email.com',
-            position: 'Backend Developer',
-        },
-
-    ]
 
     const handleInputChange = (e) => {
         setReceiptData({ ...receiptData, [e.target.name]: e.target.value });
 
     };
-    const onChangeInput = (e, employeeId) => {
-        const { name, value } = e.target
-        const editData = data.map((item) =>
-            item.employeeId === employeeId && name ? { ...item, [name]: value } : item
-        )
-
-        console.log('editData', editData)
-    }
 
     const handleDateChange = (value) => {
         setDates(value?.map(item => {
@@ -123,10 +88,15 @@ const ReceiptModal = ({ open, setOpen, route, onCancel, handleButton, tenantAcco
             duration: {
                 from: dates[0],
                 to: dates[1]
-            }
+            },
+            receiptTable: tableData,
         })
         .then((res) => {
             console.log(res.data)
+            if(res?.data?.success == 200){
+                setOpen(false)
+                navigate(routePaths.Tenant.listTenant)
+            }
         })
         .catch((e) => toast.error(e))
     }
@@ -288,8 +258,7 @@ const ReceiptModal = ({ open, setOpen, route, onCancel, handleButton, tenantAcco
                                  style={{marginLeft:'90%'}}
                                     ><BsThreeDotsVertical /></Button>
                         </Dropdown>
-
-                        {<ReceiptTable data={data} onChangeInput={onChangeInput} handleSave={SaveReceipt} />}
+                        {<ReceiptTable tableData={tableData} setTableData={setTableData} handleSubmit={SaveReceipt}/>}
                     </div>
                 </div>
             </Modal>

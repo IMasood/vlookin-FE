@@ -36,7 +36,6 @@ const TenateForm = ({ title, showDrawer, role }) => {
     });
 
     const [receiptModal, setReceiptModal] = useState(false);
-    const [tableShow, setTableShow] = useState(false)
     const [selectedBuilding, setSelectedBuilding] = useState('');
     const [buildingSelected, setBuildingSelected] = useState(false);
     const [selectedApartment, setSelectedApartment] = useState('');
@@ -50,18 +49,10 @@ const TenateForm = ({ title, showDrawer, role }) => {
     const onCancel = () => {
         setModalOpen(false)
         setReceiptModal(false)
-        setTableShow(false)
-    }
-
-    const handleReceiptButton = ( ) => {
-        setReceiptModal(false)
-        setModalOpen(true);
     }
 
     const handleSave = (event) => {
         event.preventDefault();
-        setReceiptModal(true)
-
         if (inputs.name && inputs.email && selectedBuilding && selectedApartment && inputs.mobileNo
             && inputs.nationality && inputs.officeNo) {
                 createTenant(inputs);
@@ -100,7 +91,8 @@ const TenateForm = ({ title, showDrawer, role }) => {
                     if (response?.data?.status == 200) {
                         setTenantAccount(response?.data?.data._id);
                         setTenantName(response?.data?.data.tenantName)
-                        setReceiptModal(true)
+                        setModalOpen(true)
+                                                
                     } 
                 }).catch((error)=>{
                     toast.error(error.response.data.message)
@@ -168,7 +160,8 @@ const TenateForm = ({ title, showDrawer, role }) => {
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <label style={{ color: '#4A0D37' }}>Building Name</label>
-                        <BuildingDropDown setSelectedBuilding={setSelectedBuilding} isBuildingSelected = {setBuildingSelected}/>
+                        <BuildingDropDown setSelectedBuilding={setSelectedBuilding} isBuildingSelected = {setBuildingSelected}
+                        />
                         {buildingSelected && 
                             <ApartmentsDropdown  setSelectedApartment={setSelectedApartment} buildingId={selectedBuilding}/>
                         }
@@ -215,11 +208,12 @@ const TenateForm = ({ title, showDrawer, role }) => {
             <ReceiptModal 
                 route = {routePaths.Visitor.listVisitor} open={receiptModal} 
                 setOpen={setReceiptModal} onCancel={onCancel} 
-                handleButton = {handleReceiptButton} 
                 tenantAccount = {tenantAccount}
                 tenantName = {tenantName}
                 />
-            <OTPmodal open={modalOpen} onCancel={onCancel} />
+            <OTPmodal open={modalOpen} onCancel={onCancel} setReceiptModal={setReceiptModal} tenantAccount={tenantAccount}
+            setModalOpen={setModalOpen}
+            />
             <CustomAlert />
         </>
     )

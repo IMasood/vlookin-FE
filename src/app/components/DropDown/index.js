@@ -16,10 +16,9 @@ const BuildingDropDown = ({
   setSelectedBuilding,
   realEstateId,
   isBuildingSelected,
-  setBuildingName
+  // setSelectedBuildingName
 }) => {
   const [buildingData, setBuildingData] = useState([]);
-  const [selectedBuildingData, setSelectedBuildingData] = useState([])
   const [disableBuilding, SetDisableBuilding] = useState(false);
 
   useEffect(() => {
@@ -29,16 +28,6 @@ const BuildingDropDown = ({
 
   const fetchBuildingData = async () => {
     try {
-      // if(realEstateId){
-      //   const url = `http://195.35.45.131:4000/building?realEstateId=${realEstateId}`
-      //   // console.log(url, realEstateId, 'testing urrlll')
-      //   axios.get(url).then((response) => {
-      //     const data = response.data.data;
-      //     console.log(data);
-      //     setSelectedBuildingData(data);
-      //   });
-  
-      // }else{
         axios.get(apiRoutes.getBuilding).then((response) => {
           const data = response.data.data;
           if(data.length == 0){
@@ -49,17 +38,18 @@ const BuildingDropDown = ({
               setBuildingData(data);        
             }  
         });
-      // }
 
     } catch (error) {
       console.error("Error fetching building data:", error);
     }
   };
 
-  const handleChange = (value) => {
-    setSelectedBuilding(value);
+  const handleChange = (value, option) => {
+    console.log(option.children, 'optionnnnnnnnnnnnnnn')
+    setSelectedBuilding(value);    
     if(isBuildingSelected){
       isBuildingSelected(true)
+      // setSelectedBuildingName(option.children); // Storing building name
     }
   };
 
