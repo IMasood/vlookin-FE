@@ -37,3 +37,5 @@ html{
 :where(.css-dev-only-do-not-override-i0102m).ant-layout {
   background-color: white;
 }
+
+iframe#webpack-dev-server-client-overlay{display:none!important}

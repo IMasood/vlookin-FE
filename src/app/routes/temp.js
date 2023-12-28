@@ -119,7 +119,7 @@ const Authetication = () => {
           exact
           element={token ? <DashboardScr /> : <Navigate to="/login" exact />}
         />
-        <Route path={routePaths.Tenant.login} exact element={<LoginScr />} />
+        <Route path={routePaths.Admin.login} exact element={<LoginScr />} />
         <Route
           path={routePaths.Tenant.listTenant}
           exact

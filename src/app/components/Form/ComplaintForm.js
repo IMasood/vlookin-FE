@@ -12,8 +12,10 @@ import MobileHeader from '../Header/MobileHeader';
 import { UploadOutlined } from '@ant-design/icons';
 import { apiRoutes, routePaths } from '../../routes/config';
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { Cookies } from 'react-cookie';
 
 const ComplaintForm = ({ showDrawer }) => {
+    const cookie = new Cookies();
     const { TextArea } = Input;
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const navigate = useNavigate();
@@ -29,19 +31,20 @@ const ComplaintForm = ({ showDrawer }) => {
     };
 
     const onChange = (info) => {
+        console.log(info, 'infooooooo')
         setFileList(info.fileList)
     }
     const handleSave = (e) => {
         e.preventDefault();
         try {
             if (inputs.desc && inputs.userName) {
-                const res = submitForm(inputs);
-
+                submitForm(inputs);
             } else {
                 toast.error('Complete Form')
             }
         } catch (error) {
-            toast.error('Something went wrong')
+            console.log(error);
+            // toast.error(error?.response?.data?.message)
         }
     }
 
@@ -78,12 +81,13 @@ const ComplaintForm = ({ showDrawer }) => {
         if (Array.isArray(e)) {
             return e;
         }
-        console.log(e?.fileList);
-        return e?.fileList;
+        console.log(e?.fileList, 'eeeeeeeeeeeeee');
+        return e?.file;
 
     };
 
     const submitForm = async () => {
+        const tenantId = cookie.get('userId')
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -97,19 +101,17 @@ const ComplaintForm = ({ showDrawer }) => {
                         images: fileList,
                         createdBy: inputs.userName,
                         description: inputs.desc,
-                        tenantId: '64a94a7ccd172273800a8c8a',
+                        tenantId: tenantId ,
                         category: category,
                     }
                     , config)
                 .then((response) => {
                     if (response.data.status == 200) {
                         toast.success('Complaint Generated Successfully')
-                    } else {
-                        toast.error('Something went wrong')
-                    }
+                    } 
                 });
         } catch (error) {
-            toast.error(error)
+            toast.error(error?.response?.data?.message)
         }
     }
 

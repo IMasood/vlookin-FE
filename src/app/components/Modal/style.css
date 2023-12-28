@@ -117,13 +117,10 @@
 }
 
 .receipt-table input {
-    font-size: 13px;
     background-color: transparent;
     border: none;
-    width: 45px;
-    padding: 12px 12px;
+    width: 100%;
     font-family: 'Poppins', sans-serif;
-    color:'#F8F8F8'
 }
 
 .receipt-table input:hover {

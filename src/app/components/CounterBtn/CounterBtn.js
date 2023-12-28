@@ -21,6 +21,7 @@ const CounterBtn = (props) => {
         <div className='appart_container'>
             <input className='input' type='text' value={props.state} placeholder={props.placeholder} />
             <button className='btn' onClick={handleDecr} disabled = {props.disabled ? props.disabled : false }><AiOutlineMinus /></button>
+            <br/>
             <button className='btn' onClick={handleIncr} disabled = {props.disabled ? props.disabled : false }><AiOutlinePlus /></button>
         </div>
     )

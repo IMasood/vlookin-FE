@@ -14,6 +14,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 import { CustomAlert } from "../../components/Alert";
 import { toast } from "react-toastify";
+import { Cookies } from "react-cookie";
 
 const ListTenant = () => {
   const navigate = useNavigate();
@@ -24,8 +25,9 @@ const ListTenant = () => {
     setOpen(true);
   };
   const [searchQuery, setSearchQuery] = useState("");
-
-  const adminRole = localStorage.getItem("adminRole");
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
 
   const items = [
     getItem("Tenant", "1", <FaWarehouse />, [
@@ -149,6 +151,7 @@ const ListTenant = () => {
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
+        role={role ? role : ''} userName={userName ? userName : ''}
       />
       <CustomAlert />
     </div>

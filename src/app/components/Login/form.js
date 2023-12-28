@@ -46,8 +46,10 @@ export const LoginForm = (props) => {
     }
   };
 
+  //test token and add token in signup fun in use effect just like use rprofile and then test it
   useEffect(() => {
-    cookie.get('token');    
+    cookie.get('token');
+        
   }, []);
 
   const userSignUp = async (inputs) => {
@@ -63,6 +65,7 @@ export const LoginForm = (props) => {
         {
           email: inputs.userId,
           password: inputs.password,
+          role: role == 'tenant' ? role : ''
         },
         config
       )
@@ -80,6 +83,7 @@ export const LoginForm = (props) => {
             expires: expirationDate,
           }); // optional data
           setCookies("role", response.data.data.role);
+          setCookies("userId", response.data.data.id)
           const role = cookie.get("role");
         
           switch (role) {
@@ -96,7 +100,7 @@ export const LoginForm = (props) => {
               navigate(routePaths.Maintenance.dashboard);
               break;
             case "superadmin":
-            case "superadmin":
+            case "superAdmin":
               navigate( routePaths.SuperAdmin.addUser);
               break;
             default:

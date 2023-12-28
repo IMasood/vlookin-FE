@@ -3,6 +3,7 @@
     background-color: white;
     padding: 5px 10px;
     cursor: pointer;
+    margin-left: 5px
 }
 
 .input {
@@ -11,15 +12,14 @@
     background-color: white;
     padding: 5px 10px;
     width: 75px;
-    border-radius: 5px 0 0 5px;
+    /* border-radius: 5px 0 0 5px; */
 }
 
 .appart_container button:nth-child(2) {
-    border-width: 1px 0 1px 0;
 }
 
 .appart_container button:last-child {
-    border-radius: 0 5px 5px 0 !important;
+    /* border-radius: 0 5px 5px 0 !important; */
     border-width: 1px;
 }
 

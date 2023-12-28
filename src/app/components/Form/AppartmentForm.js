@@ -23,7 +23,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
         rent : '',
         area:'',
         comments: '',
-        apartmentName:""
+        apartmentName:"",
     });
     const [bed, setBed] = useState('')
     const [pantry, setPantry] = useState('')
@@ -35,11 +35,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
     const [selectedBuilding, setSelectedBuilding] = useState('');
     const [balcony, setBalcony] = useState(false);
     const [apartmentType, setApartmentType] = useState("");
-    const [flatNos, setFlatNos] = useState([])
-
-    const handleBuildingChange = (value) => {
-        setSelectedBuilding(value);
-      };
+    // const [flatNos, setFlatNos] = useState('')
 
     const handleRadioChange = (e) => {
         setInputs({furnished: e.target.value});
@@ -72,28 +68,35 @@ const AppartmentForm = ({ title, showDrawer }) => {
                 },
             };
             let url = apiRoutes.createApartment;
-            const values = inputs.apartmentName.split(',').map(item => item.trim());
-            setFlatNos(flatNos, flatNos.push(...values));
-            await axios.post(url,
-                {
-                    "buildingId":selectedBuilding,
-                    "apartmentType":apartmentType,
-                    "area": inputs.area,
-                    "rent": inputs.rent,
-                    "furnished": inputs.furnished,
-                    "isStudio": false,
-                    "balcony": balcony,         
-                    "comments": inputs.comments,
-                    "floorNo": inputs.floorNo,
-                    "rooms":{
-                        "bedRoom": bed,
-                        "dining": dining,
-                        "laundry": laundry,
-                        "bath": bathroom
-                    },
-                    "flatNo":flatNos,
-                    "noOfApartments": inputs.apartmentNo
+        
+            const apartmentNamesArray = inputs.apartmentName.split(',').map(name => name.trim());
+            console.log(inputs.apartmentName, apartmentNamesArray.length,apartmentNamesArray, 'checking apartments');
+
+            // const values = inputs.apartmentName.split(',').map(item => item.trim());
+            // setFlatNos(flatNos, flatNos.push(...values));
+            // console.log(flatNos,' flat numberssss')
+            let data = {
+                "buildingId":selectedBuilding,
+                "apartmentType":apartmentType,
+                "area": inputs.area,
+                "rent": inputs.rent,
+                "furnished": inputs.furnished,
+                "isStudio": false,
+                "balcony": balcony,         
+                "comments": inputs.comments,
+                "floorNo": inputs.floorNo,
+                "rooms":{
+                    "bedRoom": bed,
+                    "dining": dining,
+                    "laundry": laundry,
+                    "bath": bathroom
                 },
+                "flatNo": apartmentNamesArray,
+                "noOfApartments": parseInt(inputs.apartmentNo)
+            };
+            console.log('data', data)
+            await axios.post(url,
+                data,
                 config)
                 .then((response) => {
                     if (response.data.status == 200) {
@@ -115,7 +118,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
         <>
             <div>
                 {isMobile ? <MobileHeader route={routePaths.Visitor.login} showDrawer={showDrawer} /> :
-                    <Header title={'Add Appartment Details'} subtitle={'welcome to admin panel'} route={routePaths.Tenant.login} />
+                    <Header title={'Add Appartment Details'} subtitle={'welcome to admin panel'} route={routePaths.Admin.login} />
                 }
                 <div className='mb_form_heading'>
                     <h2>Add Appartment Details</h2>
@@ -205,7 +208,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
                                 <Radio.Group onChange={handleRadioChange}>
                                     <Radio.Button className='radio_btn' value="Semi-Furnished">Semi-Furnished</Radio.Button>
                                     <Radio.Button className='radio_btn' value="Not Furnished">Not Furnished</Radio.Button>
-                                    <Radio.Button className='radio_btn' value="Fully-Furnished">Fully-Furnished</Radio.Button>
+                                    <Radio.Button className='radio_btn' value="Full-Furnished">Full-Furnished</Radio.Button>
                                 </Radio.Group>
                             </Form.Item>
                         </div>
@@ -252,8 +255,8 @@ const AppartmentForm = ({ title, showDrawer }) => {
                 <br/> 
                 <div>                    
                     <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  />
-                    <ApartmentModal open={open} onCancel = {onCancel} selectedBuilding={selectedBuilding} 
-                        handleBuildingChange={handleBuildingChange} handleChange = {handleChange}
+                    <ApartmentModal open={open} onCancel = {onCancel} setSelectedBuilding={setSelectedBuilding} 
+                         handleChange = {handleChange}
                         handleSave = {addApartment} data = {inputs}
                         />
                 </div>

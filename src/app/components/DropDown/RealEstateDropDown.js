@@ -6,51 +6,50 @@ import "./style.css";
 
 const { Option } = Select;
 
-const ApartmentsDropdown = ({
+const RealEstateDropDown = ({
   value,
   // handleChange,
   placeholder,
   disabled,
-  setSelectedBuilding,
+  setSelectedRealEstate,
 }) => {
-  const [apartments, setApartments] = useState([]);
+  const [realEstate, setRealEstate] = useState([]);
 
   useEffect(() => {
     // Fetch building data from the API and update state
-    fetchBuildingData();
+    fetchRealEstate();
   }, []);
 
-  const fetchBuildingData = async () => {
+  const fetchRealEstate = async () => {
     try {
-      axios.get(apiRoutes.getApartment).then((response) => {
+      axios.get(apiRoutes.getRealEstate).then((response) => {
         const data = response.data.data;
-        setApartments(data);
+        setRealEstate(data);
       });
     } catch (error) {
-      console.error("Error fetching building data:", error);
+      console.error("Error fetching real estates:", error);
     }
   };
 
   const handleChange = (value) => {
     console.log(value);
-    setSelectedBuilding(value);
+    setSelectedRealEstate(value);
   };
 
   return (
     <Select
-      placeholder={placeholder ? placeholder : "Select an Apartment"}
+      placeholder={placeholder ? placeholder : "Choose Real Estate"}
       onChange={handleChange}
-      // value={value}
       className="building_selector"
       disabled={disabled && disabled}
     >
-      {apartments?.map((building) => (
-        <Option key={building._id} value={building._id}>
-          {building.buildingName} - {building.buildingCode}
+      {realEstate?.map((realEstate) => (
+        <Option key={realEstate._id} value={realEstate._id}>
+          {realEstate.name} - {realEstate.code}
         </Option>
       ))}
     </Select>
   );
 };
 
-export default ApartmentsDropdown;
+export default RealEstateDropDown;

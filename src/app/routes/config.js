@@ -91,6 +91,10 @@ export const apiRoutes = {
   getComplaints: "http://195.35.45.131:4000/maintenance/getComplaint?all=true",
   createComplaints: "http://195.35.45.131:4000/maintenance/addComplaint",
   getReceipts: "http://195.35.45.131:4000/receipt?all=true",
+  createRealEstate: "http://195.35.45.131:4000/realEstate",
+  getRealEstate: "http://195.35.45.131:4000/realEstate?all=true",
+  getSelectedBuilding: "http://195.35.45.131:4000/building?",
+  postReceipt : "http://195.35.45.131:4000/receipt"
 };
 
 export const routePaths = {
