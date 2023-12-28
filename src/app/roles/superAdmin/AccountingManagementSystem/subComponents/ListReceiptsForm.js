@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../../../../components/Header/MobileHeader";
 import { apiRoutes, routePaths } from "../../../../routes/config";
@@ -8,8 +8,17 @@ import { MdOutlineLocalPrintshop } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
+import ListReceipt from "../../../../utils/services/ListReceipt.service";
 const ListReceiptsForm = (showDrawer) => {
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
+  useEffect(() => {
+    ListReceipt.getList(0, 2).then((response) => {
+      if (response.status) {
+        console.log(response);
+      }
+    });
+  }, []);
+
   return (
     <>
       <div>
@@ -24,39 +33,39 @@ const ListReceiptsForm = (showDrawer) => {
       </div>
       <div className="container-fluid pb-0">
         <div className="d-flex flex-row col-md-12 border-top border-bottom pt-4 pb-5 align-items-end">
-          <div class="form-group d-flex flex-column me-2">
-            <label for="buidlingCode" className="fw-bold col-md-4">
+          <div className="form-group d-flex flex-column me-2">
+            <label htmlFor="buidlingCode" className="fw-bold col-md-4">
               Voucher #
             </label>
             <input
               type="text"
-              class="form-control col-md-4"
+              className="form-control col-md-4"
               id="buidlingCode"
             />
           </div>
-          <div class="form-group d-flex flex-column me-2">
-            <label for="buidlingCode" className="fw-bold col-md-4">
+          <div className="form-group d-flex flex-column me-2">
+            <label htmlFor="buidlingCode" className="fw-bold col-md-4">
               Flat #
             </label>
-            <input type="text" class="form-control" id="buidlingCode" />
+            <input type="text" className="form-control" id="buidlingCode" />
           </div>
-          <div class="form-group d-flex flex-column me-2">
-            <label for="buidlingCode" className="fw-bold col-md-4">
+          <div className="form-group d-flex flex-column me-2">
+            <label htmlFor="buidlingCode" className="fw-bold col-md-4">
               Account #
             </label>
-            <input type="text" class="form-control" id="buidlingCode" />
+            <input type="text" className="form-control" id="buidlingCode" />
           </div>
-          <div class="form-group d-flex flex-column me-2">
-            <label for="buidlingCode" className="fw-bold col-md-4">
+          <div className="form-group d-flex flex-column me-2">
+            <label htmlFor="buidlingCode" className="fw-bold col-md-4">
               Date
             </label>
-            <input type="text" class="form-control" id="buidlingCode" />
+            <input type="text" className="form-control" id="buidlingCode" />
           </div>
-          <div class="form-group d-flex flex-column me-5">
-            <label for="buidlingCode" className="fw-bold col-md-4">
+          <div className="form-group d-flex flex-column me-5">
+            <label htmlFor="buidlingCode" className="fw-bold col-md-4">
               Amount
             </label>
-            <input type="text" class="form-control" id="buidlingCode" />
+            <input type="text" className="form-control" id="buidlingCode" />
           </div>
           <CustomButton
             className="col-md-6"
@@ -68,7 +77,7 @@ const ListReceiptsForm = (showDrawer) => {
           />
         </div>
         <div>
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th style={{ whiteSpace: "nowrap" }} scope="col">
