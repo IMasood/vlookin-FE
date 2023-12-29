@@ -9,6 +9,22 @@ import { FaRegEye } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import ListReceipt from "../../../../utils/services/ListReceipt.service";
+import { TableCell } from "@mui/material";
+import DeleteModal from "./Modals/DeleteModal";
+import {
+  PagingState,
+  IntegratedPaging,
+  FilteringState,
+  IntegratedFiltering,
+  DataTypeProvider,
+} from "@devexpress/dx-react-grid";
+import {
+  Grid,
+  Table,
+  TableHeaderRow,
+  TableFilterRow,
+  PagingPanel,
+} from "@devexpress/dx-react-grid-material-ui";
 const ListReceiptsForm = (showDrawer) => {
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
   useEffect(() => {
@@ -19,6 +35,127 @@ const ListReceiptsForm = (showDrawer) => {
     });
   }, []);
 
+  const [deleteModals, setDeleteModals] = useState(false);
+
+  // Grid States
+
+  const [columns, setColumns] = useState([
+    { name: "type", title: "Type" },
+    { name: "voucherNumber", title: "Voucher #" },
+    { name: "date", title: "Date" },
+    { name: "buildingCode", title: "Building Code" },
+    { name: "buildingName", title: "Building Name" },
+    { name: "amount", title: "Amount" },
+    { name: "activeClosed", title: "Active/Closed" },
+    { name: "narration", title: "Narration" },
+    { name: "flat", title: "Flat" },
+    {
+      name: "actions",
+      title: "Actions",
+      allowFiltering: false,
+      filterOperations: [],
+    },
+  ]);
+
+  const [rows, setRows] = useState([
+    {
+      type: "4120",
+      voucherNumber: "21/3/2012",
+      date: "50000",
+      buildingCode: "243242",
+      buildingName: "Al Salam Un Earned Revenue",
+      amount: "Al Salam",
+      activeClosed: "Al Salam",
+      narration: "3423424242424242",
+      flat: 50000,
+      actions: "ajlaksj1312s3421",
+    },
+    {
+      type: "4120",
+      voucherNumber: "21/3/2012",
+      date: "50000",
+      buildingCode: "243242",
+      buildingName: "Al Salam Un Earned Revenue",
+      amount: "Al Salam",
+      activeClosed: "Al Salam",
+      narration: "3423424242424242",
+      flat: 50000,
+      actions: "ajlaksj1312s3421",
+    },
+    {
+      type: "4120",
+      voucherNumber: "21/3/2012",
+      date: "50000",
+      buildingCode: "243242",
+      buildingName: "Al Salam Un Earned Revenue",
+      amount: "Al Salam",
+      activeClosed: "Al Salam",
+      narration: "3423424242424242",
+      flat: 50000,
+      actions: "ajlaksj1312s3421",
+    },
+    {
+      type: "4120",
+      voucherNumber: "21/3/2012",
+      date: "50000",
+      buildingCode: "243242",
+      buildingName: "Al Salam Un Earned Revenue",
+      amount: "Al Salam",
+      activeClosed: "Al Salam",
+      narration: "3423424242424242",
+      flat: 50000,
+      actions: "ajlaksj1312s3421",
+    },
+    {
+      type: "4120",
+      voucherNumber: "21/3/2012",
+      date: "50000",
+      buildingCode: "243242",
+      buildingName: "Al Salam Un Earned Revenue",
+      amount: "Al Salam",
+      activeClosed: "Al Salam",
+      narration: "3423424242424242",
+      flat: 50000,
+      actions: "ajlaksj1312s3421",
+    },
+    {
+      type: "4120",
+      voucherNumber: "21/3/2012",
+      date: "50000",
+      buildingCode: "243242",
+      buildingName: "Al Salam Un Earned Revenue",
+      amount: "Al Salam",
+      activeClosed: "Al Salam",
+      narration: "3423424242424242",
+      flat: 50000,
+      actions: "ajlaksj1312s3421",
+    },
+  ]);
+
+  const actionFormatter = ({ value, row }) => (
+    <div>
+      <MdOutlineLocalPrintshop className="me-2" />
+      <FaRegEye className="me-2" />
+      <FiEdit className="me-2" />
+      <MdDelete
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          setDeleteModals(true);
+        }}
+      />
+    </div>
+  );
+
+  const Cell = (props) => {
+    if (props.column.name === "actions") {
+      return <TableCell className={props.className} />; // Empty cell for 'name' column
+    }
+    return <TableFilterRow.Cell {...props} />; // Default filter cell for others
+  };
+
+  const ActionTypeProvider = (props) => (
+    <DataTypeProvider formatterComponent={actionFormatter} {...props} />
+  );
   return (
     <>
       <div>
@@ -32,8 +169,8 @@ const ListReceiptsForm = (showDrawer) => {
         )}
       </div>
       <div className="container-fluid pb-0">
-        <div className="d-flex flex-row col-md-12 border-top border-bottom pt-4 pb-5 align-items-end">
-          <div className="form-group d-flex flex-column me-2">
+        <div className="d-flex flex-row col-md-12 pt-3 border-top align-items-end">
+          {/* <div className="form-group d-flex flex-column me-2">
             <label htmlFor="buidlingCode" className="fw-bold col-md-4">
               Voucher #
             </label>
@@ -74,10 +211,21 @@ const ListReceiptsForm = (showDrawer) => {
             bgColor={"#4A0D37"}
             color={"#F8F8F8"}
             buttonName={"Search"}
-          />
+          /> */}
         </div>
         <div>
-          <table className="table">
+          <Grid rows={rows} columns={columns}>
+            <ActionTypeProvider for={["actions"]} />
+            <FilteringState defaultFilters={[]} />
+            <IntegratedFiltering />
+            <PagingState defaultCurrentPage={0} pageSize={5} />
+            <IntegratedPaging />
+            <Table />
+            <TableHeaderRow />
+            <TableFilterRow cellComponent={Cell} />
+            <PagingPanel />
+          </Grid>
+          {/* <table className="table">
             <thead>
               <tr>
                 <th style={{ whiteSpace: "nowrap" }} scope="col">
@@ -260,9 +408,15 @@ const ListReceiptsForm = (showDrawer) => {
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> */}
         </div>
       </div>
+      <DeleteModal
+        show={deleteModals}
+        onHide={() => {
+          setDeleteModals(false);
+        }}
+      />
     </>
   );
 };
