@@ -18,6 +18,7 @@ const admin = {
   editBuilding: "/admin/editBuilding/:id",
   editApartment: "/admin/editApartment/:id",
   adminListComplaint: "/admin/adminlistcomplaint",
+  myBuilding : "/admin/myBuildings"
 };
 
 const superAdmin = {
@@ -88,13 +89,14 @@ export const apiRoutes = {
   getApartment: "http://195.35.45.131:4000/apartment?all=true",
   createBuilding: "http://195.35.45.131:4000/building",
   createApartment: "http://195.35.45.131:4000/apartment",
-  getComplaints: "http://195.35.45.131:4000/maintenance/getComplaint?all=true",
-  createComplaints: "http://195.35.45.131:4000/maintenance/addComplaint",
+  getComplaints: "http://195.35.45.131:4000/maintenance/getComplaint",
+  createComplaints: "http://localhost:4000/maintenance/addComplaint",
   getReceipts: "http://195.35.45.131:4000/receipt?all=true",
   createRealEstate: "http://195.35.45.131:4000/realEstate",
   getRealEstate: "http://195.35.45.131:4000/realEstate?all=true",
   getSelectedBuilding: "http://195.35.45.131:4000/building?",
-  postReceipt : "http://195.35.45.131:4000/receipt"
+  postReceipt : "http://195.35.45.131:4000/receipt",
+  myBuilding: "http://195.35.45.131:4000/building/details",
 };
 
 export const routePaths = {

@@ -16,6 +16,7 @@ import { Cookies } from 'react-cookie';
 
 const ComplaintForm = ({ showDrawer }) => {
     const cookie = new Cookies();
+    const formData = new FormData()
     const { TextArea } = Input;
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const navigate = useNavigate();
@@ -26,19 +27,27 @@ const ComplaintForm = ({ showDrawer }) => {
     const [fileList, setFileList] = useState([])
     const [category, setCategory] = useState('Electrician')
 
+    const [File, setFile] = useState();
+	const onFileChange = (e) => {
+		setFile(e?.target?.files[0]);
+	};
+
+	formData.append("images", File);
+	formData.append("upload_preset", "fdp4mw2g");
+
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
     };
-
     const onChange = (info) => {
         console.log(info, 'infooooooo')
         setFileList(info.fileList)
     }
     const handleSave = (e) => {
         e.preventDefault();
+        // console.log(File.name)
         try {
             if (inputs.desc && inputs.userName) {
-                submitForm(inputs);
+                submitForm(inputs, File);
             } else {
                 toast.error('Complete Form')
             }
@@ -87,22 +96,29 @@ const ComplaintForm = ({ showDrawer }) => {
     };
 
     const submitForm = async () => {
+        console.log(File.name, 'filee')
         const tenantId = cookie.get('userId')
+        const buildingId = cookie.get('buildingId'); //will update it later by using redux
+
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             },
         };
+
         let url = apiRoutes.createComplaints;
+        console.log(formData, 'formmmmmmmm')
+
         try {
             await axios
                 .post(url,
                     {
-                        images: fileList,
+                        images:File,
                         createdBy: inputs.userName,
                         description: inputs.desc,
                         tenantId: tenantId ,
                         category: category,
+                        buildingId:buildingId
                     }
                     , config)
                 .then((response) => {
@@ -166,13 +182,35 @@ const ComplaintForm = ({ showDrawer }) => {
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <div style={{ marginTop: '15px' }}>
-                            <Form.Item
+                            <Input
+								accept="image/*"
+								id="contained-button-file"
+								multiple
+								type="file"
+								onChange={onFileChange}
+							/>
+							{/* <Button
+								variant="contained"
+								component="span"
+								className="uploadBtn"
+							>
+								Upload 
+							</Button>
+ */}
+                            {/* <Form.Item
                                 name="upload"
                                 label="Upload Picture"
                                 valuePropName="fileList"
                                 getValueFromEvent={normFile}
-                            >
-                                <Upload
+                            > */}
+                            {/* <Input
+                                type='file'
+                                multiple
+                                onChange={handleFileInputChange}
+                            />
+                            <Button icon={<UploadOutlined />}>Click to upload</Button> */}
+
+                                {/* <Upload
                                     name="logo"
                                     listType="picture"
                                     beforeUpload={(file) => {
@@ -181,9 +219,8 @@ const ComplaintForm = ({ showDrawer }) => {
                                     onChange={onChange} // Use the onChange callback to manage fileList state
                                     fileList={fileList} // Pass the fileList state to the Upload component
                                 >
-                                    <Button icon={<UploadOutlined />}>Click to upload</Button>
-                                </Upload>
-                            </Form.Item>
+                                </Upload> */}
+                            {/* </Form.Item> */}
                         </div>
                     </Col>
                 </Row>

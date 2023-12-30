@@ -66,7 +66,7 @@ const ApartmentsDropdown = ({
       disabled={disabled && disabled}
     >
       {apartments?.map((apartment) => (
-        <Option key={apartment._id} value={apartment._id}>
+        <Option key={apartment._id} value={apartment._id} disabled={apartment.reserved}>
           {apartment.flatNo} - Floor: {apartment.floorNo}
         </Option>
       ))}

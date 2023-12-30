@@ -12,7 +12,9 @@ const RealEstateDropDown = ({
   placeholder,
   disabled,
   setSelectedRealEstate,
+  disableSelected
 }) => {
+
   const [realEstate, setRealEstate] = useState([]);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const RealEstateDropDown = ({
       axios.get(apiRoutes.getRealEstate).then((response) => {
         const data = response.data.data;
         setRealEstate(data);
-      });
+    });
     } catch (error) {
       console.error("Error fetching real estates:", error);
     }
@@ -44,7 +46,10 @@ const RealEstateDropDown = ({
       disabled={disabled && disabled}
     >
       {realEstate?.map((realEstate) => (
-        <Option key={realEstate._id} value={realEstate._id}>
+        <Option 
+          key={realEstate._id} 
+          value={realEstate._id} 
+          disabled={disableSelected ? realEstate.reserved : false}>
           {realEstate.name} - {realEstate.code}
         </Option>
       ))}
