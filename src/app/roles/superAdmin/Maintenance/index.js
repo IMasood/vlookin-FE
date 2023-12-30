@@ -84,7 +84,28 @@ export const Maintenance = () => {
       title: "Status",
       dataIndex: "status",
       key: "status",
-    },
+      filters: [
+        {
+          text: 'CLOSED',
+          value: 'CLOSED',
+        },
+        {
+          text: 'SUBMITTED',
+          value: 'SUBMITTED',
+        },
+        {
+          text: '	IN PROGRESS',
+          value: '	IN PROGRESS',
+        },
+        {
+          text: 'HOLD',
+          value: 'HOLD',
+        },
+      ],
+
+      ellipsis: true,
+      onFilter: (value, record) => record.status.indexOf(value) === 0,
+    },    
     {
       title: "Action",
       key: "action",
@@ -100,8 +121,8 @@ export const Maintenance = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(apiRoutes.getComplaints)
-      .then((res) => {
+    .get(`${apiRoutes.getComplaints}?all=true`)
+    .then((res) => {
         setData(res.data.data);
         setLoading(false);
       })

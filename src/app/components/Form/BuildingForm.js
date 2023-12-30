@@ -15,7 +15,6 @@ import { AddRealEstateModal } from '../Modal/RealEstateModal';
 import RealEstateDropDown from '../DropDown/RealEstateDropDown';
 
 const BuildingForm = ({showDrawer}) => {
-    console.log('building form')
     const { TextArea } = Input;
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const navigate = useNavigate();
@@ -114,7 +113,7 @@ const BuildingForm = ({showDrawer}) => {
                 <Row >
                     <Col md={10} sm={16}>
                         {realEstateAdded ? <RealEstateDropDown
-                         setSelectedRealEstate={setSelectedRealEstate}/> :
+                         setSelectedRealEstate={setSelectedRealEstate} disableSelected={true}/> :
                         <Button 
                             variant='contained'
                             onClick={openRealEstateModal}

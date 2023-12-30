@@ -105,6 +105,8 @@ const SideBar = ({
       navigate(routePaths.SuperAdmin.journalVoucher);
     } else if (e.key === "bankPaymentVoucher") {
       navigate(routePaths.SuperAdmin.bankPaymentVoucher);
+    } else if (e.key === "myBuilding") {
+      navigate(routePaths.Admin.myBuilding);
     }
   };
   return (

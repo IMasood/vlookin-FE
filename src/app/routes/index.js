@@ -45,6 +45,7 @@ import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/Journ
 import AccountsDirectory from "../roles/superAdmin/AccountingManagementSystem/AccountsDirectory";
 import TenancyExpiryList from "../roles/superAdmin/AccountingManagementSystem/TenancyExpiryList";
 import BankPaymentVoucher from "../roles/superAdmin/AccountingManagementSystem/BankPaymentVoucher";
+import { MyBuildings } from "../roles/admin/myBuilding";
 
 const WebRoutes = () => {
   const cookies = new Cookies();
@@ -96,6 +97,11 @@ const WebRoutes = () => {
             path={routePaths.Admin.addbuilding}
             exact
             element={ <AddBuilding /> }
+          />
+          <Route
+            path={routePaths.Admin.myBuilding}
+            exact
+            element={ <MyBuildings/> }
           />
           <Route
             path={routePaths.Admin.editBuilding}

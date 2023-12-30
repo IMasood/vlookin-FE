@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import { apiRoutes, routePaths } from "../../routes/config";
 import CusTable from "../../components/Table/Table";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { CustomAlert } from "../../components/Alert";
 import { useNavigate } from "react-router";
 import SideBar from "../../components/Layouts/SideBar";
 import { FaEye } from "react-icons/fa";
-import { adminSidebar } from "../../utils/roleSidebar";
 import ViewCompliantModal from "../../components/Modal/ViewCompliantModal";
-import { DeleteModal } from "../../components/Modal";
-import { FaThList, FaWarehouse, FaBuilding } from "react-icons/fa";
+import { FaThList, FaWarehouse } from "react-icons/fa";
 import { getItem } from "../../utils/functions";
 import { Cookies } from "react-cookie";
 
@@ -19,6 +16,8 @@ export const MaintenanceListComplaint = () => {
   const cookies = new Cookies();
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
+  const buildingId = cookies.get('buildingId');
+  
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([
     {
@@ -32,25 +31,9 @@ export const MaintenanceListComplaint = () => {
   const [complaints, setComplaint] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+
   const showDrawer = () => {
     setOpen(true);
-  };
-
-  const handleEdit = (record) => {
-    navigate(`/admin/editBuilding/${record._id}`);
-    localStorage.setItem("buildingData", record);
-  };
-
-  const handleDelete = async (record) => {
-    try {
-      const url = `http://195.35.45.131:4000/maintenance/deleteComplaint?id=${record._id}`;
-      const response = await fetch(url, {
-        method: "DELETE",
-      });
-      toast.success("Complaint Deleted Successfully");
-    } catch (error) {
-      toast.error(error);
-    }
   };
 
   const handleView = (record) => {
@@ -83,6 +66,26 @@ export const MaintenanceListComplaint = () => {
       title: "Status",
       dataIndex: "status",
       key: "status",
+      filters: [
+        {
+          text: 'CLOSED',
+          value: 'CLOSED',
+        },
+        {
+          text: 'SUBMITTED',
+          value: 'SUBMITTED',
+        },
+        {
+          text: '	IN PROGRESS',
+          value: '	IN PROGRESS',
+        },
+        {
+          text: 'HOLD',
+          value: 'HOLD',
+        },
+      ],
+      ellipsis: true,
+      onFilter: (value, record) => record.status.indexOf(value) === 0,
     },
     {
       title: "Action",
@@ -98,7 +101,7 @@ export const MaintenanceListComplaint = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(apiRoutes.getComplaints)
+      .get(`${apiRoutes.getComplaints}?buildingId=${buildingId}`)
       .then((res) => {
         setData(res.data.data);
         setLoading(false);

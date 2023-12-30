@@ -117,7 +117,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
             gender: gender,
             allowAMS: checked,
             realEstate: selectedRealEstate,
-            building: selectedBuilding || "",
+            buildingId: selectedBuilding || "",
           },
           config
         )

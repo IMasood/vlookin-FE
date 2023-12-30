@@ -82,8 +82,13 @@ export const LoginForm = (props) => {
           setCookies("name", response.data.data.userName, {
             expires: expirationDate,
           }); // optional data
+
+          //will update it later by using redux
+
           setCookies("role", response.data.data.role);
           setCookies("userId", response.data.data.id)
+          setCookies("buildingId", response.data.data.buildingId)
+
           const role = cookie.get("role");
         
           switch (role) {
