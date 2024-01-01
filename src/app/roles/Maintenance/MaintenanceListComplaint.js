@@ -100,6 +100,7 @@ export const MaintenanceListComplaint = () => {
 
   useEffect(() => {
     setLoading(true);
+    console.log(buildingId, 'BASJD')
     axios
       .get(`${apiRoutes.getComplaints}?buildingId=${buildingId}`)
       .then((res) => {

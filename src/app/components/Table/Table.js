@@ -6,6 +6,7 @@ import './style.css'
 import { Oval } from 'react-loader-spinner'
 import { useMediaQuery } from 'react-responsive'
 import MobileHeader from '../Header/MobileHeader'
+import BuildingDropDown from '../DropDown'
 
 const CusTable = ({ columns, data, heading, subHeading, route, loading, showDrawer, searchQuery, setSearchQuery }) => {
 
@@ -25,8 +26,9 @@ const CusTable = ({ columns, data, heading, subHeading, route, loading, showDraw
             <p className='headerText'>{subHeading}</p>
         </div>
       <div className='container'>
-        <Input size="large" className='search_bar' placeholder="Search" value={searchQuery}
+      <Input size="large" className='search_bar' placeholder="Search" value={searchQuery}
           onChange={handleSearchChange} prefix={<SearchOutlined />} />
+        {/* <BuildingDropDown/>         */}
         {loading ? 
           <div className='loader'>
             <Oval

@@ -10,8 +10,14 @@ import { FaEye } from "react-icons/fa";
 import { adminSidebar } from "../../utils/roleSidebar";
 import ViewCompliantModal from "../../components/Modal/ViewCompliantModal";
 import { DeleteModal } from "../../components/Modal";
+import { Cookies } from "react-cookie";
 
 export const AdminListComplaint = () => {
+  const cookies = new Cookies();
+  const role = cookies.get("role"); 
+  const userName = cookies.get('name');
+  const buildingId = cookies.get('buildingId');
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([
@@ -114,7 +120,7 @@ export const AdminListComplaint = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${apiRoutes.getComplaints}?all=true`)
+      .get(`${apiRoutes.getComplaints}?buildingId=${buildingId}`)
       .then((res) => {
         setData(res.data.data);
         setLoading(false);
@@ -149,6 +155,8 @@ export const AdminListComplaint = () => {
         open={open}
         setOpen={setOpen}
         items={adminSidebar}
+        role = {role}
+        userName = {userName}
       />
       <CustomAlert />
       <ViewCompliantModal

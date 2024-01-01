@@ -18,6 +18,10 @@ import { Cookies } from "react-cookie";
 export const ListComplaint = () => {
   const cookie = new Cookies()
   const navigate = useNavigate();
+  let tenantId = cookie.get('userId');
+  const role = cookie.get("role"); 
+  const userName = cookie.get('name');
+
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([
     {
@@ -30,7 +34,7 @@ export const ListComplaint = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [complaints, setComplaint] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  let tenantId = cookie.get('userId');
+
 
   const showDrawer = () => {
     setOpen(true);
@@ -131,6 +135,8 @@ export const ListComplaint = () => {
         open={open}
         setOpen={setOpen}
         items={items}
+        role={role}
+        userName={userName}
       />
       <CustomAlert />
       <ViewCompliantModal
