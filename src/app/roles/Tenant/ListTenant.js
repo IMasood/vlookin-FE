@@ -73,38 +73,39 @@ const ListTenant = () => {
     {
       title: "Full Name",
       dataIndex: "tenantName",
-      key: "tenantName",
     },
-    // {
-    //     title: 'Building Name',
-    //     dataIndex: 'buildingName',
-    //     key: 'buildingName',
-    // },
+    {
+        title: 'Building Name',
+        dataIndex: 'buildingName',
+    },
     {
       title: "Email",
       dataIndex: "email",
-      key: "email",
+      // key: "email",
+      
     },
     {
       title: "MobileNo",
       dataIndex: "contact",
-      key: "contact",
+      // key: "contact",
+
     },
     {
       title: "Flat No",
       dataIndex: "flatNo",
-      key: "flatNo",
+      // key: "flatNo",
     },
     {
       title: "Office No",
       dataIndex: "officeNo",
-      key: "officeNo",
+      // key: "officeNo",
     },
     {
       title: "Nationality",
       dataIndex: "nationality",
-      key: "nationality",
-    },
+      // key: "nationality",
+    },    
+
     {
       title: "Update",
       key: "Update",
@@ -122,7 +123,30 @@ const ListTenant = () => {
     axios
       .get(apiRoutes.getTenant)
       .then((res) => {
-        setListData(res.data.data);
+        setListData(res?.data.data.map((row ) => (
+          { 
+          tenantName: row.tenantName,
+          email: row.email, 
+          contact: row.contact,
+          flatNo:row.flatNo,
+          officeNo:row.officeNo,
+          nationality:row.nationality,
+          buildingName:row.buildingId?.buildingName,
+          flatNo:row.apartmentId?.flatNo,
+          _id: row._id
+            }
+          )));
+        // setListData(res.data.data.map((row) => ({
+        //   _id: row._id,
+        //   tenantName: row.tenantName,
+        //   email: row.email, 
+        //   contact: row.contact,
+        //   flatNo:row.flatNo,
+        //   officeNo:row.officeNo,
+        //   nationality:row.nationality,
+        //   buildingName:row.buildingId.buildingName,
+        //   flatNumber:row.apartmentId.flatNo
+        // })));
         setLoading(false);
       })
       .catch((e) => console.log(e));

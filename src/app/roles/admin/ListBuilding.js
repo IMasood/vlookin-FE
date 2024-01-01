@@ -14,8 +14,11 @@ import { Cookies } from "react-cookie";
 export const ListBuilding = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
+  
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
+  const userId = cookies.get("userId")
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
@@ -45,32 +48,30 @@ export const ListBuilding = () => {
     {
       title: "Owner Name",
       dataIndex: "fullName",
-      key: "fullName",
     },
     {
       title: "Building Name",
       dataIndex: "buildingName",
-      key: "buildingName",
     },
     {
       title: "Building Code",
       dataIndex: "buildingCode",
-      key: "buildingCode",
     },
     {
       title: "Landmark",
       dataIndex: "landmark",
-      key: "landmark",
     },
     {
       title: "Floors",
       dataIndex: "floorCount",
-      key: "floorCount",
     },
     {
       title: "Parkings",
       dataIndex: "parkingCount",
-      key: "parkingCount",
+    },    
+    {
+      title: "Real Estate",
+      dataIndex: "realEstateName",
     },
     {
       title: "Update",
@@ -87,13 +88,26 @@ export const ListBuilding = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(apiRoutes.getBuilding)
+      .get(`${apiRoutes.getSelectedBuilding}userId=${userId}`)
       .then((res) => {
-        setData(res.data.data);
+        setData(res.data.data.map((row ) => (
+          { 
+            fullName: row.fullName,
+            buildingName: row.buildingName, 
+            buildingCode: row.buildingCode,
+            landmark:row.landmark,
+            floorCount:row.floorCount,
+            parkingCount:row.parkingCount,
+            realEstateName:row.realEstateId.name,
+            _id: row._id
+            }
+          )));
         setLoading(false);
       })
       .catch((e) => console.log(e));
   }, []);
+
+
   const filteredData = data.filter((item) =>
     item?.buildingName?.toLowerCase().includes(searchQuery.toLowerCase())
   );

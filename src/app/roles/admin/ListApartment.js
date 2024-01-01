@@ -16,10 +16,13 @@ export const ListAppartment = () => {
   const cookies = new Cookies();
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
+  const buildingId = cookies.get('buildingId')
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
+  const [selectedBuilding, setSelectedBuilding] = useState('')
+
   const showDrawer = () => {
     setOpen(true);
   };
@@ -83,16 +86,36 @@ export const ListAppartment = () => {
     },
   ];
 
+  const fetchSelectedApartmentData = async() =>
+  {
+    try{
+      axios.get(`${apiRoutes.getApartment}&buildingId=${selectedBuilding}`).then((response) => {
+        const data = response?.data.data;
+        setData(data);
+        setLoading(false);
+      });
+
+    }catch(error){
+      console.error("Error fetching apartment data:", error);
+    }
+
+  }
+
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(apiRoutes.getApartment)
-      .then((res) => {
-        setData(res?.data.data);
-        setLoading(false);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+    if(selectedBuilding){
+      fetchSelectedApartmentData()
+    }else{
+      axios
+        .get(`${apiRoutes.getApartment}&buildingId=${buildingId}`)
+        .then((res) => {
+          setData(res?.data.data);
+          setLoading(false);
+        })
+        .catch((e) => console.log(e));
+
+    }
+  }, [selectedBuilding]);
 
   const filteredData = data.filter((item) =>
     item?.apartmentType?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -112,6 +135,7 @@ export const ListAppartment = () => {
             showDrawer={showDrawer}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setSelectedBuilding={setSelectedBuilding}
           />
         }
         items={adminSidebar}

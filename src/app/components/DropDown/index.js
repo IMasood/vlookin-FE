@@ -5,6 +5,7 @@ import axios from "axios";
 import "./style.css";
 import { toast } from "react-toastify";
 import { CustomAlert } from "../Alert";
+import { Cookies } from "react-cookie";
 
 const { Option } = Select;
 
@@ -18,8 +19,14 @@ const BuildingDropDown = ({
   isBuildingSelected,
   // setSelectedBuildingName
 }) => {
+
+  const cookies = new Cookies();
+  const role = cookies.get("role");
+  const userId = cookies.get("userId");
+
   const [buildingData, setBuildingData] = useState([]);
   const [disableBuilding, SetDisableBuilding] = useState(false);
+
 
   useEffect(() => {
     // Fetch building data from the API and update state
@@ -28,7 +35,8 @@ const BuildingDropDown = ({
 
   const fetchBuildingData = async () => {
     try {
-        axios.get(apiRoutes.getBuilding).then((response) => {
+        const url = role == 'admin' ? `${apiRoutes.getSelectedBuilding}userId=${userId}` : apiRoutes.getBuilding;
+        axios.get(url).then((response) => {
           const data = response.data.data;
           if(data.length == 0){
             toast.error('Create building first')
@@ -45,7 +53,6 @@ const BuildingDropDown = ({
   };
 
   const handleChange = (value, option) => {
-    console.log(option.children, 'optionnnnnnnnnnnnnnn')
     setSelectedBuilding(value);    
     if(isBuildingSelected){
       isBuildingSelected(true)

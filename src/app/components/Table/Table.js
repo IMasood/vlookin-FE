@@ -7,15 +7,17 @@ import { Oval } from 'react-loader-spinner'
 import { useMediaQuery } from 'react-responsive'
 import MobileHeader from '../Header/MobileHeader'
 import BuildingDropDown from '../DropDown'
+import { Cookies } from 'react-cookie'
 
-const CusTable = ({ columns, data, heading, subHeading, route, loading, showDrawer, searchQuery, setSearchQuery }) => {
-
+const CusTable = ({ columns, data, heading, subHeading, route, loading, showDrawer, searchQuery, setSearchQuery, setSelectedBuilding }) => {
+  const cookies = new Cookies();
+  const role = cookies.get("role");
+  const userId = cookies.get("userId");
   const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
-
   return (
     <div>
       {isMobile ?
@@ -27,8 +29,8 @@ const CusTable = ({ columns, data, heading, subHeading, route, loading, showDraw
         </div>
       <div className='container'>
       <Input size="large" className='search_bar' placeholder="Search" value={searchQuery}
-          onChange={handleSearchChange} prefix={<SearchOutlined />} />
-        {/* <BuildingDropDown/>         */}
+          onChange={handleSearchChange} prefix={<SearchOutlined />} />    
+          {role == 'admin' && <BuildingDropDown   setSelectedBuilding={setSelectedBuilding}/>}            
         {loading ? 
           <div className='loader'>
             <Oval
