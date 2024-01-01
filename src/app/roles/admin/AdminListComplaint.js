@@ -18,7 +18,6 @@ export const AdminListComplaint = () => {
   const userName = cookies.get('name');
   const buildingId = cookies.get('buildingId');
 
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([
     {
@@ -36,10 +35,6 @@ export const AdminListComplaint = () => {
     setOpen(true);
   };
 
-  const handleEdit = (record) => {
-    navigate(`/admin/editBuilding/${record._id}`);
-    localStorage.setItem("buildingData", record);
-  };
 
   const handleDelete = async (record) => {
     try {

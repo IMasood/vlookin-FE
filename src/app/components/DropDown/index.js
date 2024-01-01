@@ -17,6 +17,7 @@ const BuildingDropDown = ({
   setSelectedBuilding,
   realEstateId,
   isBuildingSelected,
+  className
   // setSelectedBuildingName
 }) => {
 
@@ -66,7 +67,7 @@ const BuildingDropDown = ({
       placeholder={placeholder ? placeholder : "Select a building"}
       onChange={handleChange}
       // value={value}
-      className="building_selector"
+      className={className ? className :"building_selector"}
       disabled={disabled ? disabled : disableBuilding}
     >
       {buildingData?.map((building) => (

@@ -15,7 +15,7 @@ export const adminSidebar = [
         [getItem('Add building', 'addbuilding', <BsBuildingFillAdd />),
         getItem('List building', 'listbuilding', <FaThList />),
         getItem('Add Appartment', 'addApartment', <BsBuildingFillAdd />),
-        getItem("My Buildings", "myBuilding", <FaThList />),
+        // getItem("My Buildings", "myBuilding", <FaThList />),
         ]),
     getItem('Appartment', '4', <MdApartment />,
         [getItem('List Appartment', 'listApartment', <FaThList />)]),
