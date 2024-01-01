@@ -48,8 +48,6 @@ const SideBar = ({
     token: { colorBgContainer },
   } = theme.useToken();
 
-  console.log(userName, role);
-
   const onClick = (e) => {
     if (e.key === "add_visitor") {
       navigate(routePaths.Visitor.dashboard);

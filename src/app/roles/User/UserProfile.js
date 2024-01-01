@@ -14,7 +14,7 @@ import { MdOutlineDomainDisabled } from 'react-icons/md';
 import { routePaths } from '../../routes/config';
 import MobileHeader from '../../components/Header/MobileHeader';
 import SideBar from "../../components/Layouts/SideBar";
-import { Cookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 
 
 const UserProfile = () => {
@@ -35,12 +35,15 @@ const UserProfile = () => {
       ),
   ];
   const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
+  const [cookies, setCookies, removeCookie] = useCookies();
+
   const getUsers = async (tenantId) => {
     axios
       .get(`http://195.35.45.131:4000/tenant?id=${tenantId}`)
       .then((response) => {
         setTenantData(response.data.data);
-      })
+        setCookies("buildingId", response.data.data.buildingId._id);           // your token
+    })
       .catch((e) => toast.error(e));
   };
 

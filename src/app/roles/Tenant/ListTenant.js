@@ -15,42 +15,24 @@ import { useNavigate } from "react-router";
 import { CustomAlert } from "../../components/Alert";
 import { toast } from "react-toastify";
 import { Cookies } from "react-cookie";
+import { adminSidebar } from "../../utils/roleSidebar";
 
 const ListTenant = () => {
   const navigate = useNavigate();
-  const [listData, setListData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const showDrawer = () => {
-    setOpen(true);
-  };
-  const [searchQuery, setSearchQuery] = useState("");
   const cookies = new Cookies();
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
+  const buildingId = cookies.get('buildingId');
 
-  const items = [
-    getItem("Tenant", "1", <FaWarehouse />, [
-      getItem("Add Tenant", "addtenant", <HiUserAdd />),
-      getItem("List Tenant", "tenantlist", <FaThList />),
-    ]),
-  ];
+  const [listData, setListData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedBuilding, setSelectedBuilding] = useState('')
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const adminItems = [
-    getItem("Visitor", "add_visitor", <RiWalkFill />),
-    getItem("Tenant", "2", <FaWarehouse />, [
-      getItem("Add Tenant", "addtenant", <HiUserAdd />),
-      getItem("List Tenant", "tenantlist", <FaThList />),
-    ]),
-    getItem("Building", "3", <FaBuilding />, [
-      getItem("Add building", "addbuilding", <BsBuildingFillAdd />),
-      getItem("List building", "listbuilding", <FaThList />),
-      getItem("Add Appartment", "addApartment", <BsBuildingFillAdd />),
-    ]),
-    getItem("Appartment", "4", <MdApartment />, [
-      getItem("List Appartment", "listApartment", <FaThList />),
-    ]),
-  ];
+  const showDrawer = () => {
+    setOpen(true);
+  };
 
   const handleEdit = (record) => {
     navigate(`/tenant/edit/${record._id}`);
@@ -60,7 +42,7 @@ const ListTenant = () => {
   const handleDelete = async (record) => {
     try {
       const url = `http://195.35.45.131:4000/tenant?id=${record._id}`;
-      const response = await fetch(url, {
+      await fetch(url, {
         method: "DELETE",
       });
       toast.success("Tenant Deleted Successfully");
@@ -73,38 +55,34 @@ const ListTenant = () => {
     {
       title: "Full Name",
       dataIndex: "tenantName",
-      key: "tenantName",
     },
-    // {
-    //     title: 'Building Name',
-    //     dataIndex: 'buildingName',
-    //     key: 'buildingName',
-    // },
+    {
+        title: 'Building Name',
+        dataIndex: 'buildingName',
+    },
     {
       title: "Email",
       dataIndex: "email",
-      key: "email",
+      
     },
     {
       title: "MobileNo",
       dataIndex: "contact",
-      key: "contact",
+
     },
     {
       title: "Flat No",
       dataIndex: "flatNo",
-      key: "flatNo",
     },
     {
       title: "Office No",
       dataIndex: "officeNo",
-      key: "officeNo",
     },
     {
       title: "Nationality",
       dataIndex: "nationality",
-      key: "nationality",
-    },
+    },    
+
     {
       title: "Update",
       key: "Update",
@@ -119,14 +97,27 @@ const ListTenant = () => {
 
   useEffect(() => {
     setLoading(true);
+    const url = selectedBuilding ? `${apiRoutes.getTenant}buildingId=${selectedBuilding}` : `${apiRoutes.getTenant}buildingId=${buildingId}`
     axios
-      .get(apiRoutes.getTenant)
+      .get(url)
       .then((res) => {
-        setListData(res.data.data);
+        setListData(res?.data.data.map((row ) => (
+          { 
+          tenantName: row.tenantName,
+          email: row.email, 
+          contact: row.contact,
+          flatNo:row.flatNo,
+          officeNo:row.officeNo,
+          nationality:row.nationality,
+          buildingName:row.buildingId?.buildingName,
+          flatNo:row.apartmentId?.flatNo,
+          _id: row._id
+            }
+          )));
         setLoading(false);
       })
       .catch((e) => console.log(e));
-  }, []);
+  }, [selectedBuilding]);
 
   const filteredData = listData.filter((item) =>
     item?.email?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -145,13 +136,15 @@ const ListTenant = () => {
             showDrawer={showDrawer}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setSelectedBuilding={setSelectedBuilding}
           />
         }
-        items={adminItems}
+        items={adminSidebar}
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
-        role={role ? role : ''} userName={userName ? userName : ''}
+        role={role ? role : ''} 
+        userName={userName ? userName : ''}
       />
       <CustomAlert />
     </div>

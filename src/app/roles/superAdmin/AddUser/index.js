@@ -124,6 +124,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
         .then((response) => {
           if (response.data.status == 200) {
             toast.success("User Created Successfully");
+            navigate(routePaths.SuperAdmin.listUser);
             setInputs({
               userName: "",
               email: "",
@@ -132,7 +133,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               contact: "", //052104885
               realEstate: "",
             })
-            navigate(routePaths.SuperAdmin.listUser);
           }
         });
     } catch (error) {

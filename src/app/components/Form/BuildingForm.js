@@ -13,8 +13,11 @@ import { useMediaQuery } from 'react-responsive';
 import MobileHeader from '../Header/MobileHeader';
 import { AddRealEstateModal } from '../Modal/RealEstateModal';
 import RealEstateDropDown from '../DropDown/RealEstateDropDown';
+import { Cookies } from 'react-cookie';
 
 const BuildingForm = ({showDrawer}) => {
+    const cookie = new Cookies()
+    const userId = cookie.get("userId");
     const { TextArea } = Input;
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const navigate = useNavigate();
@@ -74,7 +77,8 @@ const BuildingForm = ({showDrawer}) => {
                     "watchman" : inputs.watchMan,
                     "landmark": inputs.location,
                     "fullName" : inputs.ownerName,
-                    "realEstateId" : selectedRealEstate
+                    "realEstateId" : selectedRealEstate,
+                    "userId": userId
                  } ,config)
             .then((response) => {
                 if(response.data.status == 200){

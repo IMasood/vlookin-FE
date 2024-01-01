@@ -49,7 +49,7 @@ export const MyBuildings = () => {
         {
           title: 'Floor No',
           dataIndex: "floorNo",
-          key: "floorNo",
+          // key: "floorNo",
           width:50
         }
       ]
@@ -57,24 +57,24 @@ export const MyBuildings = () => {
     {
       title: "Tenants",
       dataIndex: "tenants",
-      key: "tenants",
+      // key: "tenants",
       children : [
         {
           title: 'Name',
           dataIndex: "tenantName",
-          key: "tenantName",
+          // key: "tenantName",
           width:50
         },
         {
           title: 'Email',
           dataIndex: "email",
-          key: "email",
+          // key: "email",
           width:50
         },
         {
           title: 'Contact',
           dataIndex: "contact",
-          key: "contact",
+          // key: "contact",
           width:50
         }
       ]
@@ -82,24 +82,24 @@ export const MyBuildings = () => {
     {
       title: "Visitors",
       dataIndex: "visitors",
-      key: "visitors",
+      // key: "visitors",
       children : [
         {
           title: 'Name',
           dataIndex: "userName",
-          key: "userName",
+          // key: "userName",
           width:50
         },
         {
           title: 'Email',
           dataIndex: "email",
-          key: "email",
+          // key: "email",
           width:50
         },
         {
           title: 'Contact',
           dataIndex: "contact",
-          key: "contact",
+          // key: "contact",
           width:50
         }
       ]
@@ -108,24 +108,24 @@ export const MyBuildings = () => {
     {
       title: "Maintenance",
       dataIndex: "maintenance",
-      key: "maintenance",
+      // key: "maintenance",
       children : [
         {
           title: 'Name',
           dataIndex: "userName",
-          key: "userName",
+          // key: "userName",
           width:50
         },
         {
           title: 'Email',
           dataIndex: "email",
-          key: "email",
+          // key: "email",
           width:50
         },
         {
           title: 'Contact',
           dataIndex: "contact",
-          key: "contact",
+          // key: "contact",
           width:50
         }
       ]
@@ -134,24 +134,24 @@ export const MyBuildings = () => {
     {
       title: "Comaplaints",
       dataIndex: "complaints",
-      key: "complaints",
+      // key: "complaints",
       children : [
         {
           title: 'Id',
           dataIndex: "complaintId",
-          key: "complaintId",
+          // key: "complaintId",
           width:50
         },
         {
           title: 'Category',
           dataIndex: "category",
-          key: "category",
+          // key: "category",
           width:50
         },
         {
           title: 'Status',
           dataIndex: "status",
-          key: "status",
+          // key: "status",
           width:50
         }
       ]
