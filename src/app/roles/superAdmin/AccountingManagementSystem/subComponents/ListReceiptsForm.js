@@ -156,6 +156,16 @@ const ListReceiptsForm = (showDrawer) => {
   const ActionTypeProvider = (props) => (
     <DataTypeProvider formatterComponent={actionFormatter} {...props} />
   );
+
+  const CustomHeaderCell = (props) => {
+    return (
+      <TableHeaderRow.Cell {...props}>
+        <div>
+          <div style={{ fontWeight: "700" }}>{props.column.title}</div>
+        </div>
+      </TableHeaderRow.Cell>
+    );
+  };
   return (
     <>
       <div>
@@ -221,7 +231,7 @@ const ListReceiptsForm = (showDrawer) => {
             <PagingState defaultCurrentPage={0} pageSize={5} />
             <IntegratedPaging />
             <Table />
-            <TableHeaderRow />
+            <TableHeaderRow cellComponent={CustomHeaderCell} />
             <TableFilterRow cellComponent={Cell} />
             <PagingPanel />
           </Grid>
