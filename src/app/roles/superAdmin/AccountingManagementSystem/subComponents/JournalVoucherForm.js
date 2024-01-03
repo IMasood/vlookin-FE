@@ -4,10 +4,88 @@ import MobileHeader from "../../../../components/Header/MobileHeader";
 import { apiRoutes, routePaths } from "../../../../routes/config";
 import { Header } from "../../../../components/Header";
 import { CustomButton } from "../../../../components/Button";
-
+import {
+  PagingState,
+  IntegratedPaging,
+  FilteringState,
+  IntegratedFiltering,
+} from "@devexpress/dx-react-grid";
+import {
+  Grid,
+  Table,
+  TableHeaderRow,
+  TableFilterRow,
+  PagingPanel,
+} from "@devexpress/dx-react-grid-material-ui";
+import AddVoucherModal from "./Modals/AddVoucherModal";
 const JournalVoucherForm = (props) => {
   const { showDrawer } = props;
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
+
+  const [voucherModal, setVoucherModal] = useState(false);
+  const [columns, setColumns] = useState([
+    { name: "serialNumber", title: "Sr #" },
+    { name: "tenantId", title: "Tenant ID" },
+    { name: "flatNumber", title: "Flat #" },
+    { name: "accountCode", title: "Account Code" },
+    { name: "accountHead", title: "Account Head" },
+    { name: "ledgerNarration", title: "Ledger Narration" },
+  ]);
+  const [rows, setRows] = useState([
+    {
+      serialNumber: "03",
+      tenantId: "531231123",
+      accountCode: "43212",
+      flatNumber: "543",
+      accountHead: "Mr. Ali Abbas",
+      ledgerNarration: "Water Leak",
+    },
+    {
+      serialNumber: "03",
+      tenantId: "531231123",
+      accountCode: "43212",
+      flatNumber: "543",
+      accountHead: "Mr. Ali Abbas",
+      ledgerNarration: "Water Leak",
+    },
+    {
+      serialNumber: "03",
+      tenantId: "531231123",
+      accountCode: "43212",
+      flatNumber: "543",
+      accountHead: "Mr. Ali Abbas",
+      ledgerNarration: "Water Leak",
+    },
+    {
+      serialNumber: "03",
+      tenantId: "531231123",
+      accountCode: "43212",
+      flatNumber: "543",
+      accountHead: "Mr. Ali Abbas",
+      ledgerNarration: "Water Leak",
+    },
+    {
+      serialNumber: "03",
+      tenantId: "531231123",
+      accountCode: "43212",
+      flatNumber: "543",
+      accountHead: "Mr. Ali Abbas",
+      ledgerNarration: "Water Leak",
+    },
+    // add another row with empty other values and
+    //  add it to the array with array push with summed values to show total
+  ]);
+  // Formatter
+  const CustomHeaderCell = (props) => {
+    return (
+      <TableHeaderRow.Cell {...props}>
+        <div>
+          <div style={{ fontWeight: "700" }}>{props.column.title}</div>
+        </div>
+      </TableHeaderRow.Cell>
+    );
+  };
+  //Formatter
   return (
     <>
       <div>
@@ -31,106 +109,39 @@ const JournalVoucherForm = (props) => {
             </span>
           </div>
           <div className="d-flex flex-row col-md-12 pb-3 pt-4 align-items-end">
-            <div class="form-group d-flex flex-column me-2">
-              <label for="buidlingCode" className="fw-bold col-md-4">
-                Tenant ID
-              </label>
-              <input
-                type="text"
-                class="form-control col-md-4"
-                id="buidlingCode"
-              />
-            </div>
-            <div class="form-group d-flex flex-column me-2">
-              <label for="buidlingCode" className="fw-bold col-md-4">
-                Flat #
-              </label>
-              <input type="text" class="form-control" id="buidlingCode" />
-            </div>
-            <div class="form-group d-flex flex-column me-2">
-              <label for="buidlingCode" className="fw-bold col-md-6">
-                Account Code
-              </label>
-              <input type="text" class="form-control" id="buidlingCode" />
-            </div>
-            <div class="form-group d-flex flex-column me-2">
-              <label for="buidlingCode" className="fw-bold col-md-6">
-                Account Head
-              </label>
-              <input type="text" class="form-control" id="buidlingCode" />
-            </div>
             <div className="ms-auto">
               <CustomButton
                 className="col-md-6"
                 // disabled={loginOrCrm === 0 ? true : false}
-                // handleClick={handleClick}
+                handleClick={() => {
+                  setVoucherModal(true);
+                }}
                 bgColor={"#4A0D37"}
                 color={"#F8F8F8"}
-                buttonName={"Search"}
+                buttonName={"Add"}
               />
             </div>
           </div>
         </div>
         <div className="pb-3">
-          <table class="table">
-            <thead>
-              <tr>
-                <th style={{ whiteSpace: "nowrap" }} scope="col">
-                  Sr #
-                </th>
-                <th style={{ whiteSpace: "nowrap" }} scope="col">
-                  Account Code
-                </th>
-
-                <th style={{ whiteSpace: "nowrap" }} scope="col">
-                  Account Head
-                </th>
-                <th style={{ whiteSpace: "nowrap" }} scope="col">
-                  Ledger Narration
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>01</td>
-                <td>7270</td>
-                <td>Mr. Ali Abbas</td>
-                <td>Water Leak</td>
-              </tr>
-              <tr>
-                <td>01</td>
-                <td>7270</td>
-                <td>Mr. Ali Abbas</td>
-                <td>Water Leak</td>
-              </tr>
-              <tr>
-                <td>01</td>
-                <td>7270</td>
-                <td>Mr. Ali Abbas</td>
-                <td>Water Leak</td>
-              </tr>
-              <tr>
-                <td>01</td>
-                <td>7270</td>
-                <td>Mr. Ali Abbas</td>
-                <td>Water Leak</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="d-flex flex-row-reverse">
-          <div>
-            <CustomButton
-              className="col-md-6"
-              // disabled={loginOrCrm === 0 ? true : false}
-              // handleClick={handleClick}
-              bgColor={"#4A0D37"}
-              color={"#F8F8F8"}
-              buttonName={"Add"}
-            />
-          </div>
+          <Grid rows={rows} columns={columns}>
+            <FilteringState defaultFilters={[]} />
+            <IntegratedFiltering />
+            <PagingState defaultCurrentPage={0} pageSize={5} />
+            <IntegratedPaging />
+            <Table />
+            <TableHeaderRow cellComponent={CustomHeaderCell} />
+            <TableFilterRow />
+            <PagingPanel />
+          </Grid>
         </div>
       </div>
+      <AddVoucherModal
+        show={voucherModal}
+        onHide={() => {
+          setVoucherModal(false);
+        }}
+      />
     </>
   );
 };

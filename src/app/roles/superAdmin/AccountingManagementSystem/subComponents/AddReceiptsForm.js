@@ -110,6 +110,17 @@ const AddReceiptsForm = (showDrawer) => {
       amount: 50000,
     },
   ]);
+
+  const CustomHeaderCell = (props) => {
+    return (
+      <TableHeaderRow.Cell {...props}>
+        <div>
+          <div style={{ fontWeight: "700" }}>{props.column.title}</div>
+        </div>
+      </TableHeaderRow.Cell>
+    );
+  };
+
   return (
     <>
       <div>
@@ -331,7 +342,7 @@ const AddReceiptsForm = (showDrawer) => {
                   <PagingState defaultCurrentPage={0} pageSize={5} />
                   <IntegratedPaging />
                   <Table />
-                  <TableHeaderRow />
+                  <TableHeaderRow cellComponent={CustomHeaderCell} />
                   <TableFilterRow />
                   <PagingPanel />
                 </Grid>

@@ -23,6 +23,7 @@ const DeleteModal = (props) => {
             color={"#F8F8F8"}
             buttonName={"Yes"}
           />
+          <div></div>
         </Modal.Body>
       </Modal>
     </div>
