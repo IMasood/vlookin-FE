@@ -99,7 +99,8 @@ export const ListAppartment = () => {
       });
 
     }catch(error){
-      console.error("Error fetching apartment data:", error);
+        setLoading(false);
+        console.error("Error fetching apartment data:", error);
     }
 
   }
@@ -118,7 +119,10 @@ export const ListAppartment = () => {
           }
           setLoading(false);
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          setLoading(false);
+
+        });
 
     }
   }, [selectedBuilding]);
