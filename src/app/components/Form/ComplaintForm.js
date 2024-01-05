@@ -27,24 +27,16 @@ const ComplaintForm = ({ showDrawer }) => {
     const [fileList, setFileList] = useState([])
     const [category, setCategory] = useState('Electrician')
 
-    const [File, setFile] = useState();
-	const onFileChange = (e) => {
-		setFile(e?.target?.files[0]);
-	};
-
-	formData.append("images", File);
-	formData.append("upload_preset", "fdp4mw2g");
-
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
     };
+
     const onChange = (info) => {
         console.log(info, 'infooooooo')
         setFileList(info.fileList)
     }
     const handleSave = (e) => {
         e.preventDefault();
-        // console.log(File.name)
         try {
             if (inputs.desc && inputs.userName) {
                 submitForm(inputs, File);
@@ -90,8 +82,8 @@ const ComplaintForm = ({ showDrawer }) => {
         if (Array.isArray(e)) {
             return e;
         }
-        console.log(e?.fileList, 'eeeeeeeeeeeeee');
-        return e?.file;
+        console.log(e?.fileList);
+        return e?.fileList;
 
     };
 
@@ -105,15 +97,12 @@ const ComplaintForm = ({ showDrawer }) => {
                 'Content-Type': 'application/json'
             },
         };
-
         let url = apiRoutes.createComplaints;
-        console.log(formData, 'formmmmmmmm')
-
         try {
             await axios
                 .post(url,
                     {
-                        images:File,
+                        images: fileList,
                         createdBy: inputs.userName,
                         description: inputs.desc,
                         tenantId: tenantId ,
@@ -124,6 +113,7 @@ const ComplaintForm = ({ showDrawer }) => {
                 .then((response) => {
                     if (response.data.status == 200) {
                         toast.success('Complaint Generated Successfully')
+                        navigate(routePaths.Maintenance.complaintList)
                     } 
                 });
         } catch (error) {
@@ -182,35 +172,13 @@ const ComplaintForm = ({ showDrawer }) => {
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <div style={{ marginTop: '15px' }}>
-                            <Input
-								accept="image/*"
-								id="contained-button-file"
-								multiple
-								type="file"
-								onChange={onFileChange}
-							/>
-							{/* <Button
-								variant="contained"
-								component="span"
-								className="uploadBtn"
-							>
-								Upload 
-							</Button>
- */}
-                            {/* <Form.Item
+                            <Form.Item
                                 name="upload"
                                 label="Upload Picture"
                                 valuePropName="fileList"
                                 getValueFromEvent={normFile}
-                            > */}
-                            {/* <Input
-                                type='file'
-                                multiple
-                                onChange={handleFileInputChange}
-                            />
-                            <Button icon={<UploadOutlined />}>Click to upload</Button> */}
-
-                                {/* <Upload
+                            >
+                                <Upload
                                     name="logo"
                                     listType="picture"
                                     beforeUpload={(file) => {
@@ -219,8 +187,9 @@ const ComplaintForm = ({ showDrawer }) => {
                                     onChange={onChange} // Use the onChange callback to manage fileList state
                                     fileList={fileList} // Pass the fileList state to the Upload component
                                 >
-                                </Upload> */}
-                            {/* </Form.Item> */}
+                                    <Button icon={<UploadOutlined />}>Click to upload</Button>
+                                </Upload>
+                            </Form.Item>
                         </div>
                     </Col>
                 </Row>
