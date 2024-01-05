@@ -90,8 +90,11 @@ export const ListAppartment = () => {
   {
     try{
       axios.get(`${apiRoutes.getApartment}&buildingId=${selectedBuilding}`).then((response) => {
-        const data = response?.data.data;
-        setData(data);
+        if(response?.data.data.length > 0){
+          const data = response?.data.data;
+          setData(data);
+          setLoading(false);
+        }
         setLoading(false);
       });
 
@@ -109,7 +112,10 @@ export const ListAppartment = () => {
       axios
         .get(`${apiRoutes.getApartment}&buildingId=${buildingId}`)
         .then((res) => {
-          setData(res?.data.data);
+          if(res?.data.data.length > 0){
+            setData(res?.data.data);
+            setLoading(false);
+          }
           setLoading(false);
         })
         .catch((e) => console.log(e));

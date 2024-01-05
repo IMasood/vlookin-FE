@@ -8,6 +8,7 @@ import { useMediaQuery } from 'react-responsive'
 import MobileHeader from '../Header/MobileHeader'
 import BuildingDropDown from '../DropDown'
 import { Cookies } from 'react-cookie'
+import { routePaths } from '../../routes/config'
 
 const CusTable = ({ columns, data, heading, subHeading, route, loading, showDrawer, searchQuery, setSearchQuery, setSelectedBuilding }) => {
   const cookies = new Cookies();
@@ -22,7 +23,7 @@ const CusTable = ({ columns, data, heading, subHeading, route, loading, showDraw
     <div>
       {isMobile ?
           <MobileHeader route={route} showDrawer={showDrawer}/>
-      : <Header title={heading} subtitle={subHeading} route={route} />}
+      : <Header title={heading} subtitle={subHeading} route={route ? route  : routePaths.Admin.login} />}
         <div className='mb_table_heading'>
             <h2>{heading}</h2>
             <p className='headerText'>{subHeading}</p>
