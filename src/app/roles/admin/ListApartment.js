@@ -75,6 +75,11 @@ export const ListAppartment = () => {
       key: "furnished",
     },
     {
+      title: "Flat No",
+      dataIndex: "flatNo",
+      key: "flatNo",
+    },
+    {
       title: "Update",
       key: "Update",
       render: (_, record) => (
@@ -86,11 +91,14 @@ export const ListAppartment = () => {
     },
   ];
 
-  const fetchSelectedApartmentData = async() =>
+  const fetchSelectedApartmentData = async(selectedBuilding) =>
   {
     try{
+      console.log(selectedBuilding, 'cjcjcjcjcjc')
       axios.get(`${apiRoutes.getApartment}&buildingId=${selectedBuilding}`).then((response) => {
-        if(response?.data.data.length > 0){
+        if(response?.data.length > 0){
+          console.log(response.data, 'resp')
+          console.log('lengthhhh',  response?.data.length)
           const data = response?.data.data;
           setData(data);
           setLoading(false);
@@ -108,7 +116,8 @@ export const ListAppartment = () => {
   useEffect(() => {
     setLoading(true);
     if(selectedBuilding){
-      fetchSelectedApartmentData()
+      console.log(selectedBuilding, 'jasbjshb')
+      fetchSelectedApartmentData(selectedBuilding)
     }else{
       axios
         .get(`${apiRoutes.getApartment}&buildingId=${buildingId}`)

@@ -30,6 +30,7 @@ export const AdminListComplaint = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [complaints, setComplaint] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedBuilding, setSelectedBuilding] = useState('')
 
   const showDrawer = () => {
     setOpen(true);
@@ -114,17 +115,18 @@ export const AdminListComplaint = () => {
 
   useEffect(() => {
     setLoading(true);
+    const url = selectedBuilding ? `${apiRoutes.getComplaints}?buildingId=${selectedBuilding}` : `${apiRoutes.getComplaints}?buildingId=${buildingId}`
     axios
-      .get(`${apiRoutes.getComplaints}?buildingId=${buildingId}`)
+      .get(url)
       .then((res) => {
         setData(res.data.data);
         setLoading(false);
       })
       .catch((e) => {
-        toast.error(e);
+        setLoading(false);
         console.log(e);
       });
-  }, []);
+  }, [selectedBuilding]);
 
   const filteredData = data.filter((item) =>
     item?.complaintId?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -144,6 +146,7 @@ export const AdminListComplaint = () => {
             showDrawer={showDrawer}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setSelectedBuilding={setSelectedBuilding}
           />
         }
         showDrawer={showDrawer}
