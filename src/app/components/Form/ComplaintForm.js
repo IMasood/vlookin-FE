@@ -111,8 +111,7 @@ const ComplaintForm = ({ showDrawer }) => {
                     }
                     , config)
                 .then((response) => {
-                    if (response.data.status == 200) {
-                        toast.success('Complaint Generated Successfully')
+                    if (response.data.message == "Successfully added complaint.") {
                         navigate(routePaths.Maintenance.complaintList)
                     } 
                 });
