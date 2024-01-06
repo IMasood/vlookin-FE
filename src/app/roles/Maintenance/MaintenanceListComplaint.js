@@ -107,7 +107,7 @@ export const MaintenanceListComplaint = () => {
         setData(res.data.data);
         setLoading(false);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => setLoading(false));
   }, []);
 
   const filteredData = data.filter((item) =>
