@@ -18,7 +18,6 @@ const admin = {
   editBuilding: "/admin/editBuilding/:id",
   editApartment: "/admin/editApartment/:id",
   adminListComplaint: "/admin/adminlistcomplaint",
-  myBuilding : "/admin/myBuildings"
 };
 
 const superAdmin = {
