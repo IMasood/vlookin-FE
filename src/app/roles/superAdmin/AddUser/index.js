@@ -260,15 +260,22 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 </Radio.Group>
               </div>
               <br />
-              <p style={{ color: "#4A0D37" }}>Real Estate</p>
-              <RealEstateDropDown
-                setSelectedRealEstate={setSelectedRealEstate}/>
-              <p style={{ color: "#4A0D37" }}>Building</p>
-              <BuildingDropDown
-                setSelectedBuilding={setSelectedBuilding}
-                disabled={category == "tenant" ? true : false}
-                realEstateId={setSelectedRealEstate}
-              />
+              {
+                category != 'admin' && 
+                <div>
+                  <p style={{ color: "#4A0D37" }}>Real Estate</p>
+                  <RealEstateDropDown
+                    disabled={category == "tenant" ? true : false}
+                    setSelectedRealEstate={setSelectedRealEstate}/>
+                  <p style={{ color: "#4A0D37" }}>Building</p>
+                  <BuildingDropDown
+                    setSelectedBuilding={setSelectedBuilding}
+                    disabled={category == "tenant" ? true : false}
+                    realEstateId={selectedRealEstate}
+                  />
+                </div>
+                
+              }
             </Form.Item>
           </Col>
         </Row>

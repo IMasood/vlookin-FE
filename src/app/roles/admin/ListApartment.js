@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import SideBar from "../../components/Layouts/SideBar";
 import { adminSidebar } from "../../utils/roleSidebar";
 import { Cookies } from "react-cookie";
+import { superAdminSidebar } from "../../utils/superAdminSideBar";
 
 export const ListAppartment = () => {
   const navigate = useNavigate();
@@ -120,20 +121,8 @@ export const ListAppartment = () => {
       console.log(selectedBuilding, 'jasbjshb')
       fetchSelectedApartmentData(selectedBuilding)
     }else{
-      axios
-        .get(`${apiRoutes.getApartment}&buildingId=${buildingId}`)
-        .then((res) => {
-          if(res?.data.data.length > 0){
-            setData(res?.data.data);
-            setLoading(false);
-          }
-          setLoading(false);
-        })
-        .catch((e) => {
-          setLoading(false);
-
-        });
-
+      setLoading(false);
+      setData([]);
     }
   }, [selectedBuilding]);
 
@@ -158,7 +147,7 @@ export const ListAppartment = () => {
             setSelectedBuilding={setSelectedBuilding}
           />
         }
-        items={adminSidebar}
+        items={role == 'admin' ? adminSidebar : superAdminSidebar}
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}

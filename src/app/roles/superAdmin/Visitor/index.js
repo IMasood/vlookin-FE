@@ -34,6 +34,7 @@ const SuperAdminListVisitor = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [data, setData] = useState([]);
   const [id, setId] = useState("");
+  const [selectedBuilding, setSelectedBuilding] = useState('')
 
   const showDrawer = () => {
     setOpen(true);
@@ -101,14 +102,25 @@ const SuperAdminListVisitor = () => {
 
   useEffect(() => {
     setLoading(true);
+    const url = `${apiRoutes.getVisitor}buildingId=${selectedBuilding}`
     axios
-      .get(apiRoutes.getVisitor)
-      .then((res) => {
-        setVisitor(res.data.data);
+      .get(url)
+      .then((response) => {
+        if(response?.data.data.length > 0){
+          const data = response?.data.data;
+          setVisitor(data);
+          setLoading(false);
+        }else{
+          setLoading(false);
+          setVisitor([]);
+        }
         setLoading(false);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+        })
+      .catch((e) => {
+        setLoading(false);
+        setVisitor([]);      
+      });
+  }, [selectedBuilding]);
 
   const filteredData = visitor.filter((item) =>
     item?.email?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -128,6 +140,7 @@ const SuperAdminListVisitor = () => {
             showDrawer={showDrawer}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setSelectedBuilding={setSelectedBuilding}
           />
         }
         items={superAdminSidebar}

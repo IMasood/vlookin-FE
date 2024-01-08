@@ -16,6 +16,7 @@ import { CustomAlert } from "../../components/Alert";
 import { toast } from "react-toastify";
 import { Cookies } from "react-cookie";
 import { adminSidebar } from "../../utils/roleSidebar";
+import { superAdminSidebar } from "../../utils/superAdminSideBar";
 
 const ListTenant = () => {
   const navigate = useNavigate();
@@ -116,7 +117,10 @@ const ListTenant = () => {
           )));
         setLoading(false);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setLoading(false)
+        console.log(e)
+      });
   }, [selectedBuilding]);
 
   const filteredData = listData.filter((item) =>
@@ -139,7 +143,7 @@ const ListTenant = () => {
             setSelectedBuilding={setSelectedBuilding}
           />
         }
-        items={adminSidebar}
+        items={role == 'admin' ? adminSidebar : superAdminSidebar}
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}

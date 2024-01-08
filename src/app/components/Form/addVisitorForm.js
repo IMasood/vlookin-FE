@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import MobileHeader from '../Header/MobileHeader';
+import ApartmentsDropdown from '../DropDown/apartmentDropDown';
 
 const AddVisitorForm = ({ title, showDrawer }) => {
     const navigate = useNavigate()
@@ -32,6 +33,9 @@ const AddVisitorForm = ({ title, showDrawer }) => {
     const [open, setOpen] = useState(false);
     const [selectedBuilding, setSelectedBuilding] = useState('');
     const [studioFlat, setStudioFlat] = useState(false)
+    const [buildingSelected, setBuildingSelected] = useState(false);
+    const [selectedApartment, setSelectedApartment] = useState('');
+
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -47,7 +51,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
 
     const handleSave = (event) => {
         event.preventDefault();
-        if (inputs.name && inputs.email && selectedBuilding && inputs.flatNo && inputs.mobileNo
+        if (inputs.name && inputs.email && selectedBuilding && inputs.mobileNo
             && inputs.comment) {
              postVisit(inputs);
         } else {
@@ -70,7 +74,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                         email: inputs.email,
                         visitDate: inputs.date,
                         buildingName: selectedBuilding,
-                        flatNo: inputs.flatNo,
+                        flatNo: inputs.selectedApartment,
                         contact: inputs.mobileNo,
                         maxRooms: inputs.maxRooms,
                         comments: inputs.comment
@@ -192,9 +196,13 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                                 <label style={{ color: '#4A0D37' }}>Building Name</label>
                                 <BuildingDropDown 
                                     setSelectedBuilding={setSelectedBuilding}
+                                    isBuildingSelected = {setBuildingSelected}
                                  />
                             </Form.Item>
-                            <Form.Item
+                            {buildingSelected && 
+                               <ApartmentsDropdown  setSelectedApartment={setSelectedApartment} buildingId={selectedBuilding}/>
+                            }
+                            {/* <Form.Item
                                 name='flatNo'
                                 rules={[
                                     {
@@ -210,7 +218,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                                     value={inputs.flatNo}
                                     onChange={handleChange}
                                 />
-                            </Form.Item>
+                            </Form.Item> */}
                             <Form.Item>
                                 <TextArea
                                     placeholder="Comments"

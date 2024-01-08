@@ -115,20 +115,28 @@ export const AdminListComplaint = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = selectedBuilding ? `${apiRoutes.getComplaints}?buildingId=${selectedBuilding}` : `${apiRoutes.getComplaints}?buildingId=${buildingId}`
+    const url = `${apiRoutes.getComplaints}?buildingId=${selectedBuilding}`
     axios
       .get(url)
-      .then((res) => {
-        setData(res.data.data);
+      .then((response) => {
+        if(response?.data.data.length > 0){
+          const data = response?.data.data;
+          setData(data);
+          setLoading(false);
+        }else{
+          setLoading(false);
+          setData([]);
+        }
         setLoading(false);
+
       })
       .catch((e) => {
         setLoading(false);
-        console.log(e);
+        setData([]);
       });
   }, [selectedBuilding]);
 
-  const filteredData = data.filter((item) =>
+  const filteredData = data?.filter((item) =>
     item?.complaintId?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 

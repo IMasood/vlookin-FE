@@ -32,6 +32,8 @@ export const Maintenance = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [complaints, setComplaint] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedBuilding, setSelectedBuilding] = useState('')
+
 
   const showDrawer = () => {
     setOpen(true);
@@ -120,16 +122,26 @@ export const Maintenance = () => {
 
   useEffect(() => {
     setLoading(true);
+    const url = `${apiRoutes.getComplaints}?buildingId=${selectedBuilding}`
     axios
-    .get(`${apiRoutes.getComplaints}?all=true`)
-    .then((res) => {
-        setData(res.data.data);
+    .get(url)
+    .then((response) => {
+      if(response?.data.data.length > 0){
+        const data = response?.data.data;
+        setData(data);
         setLoading(false);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+      }else{
+        setLoading(false);
+        setData([]);
+      }
+      setLoading(false);
+    })
+      .catch((e) => {
+        setLoading(false);
+      });
+  }, [selectedBuilding]);
 
-  const filteredData = data.filter((item) =>
+  const filteredData = data?.filter((item) =>
     item?.complaintId?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -147,6 +159,7 @@ export const Maintenance = () => {
             showDrawer={showDrawer}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setSelectedBuilding={setSelectedBuilding}
           />
         }
         showDrawer={showDrawer}

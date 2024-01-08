@@ -32,6 +32,7 @@ const CusTable = ({ columns, data, heading, subHeading, route, loading, showDraw
       <Input size="large" className='search_bar' placeholder="Search" value={searchQuery}
           onChange={handleSearchChange} prefix={<SearchOutlined />} />    
           {role == 'admin' && <BuildingDropDown  className={'search_bar'} setSelectedBuilding={setSelectedBuilding}/>}            
+          {role == 'superadmin' && <BuildingDropDown  className={'search_bar'} setSelectedBuilding={setSelectedBuilding}/>}            
         {loading ? 
           <div className='loader'>
             <Oval

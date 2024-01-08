@@ -20,6 +20,7 @@ const ListVisitor = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedBuilding, setSelectedBuilding] = useState('')
 
   const showDrawer = () => {
     setOpen(true);
@@ -88,14 +89,26 @@ const ListVisitor = () => {
 
   useEffect(() => {
     setLoading(true);
+    const url = `${apiRoutes.getVisitor}buildingId=${selectedBuilding}`
     axios
-      .get(apiRoutes.getVisitor)
-      .then((res) => {
-        setVisitor(res.data.data);
+      .get(url)
+      .then((response) => {
+        if(response?.data.data.length > 0){
+          const data = response?.data.data;
+          setVisitor(data);
+          setLoading(false);
+        }else{
+          setLoading(false);
+          setVisitor([]);
+        }
         setLoading(false);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+        })
+      .catch((e) => {
+        setLoading(false);
+        setVisitor([]);      
+      });
+  }, [selectedBuilding]);
+
 
   const filteredData = visitor.filter((item) =>
     item?.email?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -115,6 +128,7 @@ const ListVisitor = () => {
             showDrawer={showDrawer}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setSelectedBuilding={setSelectedBuilding}
           />
         }
         items={items}

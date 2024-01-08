@@ -80,7 +80,7 @@ export const apiRoutes = {
   getUsers: "http://195.35.45.131:4000/user?all=true",
   createUsers: "http://195.35.45.131:4000/user",
   createVisitor: "http://195.35.45.131:4000/visitor/createVisit",
-  getVisitor: `http://195.35.45.131:4000/visitor?all=true`,
+  getVisitor: `http://195.35.45.131:4000/visitor?`, //all=true
   deleteVisitor: "http://195.35.45.131:4000/visitor/",
   getTenant: "http://195.35.45.131:4000/tenant?",
   postTenant: "http://195.35.45.131:4000/tenant",

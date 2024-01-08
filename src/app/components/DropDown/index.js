@@ -29,10 +29,30 @@ const BuildingDropDown = ({
   const [disableBuilding, SetDisableBuilding] = useState(false);
 
 
-  useEffect(() => {
-    // Fetch building data from the API and update state
-    fetchBuildingData();
-  }, []);
+
+  const fetchSelectedEstateBuildingData = async (realEstateId) => {
+    try {
+      const url = `${apiRoutes.getSelectedBuilding}realEstateId=${realEstateId}`;
+      console.log(realEstateId, 'real estate id ');
+
+      axios.get(url).then((response) => {
+        const data = response.data.data;
+        console.log(data, 'dadajhbadh');
+
+        if(data.length == 0){
+          toast.error('Create building first')
+          SetDisableBuilding(true)
+        }
+        if(data.length > 0){
+            setBuildingData(data);        
+          }  
+      });
+    
+    } catch (error) {
+      
+    }
+  }
+
 
   const fetchBuildingData = async () => {
     try {
@@ -53,6 +73,16 @@ const BuildingDropDown = ({
     }
   };
 
+  useEffect(() => {
+    if(realEstateId){
+      fetchSelectedEstateBuildingData(realEstateId)
+    }else{
+      fetchBuildingData();
+    }
+    // Fetch building data from the API and update state
+  }, [realEstateId]);
+
+
   const handleChange = (value, option) => {
     setSelectedBuilding(value);    
     if(isBuildingSelected){
@@ -70,7 +100,8 @@ const BuildingDropDown = ({
       className={className ? className :"building_selector"}
       disabled={disabled ? disabled : disableBuilding}
     >
-      {buildingData?.map((building) => (
+      
+      {buildingData.map((building) => (
         <Option key={building._id} value={building._id}>
           {building.buildingName} - {building.buildingCode}
         </Option>
