@@ -94,16 +94,17 @@ export const ListAppartment = () => {
   const fetchSelectedApartmentData = async(selectedBuilding) =>
   {
     try{
-      console.log(selectedBuilding, 'cjcjcjcjcjc')
       axios.get(`${apiRoutes.getApartment}&buildingId=${selectedBuilding}`).then((response) => {
-        if(response?.data.length > 0){
-          console.log(response.data, 'resp')
-          console.log('lengthhhh',  response?.data.length)
+        if(response?.data.data.length > 0){
           const data = response?.data.data;
           setData(data);
           setLoading(false);
+        }else{
+          setLoading(false);
+          setData([]);
         }
         setLoading(false);
+
       });
 
     }catch(error){

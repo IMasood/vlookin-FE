@@ -45,7 +45,6 @@ import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/Journ
 import AccountsDirectory from "../roles/superAdmin/AccountingManagementSystem/AccountsDirectory";
 import TenancyExpiryList from "../roles/superAdmin/AccountingManagementSystem/TenancyExpiryList";
 import BankPaymentVoucher from "../roles/superAdmin/AccountingManagementSystem/BankPaymentVoucher";
-import { MyBuildings } from "../roles/admin/myBuilding";
 
 const WebRoutes = () => {
   const cookies = new Cookies();
@@ -58,76 +57,17 @@ const WebRoutes = () => {
       <Router>
         <Routes>
           <Route path={routePaths.Admin.login} exact element={<Login />} />
-
-          <Route
-            path={routePaths.Admin.dashboard}
-            exact
-            element={
-               <AdminDashboard /> 
-            }
-          />
-          <Route
-            path={routePaths.Admin.addUser}
-            exact
-            element={ <AddUsers /> }
-          />
-          <Route
-            path={routePaths.Admin.listUser}
-            exact
-            element={ <ListUser /> }
-          />
-          <Route
-            path={routePaths.Admin.listAppartment}
-            exact
-            element={
-               <ListAppartment /> 
-            }
-          />
-          <Route
-            path={routePaths.Admin.listBuilding}
-            exact
-            element={ <ListBuilding /> }
-          />
-          <Route
-            path={routePaths.Admin.addAppartment}
-            exact
-            element={ <AddAppartment /> }
-          />
-          <Route
-            path={routePaths.Admin.addbuilding}
-            exact
-            element={ <AddBuilding /> }
-          />
-          <Route
-            path={routePaths.Admin.myBuilding}
-            exact
-            element={ <MyBuildings/> }
-          />
-          <Route
-            path={routePaths.Admin.editBuilding}
-            exact
-            element={ <EditBuilding /> }
-          />
-          <Route
-            path={routePaths.Admin.editApartment}
-            exact
-            element={ <EditApartment /> }
-          />
-          <Route
-            path={routePaths.Admin.adminListComplaint}
-            exact
-            element={
-               <AdminListComplaint /> 
-            }
-          />
-
-          {/* Tenant Routes */}
-
-          <Route
-            path={routePaths.Tenant.dashboard}
-            exact
-            element={ <DashboardScr /> }
-          />
+          <Route path={routePaths.Admin.dashboard} exact element={<AdminDashboard /> }/>
+          <Route  path={routePaths.Admin.addUser} exact element={ <AddUsers /> }/>
+          <Route path={routePaths.Admin.listUser} exact element={ <ListUser /> }/>
+          <Route path={routePaths.Admin.listAppartment} exact element={<ListAppartment /> }/>
+          <Route path={routePaths.Admin.listBuilding} exact element={ <ListBuilding /> }/>
+          <Route path={routePaths.Admin.addAppartment} exact element={ <AddAppartment /> } />
+          <Route  path={routePaths.Admin.addbuilding} exact element={ <AddBuilding /> }/>
+          <Route path={routePaths.Admin.editBuilding} exact element={ <EditBuilding /> }/>
+          <Route path={routePaths.Admin.editApartment} exact element={ <EditApartment /> }/>
+          <Route path={routePaths.Admin.adminListComplaint} exact element={ <AdminListComplaint /> }/>
+          <Route path={routePaths.Tenant.dashboard} exact element={ <DashboardScr /> }/>
           {/* <Route path={routePaths.Admin.login} exact element={<LoginScr />} /> */}
           <Route
             path={routePaths.Tenant.listTenant}
