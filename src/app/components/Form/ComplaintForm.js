@@ -16,7 +16,6 @@ import { Cookies } from 'react-cookie';
 
 const ComplaintForm = ({ showDrawer }) => {
     const cookie = new Cookies();
-    const formData = new FormData()
     const { TextArea } = Input;
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const navigate = useNavigate();
@@ -32,7 +31,6 @@ const ComplaintForm = ({ showDrawer }) => {
     };
 
     const onChange = (info) => {
-        console.log(info, 'infooooooo')
         setFileList(info.fileList)
     }
     const handleSave = (e) => {
@@ -112,7 +110,7 @@ const ComplaintForm = ({ showDrawer }) => {
                     , config)
                 .then((response) => {
                     if (response.data.message == "Successfully added complaint.") {
-                        navigate(routePaths.Maintenance.complaintList)
+                        navigate(routePaths.User.complaintList)
                     } 
                 });
         } catch (error) {

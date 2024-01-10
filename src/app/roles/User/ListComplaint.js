@@ -106,14 +106,13 @@ export const ListComplaint = () => {
   );
 
   const items = [
-    getItem("Maintance", "1", <FaWarehouse />, [
-      getItem("Add Complaint", "addcomplaint", <HiUserAdd />),
-      getItem("List Complaint", "complaintlist", <FaThList />),
-    ]),
-    getItem("Receipts", "2", <MdOutlineDomainDisabled />, [
-      getItem("List Receipts", "receiptList", <BiMessageError />),
-    ]),
-  ];
+    getItem('Tenant', '1', <FaWarehouse />,
+        [getItem('Add Complaint', 'addcomplaint', <HiUserAdd />),
+        getItem('List Complaint', 'complaintlist', <FaThList />)]),
+    getItem('Receipts', '2', <MdOutlineDomainDisabled />,
+    [getItem('List Receipts', 'receiptList', <BiMessageError />)]
+    ),
+];
 
   return (
     <div>

@@ -12,7 +12,9 @@ const RealEstateDropDown = ({
   placeholder,
   disabled,
   setSelectedRealEstate,
-  disableSelected
+  disableSelected,
+  className
+
 }) => {
 
   const [realEstate, setRealEstate] = useState([]);
@@ -42,7 +44,7 @@ const RealEstateDropDown = ({
     <Select
       placeholder={placeholder ? placeholder : "Choose Real Estate"}
       onChange={handleChange}
-      className="building_selector"
+      className={className ? className : "building_selector"}
       disabled={disabled && disabled}
     >
       {realEstate?.map((realEstate) => (

@@ -44,6 +44,7 @@ const BuildingDropDown = ({
           SetDisableBuilding(true)
         }
         if(data.length > 0){
+            SetDisableBuilding(false)
             setBuildingData(data);        
           }  
       });

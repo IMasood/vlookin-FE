@@ -8,14 +8,16 @@ import { useMediaQuery } from 'react-responsive'
 import MobileHeader from '../Header/MobileHeader'
 import BuildingDropDown from '../DropDown'
 import { Cookies } from 'react-cookie'
-import { routePaths } from '../../routes/config'
+import { apiRoutes, routePaths } from '../../routes/config'
+import { useLocation } from 'react-router'
+import RealEstateDropDown from '../DropDown/RealEstateDropDown'
 
-const CusTable = ({ columns, data, heading, subHeading, route, loading, showDrawer, searchQuery, setSearchQuery, setSelectedBuilding }) => {
+const CusTable = ({ columns, data, heading, subHeading, route, loading, showDrawer, searchQuery, setSearchQuery, setSelectedBuilding, setSelectedRealEstate }) => {
   const cookies = new Cookies();
   const role = cookies.get("role");
   const userId = cookies.get("userId");
   const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
-
+  let location = useLocation()
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -30,9 +32,11 @@ const CusTable = ({ columns, data, heading, subHeading, route, loading, showDraw
         </div>
       <div className='container'>
       <Input size="large" className='search_bar' placeholder="Search" value={searchQuery}
-          onChange={handleSearchChange} prefix={<SearchOutlined />} />    
-          {role == 'admin' && <BuildingDropDown  className={'search_bar'} setSelectedBuilding={setSelectedBuilding}/>}            
-          {role == 'superadmin' && <BuildingDropDown  className={'search_bar'} setSelectedBuilding={setSelectedBuilding}/>}            
+          onChange={handleSearchChange} prefix={<SearchOutlined />} />   
+          <br/>
+          {location.pathname != routePaths.Admin.listBuilding && role == 'admin' && <BuildingDropDown  className={'search_bar'} setSelectedBuilding={setSelectedBuilding}/>}
+          {location.pathname != routePaths.SuperAdmin.building && role == 'superadmin' && <BuildingDropDown  className={'search_bar'} setSelectedBuilding={setSelectedBuilding}/>}            
+          {location.pathname == routePaths.SuperAdmin.building && role == 'superadmin' && <RealEstateDropDown className={'search_bar'} setSelectedRealEstate={setSelectedRealEstate} />}
         {loading ? 
           <div className='loader'>
             <Oval

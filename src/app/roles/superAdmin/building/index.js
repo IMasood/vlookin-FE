@@ -21,6 +21,8 @@ export const Building = () => {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRealEstate, setSelectedRealEstate] = useState('');
+
   const showDrawer = () => {
     setOpen(true);
   };
@@ -87,14 +89,24 @@ export const Building = () => {
 
   useEffect(() => {
     setLoading(true);
+    console.log(selectedRealEstate, 'ajsdjhadsbjsa')
     axios
-      .get(apiRoutes.getBuilding)
-      .then((res) => {
-        setData(res.data.data);
+      .get(`${apiRoutes.getSelectedBuilding}realEstateId=${selectedRealEstate}`)
+      .then((response) => {
+        if(response?.data.data.length > 0){
+          const data = response?.data.data;
+          setData(data);
+          setLoading(false);
+        }else{
+          setLoading(false);
+          setData([]);
+        }
         setLoading(false);
       })
-      .catch((e) => console.log(e));
-  }, []);
+        .catch((e) => {
+          setLoading(false);
+        });
+    }, [selectedRealEstate]);
 
   const filteredData = data.filter((item) =>
     item?.buildingName?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -114,6 +126,7 @@ export const Building = () => {
             showDrawer={showDrawer}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setSelectedRealEstate={setSelectedRealEstate}
           />
         }
         showDrawer={showDrawer}

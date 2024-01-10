@@ -122,7 +122,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
           config
         )
         .then((response) => {
-          if (response.data.status == true) {
+          if (response.data.success == true) {
             toast.success("User Created Successfully");
             navigate(routePaths.SuperAdmin.listUser);
             setInputs({
