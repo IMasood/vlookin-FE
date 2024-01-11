@@ -77,7 +77,7 @@ const home = {
 
 export const apiRoutes = {
   postUser: "http://195.35.45.131:4000/auth/login",
-  getUsers: "http://195.35.45.131:4000/user?all=true",
+  getUsers: "http://195.35.45.131:4000/user?",
   createUsers: "http://195.35.45.131:4000/user",
   createVisitor: "http://195.35.45.131:4000/visitor/createVisit",
   getVisitor: `http://195.35.45.131:4000/visitor?`, //all=true

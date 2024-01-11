@@ -8,13 +8,13 @@ import { CustomButton } from "../Button";
 import { async } from "q";
 import { toast } from "react-toastify";
 import { routePaths } from "../../routes/config";
+import MaintenanceDropDown from "../DropDown/MaintenanceDropDown";
 
-const ViewCompliantModal = ({ visibleModal, setVisibleModal, data, path }) => {
+const ViewCompliantModal = ({ visibleModal, setVisibleModal, data, path, selectedBuilding,userName }) => {
   const [status, setStatus] = useState("In Progress");
-  const [input, setInput] = useState({
-    assignee: "",
-    assignTo: "",
-  });
+  const [selectedMaintenance, setSelectedMaintenance] = useState('')
+
+
   const items = [
     {
       label: "IN PROGRESS",
@@ -49,9 +49,6 @@ const ViewCompliantModal = ({ visibleModal, setVisibleModal, data, path }) => {
     setVisibleModal(false);
   };
 
-  const handleChange = (event) => {
-    setInput({ ...input, [event.target.name]: event.target.value });
-  };
 
   const handleUpdate = async (event) => {
     event.preventDefault();
@@ -62,8 +59,8 @@ const ViewCompliantModal = ({ visibleModal, setVisibleModal, data, path }) => {
 
     const postData = {
       status: status,
-      assignTo: input.assignee,
-      assignee: input.assignee,
+      assignTo: selectedMaintenance,
+      assignee: userName,
     };
 
     const requestOptions = {
@@ -113,25 +110,12 @@ const ViewCompliantModal = ({ visibleModal, setVisibleModal, data, path }) => {
                     >
                       <Input
                         placeholder="Assignee"
-                        name="assignee"
-                        value={input.assignee}
-                        onChange={handleChange}
+                        name="userName"
+                        value={userName}
+                        disabled={true}
                       />
                     </Form.Item>
-                    <Form.Item
-                      label="Assign To"
-                      className="form_input_modal"
-                      rules={[
-                        { required: true, message: "Please enter assign to" },
-                      ]}
-                    >
-                      <Input
-                        placeholder="Assign To"
-                        name="assignTo"
-                        value={input.assignTo}
-                        onChange={handleChange}
-                      />
-                    </Form.Item>
+                    <MaintenanceDropDown buildingId={selectedBuilding} setSelectedMaintenance={setSelectedMaintenance}/>
                   </Form>
                 )}
               </Col>
@@ -144,6 +128,15 @@ const ViewCompliantModal = ({ visibleModal, setVisibleModal, data, path }) => {
                   >
                     {status}
                   </Dropdown.Button>
+                  <br/>
+                  {data?.images?.map((image) => {
+                    return (
+                      <div>
+                        <a href={image.url}> View Image </a>
+                      </div>
+                    )
+
+                  })}
                 </div>
                 <div className="update-btn">
                   <CustomButton

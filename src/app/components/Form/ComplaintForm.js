@@ -16,6 +16,7 @@ import { Cookies } from 'react-cookie';
 
 const ComplaintForm = ({ showDrawer }) => {
     const cookie = new Cookies();
+    const tenantName = cookie.get('name')
     const { TextArea } = Input;
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const navigate = useNavigate();
@@ -36,7 +37,7 @@ const ComplaintForm = ({ showDrawer }) => {
     const handleSave = (e) => {
         e.preventDefault();
         try {
-            if (inputs.desc && inputs.userName) {
+            if (inputs.desc) {
                 submitForm(inputs, File);
             } else {
                 toast.error('Complete Form')
@@ -101,7 +102,7 @@ const ComplaintForm = ({ showDrawer }) => {
                 .post(url,
                     {
                         images: fileList,
-                        createdBy: inputs.userName,
+                        createdBy: tenantName,
                         description: inputs.desc,
                         tenantId: tenantId ,
                         category: category,
@@ -149,8 +150,8 @@ const ComplaintForm = ({ showDrawer }) => {
                                     placeholder="User name"
                                     className="form_input"
                                     name='userName'
-                                    value={inputs.userName}
-                                    onChange={handleChange}
+                                    value={tenantName}
+                                    disabled={true}
                                 />
                             </Form.Item>
                             <TextArea

@@ -100,7 +100,7 @@ export const ListUser = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(apiRoutes.getUsers)
+      .get(`${apiRoutes.getUsers}all=true`)
       .then((res) => {
         setData(res.data.data);
         setLoading(false);

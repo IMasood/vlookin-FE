@@ -169,6 +169,8 @@ export const AdminListComplaint = () => {
         visibleModal={visibleModal}
         setVisibleModal={setVisibleModal}
         data={complaints}
+        selectedBuilding={selectedBuilding}
+        userName = {userName}
       />
     </div>
   );
