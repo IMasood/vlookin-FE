@@ -10,7 +10,6 @@ const initialState={
 export const notificationReducer = (state = initialState, action) => {
     switch(action.type){
         case SHOW_NOTIFICATION:
-            console.log('reducer inittttttttttt');
             return {
                 message: action.payload.message,
                 type: action.payload.type,

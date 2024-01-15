@@ -35,7 +35,6 @@ const MaintenanceDropDown = ({
   };
 
   const handleChange = (value) => {
-    console.log(value);
     setSelectedMaintenance (value);
   };
 

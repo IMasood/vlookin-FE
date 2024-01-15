@@ -43,7 +43,6 @@ const ComplaintForm = ({ showDrawer }) => {
                 toast.error('Complete Form')
             }
         } catch (error) {
-            console.log(error);
             // toast.error(error?.response?.data?.message)
         }
     }
@@ -81,13 +80,11 @@ const ComplaintForm = ({ showDrawer }) => {
         if (Array.isArray(e)) {
             return e;
         }
-        console.log(e?.fileList);
         return e?.fileList;
 
     };
 
     const submitForm = async () => {
-        console.log(File.name, 'filee')
         const tenantId = cookie.get('userId')
         const buildingId = cookie.get('buildingId'); //will update it later by using redux
 

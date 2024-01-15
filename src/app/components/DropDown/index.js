@@ -33,11 +33,9 @@ const BuildingDropDown = ({
   const fetchSelectedEstateBuildingData = async (realEstateId) => {
     try {
       const url = `${apiRoutes.getSelectedBuilding}realEstateId=${realEstateId}`;
-      console.log(realEstateId, 'real estate id ');
 
       axios.get(url).then((response) => {
         const data = response.data.data;
-        console.log(data, 'dadajhbadh');
 
         if(data.length == 0){
           toast.error('Create building first')

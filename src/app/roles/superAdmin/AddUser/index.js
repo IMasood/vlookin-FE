@@ -85,7 +85,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
 
   const handleSave = (event) => {
     event.preventDefault();
-    console.log(inputs);
     if (inputs.userName && inputs.email && inputs.contact) {
       postVisit(inputs);
     } else {
@@ -130,13 +129,12 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               email: "",
               password: "",
               userId: "",
-              contact: "", //052104885
+              contact: "", 
               realEstate: "",
             })
           }
         });
     } catch (error) {
-      console.log(error);
       toast.error(error?.response?.data?.message);
     }
   };

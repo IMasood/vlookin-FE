@@ -119,7 +119,6 @@ const ListTenant = () => {
       })
       .catch((e) => {
         setLoading(false)
-        console.log(e)
       });
   }, [selectedBuilding]);
 

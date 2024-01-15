@@ -33,7 +33,6 @@ export const LoginForm = (props) => {
   };
 
   const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
   };
 
   const handleSubmit = async (e) => {
@@ -112,7 +111,6 @@ export const LoginForm = (props) => {
               break;
           }
         } else {
-          console.log(response);
           toast.error("Unauthorized");
         }
       })

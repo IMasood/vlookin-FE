@@ -47,7 +47,6 @@ const BuildingForm = ({showDrawer}) => {
 
     const handleSave = (e) =>{
         e.preventDefault();
-        console.log(inputs.facilities)
         try {
             if(inputs.buildingName && inputs.ownerName && inputs.location && inputs.watchMan){
                 const res = addBuilding(inputs);
@@ -67,7 +66,6 @@ const BuildingForm = ({showDrawer}) => {
         };
         let url = apiRoutes.createBuilding;
         try {
-            console.log("realEstateCode", selectedRealEstate);
             await axios
             .post( url,
                 {

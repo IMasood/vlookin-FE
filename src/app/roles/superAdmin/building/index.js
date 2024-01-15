@@ -89,7 +89,6 @@ export const Building = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log(selectedRealEstate, 'ajsdjhadsbjsa')
     axios
       .get(`${apiRoutes.getSelectedBuilding}realEstateId=${selectedRealEstate}`)
       .then((response) => {

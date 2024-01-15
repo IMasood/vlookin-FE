@@ -36,7 +36,6 @@ const RealEstateDropDown = ({
   };
 
   const handleChange = (value) => {
-    console.log(value);
     setSelectedRealEstate(value);
   };
 

@@ -50,7 +50,6 @@ const WebRoutes = () => {
   const cookies = new Cookies();
   const token = cookies.get("token");
 
-  console.log(token, cookies, "cookies in route file debugging");
 
   return (
     <>

@@ -30,7 +30,6 @@ const ApartmentsDropdown = ({
     try{
       axios.get(`http://195.35.45.131:4000/apartment?buildingId=${buildingId}`).then((response) => {
         const data = response.data.data;
-        console.log(data);
         setApartments(data);
       });
 
@@ -54,7 +53,6 @@ const ApartmentsDropdown = ({
   };
 
   const handleChange = (value) => {
-    console.log(value);
     setSelectedApartment(value);
   };
 

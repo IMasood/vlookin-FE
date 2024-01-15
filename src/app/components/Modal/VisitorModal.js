@@ -85,12 +85,10 @@ const VisitorModal = ({ visibleModal, setVisibleModal, data, path, id }) => {
     }
   };
 
-  const getUsers = (data) => {
-    console.log(id);
+  const getUsers = () => {
     axios
       .get(`http://195.35.45.131:4000/visitor?id=${id}`)
       .then((res) => {
-        console.log(res.data.data.visitorName);
         const date = new Date(res.data.data[0].visitDate)
           .toISOString()
           .split("T")[0];

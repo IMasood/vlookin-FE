@@ -40,11 +40,8 @@ export const ListAppartment = () => {
       const response = await fetch(url, {
         method: "DELETE",
       });
-      console.log(response);
-      // if(response.status)
-      // toast.success('Building Deleted Successfully')
+
     } catch (error) {
-      console.log(error);
       toast.error(error);
     }
   };
@@ -118,7 +115,6 @@ export const ListAppartment = () => {
   useEffect(() => {
     setLoading(true);
     if(selectedBuilding){
-      console.log(selectedBuilding, 'jasbjshb')
       fetchSelectedApartmentData(selectedBuilding)
     }else{
       setLoading(false);

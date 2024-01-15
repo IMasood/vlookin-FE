@@ -176,21 +176,11 @@ export const MyBuildings = () => {
     axios
     .get(`${apiRoutes.myBuilding}?buildingId=${buildingId}`)
     .then((res) => {
-      // const dataArray = Object.values(res.data);
-      // setApartments({})
-      // console.log(dataArray, 'res')
-
       setData(res.data)
       setLoading(false);
     })
     .catch((e) => console.log(e));
 
-    // setstate(
-    //   res.data.map(row => ({
-    //     Name: row.name,
-    //     Email: row.email,
-    //     id: row.id
-    //   }))    
   }; 
 
   useEffect(() => {

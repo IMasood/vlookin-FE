@@ -106,13 +106,11 @@ const EditAppartmentForm = ({ title, showDrawer }) => {
     axios
       .get(`http://195.35.45.131:4000/apartment?id=${id}`)
       .then((res) => {
-        console.log(res);
         setInputs({
           apartmentType: res.data.data.apartmentType,
           area: res.data.data.area,
           rent: res.data.data.rent,
           furnished: res.data.data.furnished,
-          // :res.data.data.isStudio,
           comments: res.data.data.comments,
           //  "rooms":{
           //     "bedRoom":2,

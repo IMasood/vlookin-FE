@@ -178,11 +178,7 @@ const SideBar = ({
             key={placement}
           >
             <Sider
-              // collapsed={collapsed}
-              // onCollapse={(value) => {
-              //   console.log(value)
-              //   setCollapsed(value)
-              // }}
+
               width={243}
               style={{
                 overflow: "auto",

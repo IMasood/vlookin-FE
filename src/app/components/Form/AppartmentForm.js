@@ -70,11 +70,6 @@ const AppartmentForm = ({ title, showDrawer }) => {
             let url = apiRoutes.createApartment;
         
             const apartmentNamesArray = inputs.apartmentName.split(',').map(name => name.trim());
-            console.log(inputs.apartmentName, apartmentNamesArray.length,apartmentNamesArray, 'checking apartments');
-
-            // const values = inputs.apartmentName.split(',').map(item => item.trim());
-            // setFlatNos(flatNos, flatNos.push(...values));
-            // console.log(flatNos,' flat numberssss')
             let data = {
                 "buildingId":selectedBuilding,
                 "apartmentType":apartmentType,

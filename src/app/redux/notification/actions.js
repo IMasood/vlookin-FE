@@ -3,7 +3,6 @@ import { HIDE_NOTIFICATION, SHOW_NOTIFICATION } from "./actionType"
 
 
 export const showNotification = (type, message) =>{
-    console.log(type, message);
     return{
         type: SHOW_NOTIFICATION,
         payload:{

@@ -92,7 +92,6 @@ const ReceiptModal = ({ open, setOpen, route, onCancel,  tenantAccount, tenantNa
             receiptTable: tableData,
         })
         .then((res) => {
-            console.log(res.data)
             if(res?.data?.success == 200){
                 setOpen(false)
                 navigate(routePaths.Tenant.listTenant)
