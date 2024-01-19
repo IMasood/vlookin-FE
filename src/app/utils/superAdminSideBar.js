@@ -26,7 +26,10 @@ export const superAdminSidebar = [
     getItem("List Buildings", "building", <FaThList />),
     getItem("List Apartments", "listApartment", <FaThList />),
   ]),
-  getItem("Bank Receipts", "6", <MdOutlineReceiptLong />, [
+  getItem("Notification", "6", <FaWarehouse />, [
+    getItem("Notify Admins", "notifyAdmin", <FaThList />),
+  ]),
+  getItem("Bank Receipts", "7", <MdOutlineReceiptLong />, [
     getItem("Add Receipts", "addReceipt", <CgPlayListAdd />),
     getItem("List Receipts", "listReceipt", <RiFileList2Line />),
     getItem(

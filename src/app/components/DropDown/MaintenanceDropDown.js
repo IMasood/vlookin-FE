@@ -25,7 +25,7 @@ const MaintenanceDropDown = ({
 
   const fetchRealEstate = async (buildingId) => {
     try {
-      axios.get(`${apiRoutes.getUsers}buildingId=${buildingId}&&role=maintenance`).then((response) => {
+      axios.get(`${apiRoutes.getUsers}buildingId=${buildingId}&role=maintenance`).then((response) => {
         const data = response.data.data;
         setMaintenance(data);
     });

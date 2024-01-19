@@ -45,6 +45,8 @@ import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/Journ
 import AccountsDirectory from "../roles/superAdmin/AccountingManagementSystem/AccountsDirectory";
 import TenancyExpiryList from "../roles/superAdmin/AccountingManagementSystem/TenancyExpiryList";
 import BankPaymentVoucher from "../roles/superAdmin/AccountingManagementSystem/BankPaymentVoucher";
+import NotifyTenant from "../roles/admin/NotifyTenant";
+import NotifyAdmin from "../roles/superAdmin/NotifyAdmin";
 
 const WebRoutes = () => {
   const cookies = new Cookies();
@@ -68,161 +70,87 @@ const WebRoutes = () => {
           <Route path={routePaths.Admin.adminListComplaint} exact element={ <AdminListComplaint /> }/>
           <Route path={routePaths.Tenant.dashboard} exact element={ <DashboardScr /> }/>
           {/* <Route path={routePaths.Admin.login} exact element={<LoginScr />} /> */}
-          <Route
-            path={routePaths.Tenant.listTenant}
-            exact
-            element={ <ListTenant /> }
-          />
-          <Route
-            path={routePaths.Tenant.editTenant}
-            exact
-            element={ <EditTenant /> }
-          />
+          <Route path={routePaths.Tenant.listTenant} exact element={ <ListTenant /> }/>
+          <Route path={routePaths.Tenant.editTenant} exact element={ <EditTenant /> }/>
+          <Route path={routePaths.Admin.notifyTenant} exact element={ <NotifyTenant /> }/>
 
           {/* User  Route*/}
 
-          <Route
-            path={routePaths.User.dashboard}
-            exact
-            element={ <UserProfile /> }
-          />
-          <Route
-            path={routePaths.User.complaintForm}
-            exact
-            element={ <AddComplaint /> }
-          />
-          <Route
-            path={routePaths.User.complaintList}
-            exact
-            element={ <ListComplaint /> }
-          />
-          <Route
-            path={routePaths.User.receiptList}
-            exact
-            element={ <ListReceipts /> }
-          />
+          <Route path={routePaths.User.dashboard} exact element={ <UserProfile /> }/>
+          <Route path={routePaths.User.complaintForm} exact element={ <AddComplaint /> }/>
+          <Route path={routePaths.User.complaintList} exact element={ <ListComplaint /> } />
+          <Route path={routePaths.User.receiptList} exact element={ <ListReceipts /> }/>
 
           {/* Maintenance  Route*/}
 
-          <Route
-            path={routePaths.Maintenance.dashboard}
-            exact
-            element={
-               <MaintanceDashboard /> 
-            }
-          />
-          <Route
-            path={routePaths.Maintenance.complaintList}
-            exact
-            element={
-                <MaintenanceListComplaint />
-            }
-          />
+          <Route  path={routePaths.Maintenance.dashboard} exact  element={<MaintanceDashboard />}  />
+          <Route  path={routePaths.Maintenance.complaintList} exact element={<MaintenanceListComplaint /> }/>
 
           {/* SuperAdmin  Route*/}
 
+          <Route  path={routePaths.SuperAdmin.addUser} exact  element={    <SuperAdminDashboard />  } />
+          <Route  path={routePaths.SuperAdmin.maintenance} exact element={ <Maintenance /> }/>
+          <Route  path={routePaths.SuperAdmin.visitor} exact  element={    <SuperAdminListVisitor />  }/>
           <Route
-            path={routePaths.SuperAdmin.addUser}
-            exact
-            element={
-               <SuperAdminDashboard /> 
-            }
-          />
-          <Route
-            path={routePaths.SuperAdmin.maintenance}
-            exact
-            element={ <Maintenance /> }
-          />
-          <Route
-            path={routePaths.SuperAdmin.visitor}
-            exact
-            element={
-               <SuperAdminListVisitor /> 
-            }
-          />
-          <Route
-            path={routePaths.SuperAdmin.listUser}
-            exact
+            path={routePaths.SuperAdmin.listUser} exact
             element={ <ListUser /> }
           />
           <Route
-            path={routePaths.SuperAdmin.editUser}
-            exact
-            element={
-               <EditSuperAdmin /> 
-            }
+            path={routePaths.SuperAdmin.editUser} exact
+            element={    <EditSuperAdmin />  }
           />
           <Route
-            path={routePaths.SuperAdmin.building}
-            exact
+            path={routePaths.SuperAdmin.building} exact
             element={ <Building /> }
           />
           <Route
-            path={routePaths.SuperAdmin.addReceipt}
-            exact
+            path={routePaths.SuperAdmin.addReceipt} exact
             element={ <AddReceipt /> }
           />
           <Route
-            path={routePaths.SuperAdmin.listReceipt}
-            exact
+            path={routePaths.SuperAdmin.listReceipt} exact
             element={ <ListReceipt /> }
           />
           {/* <Route
-            path={routePaths.SuperAdmin.listReceipt}
-            exact
-            element={
-              // 
-              <ListReceipt />
-              // 
-            }
+            path={routePaths.SuperAdmin.listReceipt} exact
+            element={   //    <ListReceipt />   //  }
           /> */}
           <Route
-            path={routePaths.SuperAdmin.accountsDirectory}
-            exact
+            path={routePaths.SuperAdmin.accountsDirectory} exact
             element={<AccountsDirectory />}
           />
           <Route
-            path={routePaths.SuperAdmin.journalVoucher}
-            exact
-            element={
-               <JournalVoucher /> 
-            }
+            path={routePaths.SuperAdmin.journalVoucher} exact
+            element={    <JournalVoucher />  }
           />
           {/* Routes Present */}
           <Route
-            path={routePaths.SuperAdmin.tenancyExpiryList}
-            exact
+            path={routePaths.SuperAdmin.tenancyExpiryList} exact
             element={<TenancyExpiryList />}
           />
           <Route
-            path={routePaths.SuperAdmin.bankPaymentVoucher}
-            exact
+            path={routePaths.SuperAdmin.bankPaymentVoucher} exact
             element={<BankPaymentVoucher />}
           />
+          <Route path={routePaths.SuperAdmin.notifyAdmin} exact element={ <NotifyAdmin /> }/>
 
           {/* Visitor Routes */}
 
           <Route
-            path={routePaths.Visitor.dashboard}
-            exact
-            element={
-               <VisitorDashboard /> 
-            }
+            path={routePaths.Visitor.dashboard} exact
+            element={    <VisitorDashboard />  }
           />
           <Route
-            path={routePaths.Visitor.listVisitor}
-            exact
+            path={routePaths.Visitor.listVisitor} exact
             element={ <ListVisitor /> }
           />
           <Route path={routePaths.Visitor.login} exact element={<Login />} />
           <Route
-            path={routePaths.Visitor.editVisitor}
-            exact
+            path={routePaths.Visitor.editVisitor} exact
             element={ <EditVisitor /> }
           />
           <Route
-            path={routePaths.Visitor.receipt}
-            exact
+            path={routePaths.Visitor.receipt} exact
             element={ <Receipt /> }
           />
         </Routes>

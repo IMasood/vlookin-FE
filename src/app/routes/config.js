@@ -18,6 +18,7 @@ const admin = {
   editBuilding: "/admin/editBuilding/:id",
   editApartment: "/admin/editApartment/:id",
   adminListComplaint: "/admin/adminlistcomplaint",
+  notifyTenant : '/admin/notifyTenant'
 };
 
 const superAdmin = {
@@ -36,6 +37,7 @@ const superAdmin = {
   bankPaymentVoucher: "/superAdmin/bankPaymentVoucher",
   journalVoucher: "/superAdmin/journalVoucher",
   tenancyExpiryList: "/superAdmin/tenancyExpiryList",
+  notifyAdmin : '/superAdmin/notifyAdmin'
 };
 
 // tenant is a role assigned to the user afterwards by the admin
@@ -97,6 +99,8 @@ export const apiRoutes = {
   postReceipt : "http://195.35.45.131:4000/receipt",
   myBuilding: "http://195.35.45.131:4000/building/details",
   getSelectedApartment: "http://195.35.45.131:4000/apartment?",
+  notifyTenant : "http://195.35.45.131:4000/notify/tenant?",
+  notifyAdmin: "http://195.35.45.131:4000/notify/admin?"
 
 };
 
