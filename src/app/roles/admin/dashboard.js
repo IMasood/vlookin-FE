@@ -3,6 +3,9 @@ import SideBar from '../../components/Layouts/SideBar'
 import { useMediaQuery } from 'react-responsive';
 import { adminSidebar } from '../../utils/roleSidebar';
 import { Cookies } from 'react-cookie';
+import { Header } from '../../components/Header';
+import { routePaths } from '../../routes/config';
+import MobileHeader from '../../components/Header/MobileHeader';
 
 const AdminDashboard = ({ data }) => {
     const cookies = new Cookies();
@@ -14,8 +17,14 @@ const AdminDashboard = ({ data }) => {
         setOpen(true);
     };
 
+    const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
+
+
     return (
         <div>
+            {isMobile ? <MobileHeader route={routePaths.Admin.login} showDrawer={showDrawer} /> :
+                <Header  route={routePaths.Admin.login} />
+            }
             <SideBar children={data} items={adminSidebar} role={role} userName = {userName} showDrawer={showDrawer} open={open} setOpen={setOpen} />
         </div>
     )

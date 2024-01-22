@@ -18,7 +18,6 @@ export const LoginForm = (props) => {
     password: "",
   });
   const [role, setRole] = useState("");
-  const [user, setUser] = useState([]);
   const [cookies, setCookies, removeCookie] = useCookies();
 
   const cookie = new Cookies();

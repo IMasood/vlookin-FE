@@ -19,7 +19,7 @@ export const RolesSelector = ({handleChange, value}) => {
             <Select
                 placeholder="Select your role"
                 onChange={handleChange}
-                value={value}
+                value={value ? value : 'tenant'}
                 className='building_selector'
                 >
                 {roles?.map((role) => (
