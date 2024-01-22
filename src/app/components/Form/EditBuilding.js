@@ -32,6 +32,8 @@ const EditBuildingForm = ({ title, showDrawer }) => {
 
   const [floor, setFloor] = useState("");
   const [parkingFloor, setParkingFloor] = useState("");
+  const [showLoader, setShowLoader] = useState(false)
+
 
   const handleChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -69,9 +71,11 @@ const EditBuildingForm = ({ title, showDrawer }) => {
     try {
       const res = await fetch(url, requestOptions);
       if (res.status == 200) {
+        setShowLoader(true);
         toast.success("Building Edited Successfully");
         navigate(routePaths.Admin.listBuilding);
       } else {
+        setShowLoader(false);
         toast.error("Something went wrong");
       }
     } catch (error) {
@@ -176,6 +180,7 @@ const EditBuildingForm = ({ title, showDrawer }) => {
             buttonName={"Save"}
             bgColor={"#4A0D37"}
             color={"#F8F8F8"}
+            loading={showLoader} disabled={showLoader}
           />
           <CustomAlert />
         </div>

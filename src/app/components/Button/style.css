@@ -11,3 +11,8 @@
     border: 2px solid #F8F8FF;
     border-radius: 500px;
 }
+.button:disabled {
+    background: #e7e8e9;
+    color: #9fa3a9;
+    cursor: not-allowed;
+  }

@@ -39,6 +39,7 @@ const BuildingForm = ({showDrawer}) => {
     const [open, setOpen] = useState(false);
     const [realEstateAdded, setRealEstateAdded] = useState(false);
     const [selectedRealEstate, setSelectedRealEstate] = useState('');
+    const [showLoader, setShowLoader] = useState(false)
 
 
     const handleChange = (event) => {
@@ -49,7 +50,7 @@ const BuildingForm = ({showDrawer}) => {
         e.preventDefault();
         try {
             if(inputs.buildingName && inputs.ownerName && inputs.location && inputs.watchMan){
-                const res = addBuilding(inputs);
+                addBuilding(inputs);
             }else{
                 toast.error('Complete Form')
             }            
@@ -66,6 +67,7 @@ const BuildingForm = ({showDrawer}) => {
         };
         let url = apiRoutes.createBuilding;
         try {
+            setShowLoader(true)
             await axios
             .post( url,
                 {
@@ -80,6 +82,7 @@ const BuildingForm = ({showDrawer}) => {
                  } ,config)
             .then((response) => {
                 if(response.data.status == 200){
+                    setShowLoader(false)
                     toast.success('Building Created Successfully')
                     navigate(routePaths.Admin.addAppartment);
                 }else{
@@ -191,7 +194,7 @@ const BuildingForm = ({showDrawer}) => {
                     </Col>
                 </Row>
                 <div className='addform_btn'>
-                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
+                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  loading={showLoader} disabled={showLoader} />
                 <AddRealEstateModal open={open} onCancel={onCancel} setRealEstateAdded={setRealEstateAdded}/>
                 <CustomAlert/>
                 </div>

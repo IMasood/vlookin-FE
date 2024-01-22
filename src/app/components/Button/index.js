@@ -1,9 +1,11 @@
 import { Button } from "antd";
 import React from "react";
 import './style.css'
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 
-export const CustomButton = ({ buttonName, handleClick, bgColor, color }) => {
+export const CustomButton = ({ buttonName, handleClick, bgColor, color, loading, disabled }) => {
 
     return (
         <div>
@@ -13,8 +15,21 @@ export const CustomButton = ({ buttonName, handleClick, bgColor, color }) => {
                 onClick={handleClick}
                 style={{ backgroundColor: bgColor, color, color }}
                 className='button'
+                disabled={disabled}
             >
-                {buttonName}
+                { !loading ? buttonName : 
+                    <Spin
+                        indicator={
+                        <LoadingOutlined
+                            style={{
+                            fontSize: 24,
+                            color:'white'
+                            }}
+                            spin
+                        />
+                        }
+                    /> 
+                    }
             </Button>
         </div>
     )

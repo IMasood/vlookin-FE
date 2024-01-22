@@ -35,6 +35,8 @@ const EditAppartmentForm = ({ title, showDrawer }) => {
   const [open, setOpen] = useState(false);
   const [selectedBuilding, setSelectedBuilding] = useState("");
   const [balcony, setBalcony] = useState(false);
+  const [showLoader, setShowLoader] = useState(false)
+
 
   const handleBuildingChange = (value) => {
     setSelectedBuilding(value);
@@ -92,12 +94,14 @@ const EditAppartmentForm = ({ title, showDrawer }) => {
     try {
       const res = await fetch(url, requestOptions);
       if (res.status == 200) {
+        setShowLoader(true)
         toast.success("Building Edited Successfully");
         navigate(routePaths.Admin.listBuilding);
       } else {
         toast.error("Something went wrong");
       }
     } catch (error) {
+      setShowLoader(false)
       toast.error(error);
     }
   };
@@ -317,6 +321,7 @@ const EditAppartmentForm = ({ title, showDrawer }) => {
             buttonName={"Save"}
             bgColor={"#4A0D37"}
             color={"#F8F8F8"}
+            loading={showLoader} disabled={showLoader}
           />
           {/* <ApartmentModal open={open} onCancel = {onCancel} selectedBuilding={selectedBuilding} 
                         handleBuildingChange={handleBuildingChange} handleChange = {handleChange}

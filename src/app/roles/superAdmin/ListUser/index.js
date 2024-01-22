@@ -32,6 +32,7 @@ export const ListUser = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [complaints, setComplaint] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedBuilding, setSelectedBuilding] = useState('')
 
   const showDrawer = () => {
     setOpen(true);
@@ -99,14 +100,24 @@ export const ListUser = () => {
 
   useEffect(() => {
     setLoading(true);
+    const url = `${apiRoutes.getUsers}buildingId=${selectedBuilding}`
     axios
-      .get(`${apiRoutes.getUsers}all=true`)
-      .then((res) => {
-        setData(res.data.data);
+    .get(url)
+    .then((response) => {
+      if(response?.data.data.length > 0){
+        const data = response?.data.data;
+        setData(data);
         setLoading(false);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+      }else{
+        setLoading(false);
+        setData([]);
+      }
+      setLoading(false);
+    })
+      .catch((e) => {
+        setLoading(false);
+      });
+  }, [selectedBuilding]);
 
   const filteredData = data.filter((item) =>
     item?.email?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -119,13 +130,15 @@ export const ListUser = () => {
           <CusTable
             columns={columns}
             data={filteredData ? filteredData : data}
-            heading={"Complaint List"}
+            heading={"List Users"}
             subHeading={"Super Admin Panel"}
             loading={loading}
             route={routePaths.Admin.login}
             showDrawer={showDrawer}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setSelectedBuilding={setSelectedBuilding}
+
           />
         }
         showDrawer={showDrawer}

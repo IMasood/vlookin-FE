@@ -37,6 +37,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
   const [allowSubUsers, setAllowSubUsers] = useState(false);
   const [allowMultipleBuildings, setAllowMultipleBuildings] = useState(false);
   const [selectedRealEstate, setSelectedRealEstate] = useState('');
+  const [showLoader, setShowLoader] = useState(false)
 
   const onChange = (e) => {
     setGender(e.target.value);
@@ -102,7 +103,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
     let url = apiRoutes.createUsers;
 
     try {
-      console.log(inputs.userName, inputs.email, inputs.contact);
+      setShowLoader(true)
       await axios
         .post(
           url,
@@ -122,6 +123,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
         )
         .then((response) => {
           if (response.data.success == true) {
+            setShowLoader(false);
             toast.success("User Created Successfully");
             navigate(routePaths.SuperAdmin.listUser);
             setInputs({
@@ -291,6 +293,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               buttonName={"Save"}
               bgColor={"#4A0D37"}
               color={"#F8F8F8"}
+              loading={showLoader} disabled={showLoader}
             />
           )}
         </div>

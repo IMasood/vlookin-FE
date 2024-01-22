@@ -26,6 +26,7 @@ const ComplaintForm = ({ showDrawer }) => {
     });
     const [fileList, setFileList] = useState([])
     const [category, setCategory] = useState('Electrician')
+    const [showLoader, setShowLoader] = useState(false)
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -95,6 +96,7 @@ const ComplaintForm = ({ showDrawer }) => {
         };
         let url = apiRoutes.createComplaints;
         try {
+            setShowLoader(true)
             await axios
                 .post(url,
                     {
@@ -108,10 +110,12 @@ const ComplaintForm = ({ showDrawer }) => {
                     , config)
                 .then((response) => {
                     if (response.data.message == "Successfully added complaint.") {
+                        setShowLoader(false)
                         navigate(routePaths.User.complaintList)
                     } 
                 });
         } catch (error) {
+            setShowLoader(false)
             toast.error(error?.response?.data?.message)
         }
     }
@@ -189,7 +193,7 @@ const ComplaintForm = ({ showDrawer }) => {
                     </Col>
                 </Row>
                 <div className='addform_btn'>
-                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
+                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} loading={showLoader} disabled={showLoader} />
                     <CustomAlert />
                 </div>
             </div>

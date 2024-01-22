@@ -35,6 +35,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
     const [studioFlat, setStudioFlat] = useState(false)
     const [buildingSelected, setBuildingSelected] = useState(false);
     const [selectedApartment, setSelectedApartment] = useState('');
+    const [showLoader, setShowLoader] = useState(false)
 
 
     const handleChange = (event) => {
@@ -67,6 +68,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
         };
         let url = apiRoutes.createVisitor;
         try {
+            setShowLoader(true)
             await axios
                 .post(url,
                     {
@@ -82,9 +84,11 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                     , config)
                 .then((response) => {
                     if (response.data.status == 200) {
+                        setShowLoader(false)
                         toast.success('Visitor Created Successfully')
                         navigate(routePaths.Visitor.listVisitor);
                     } else {
+                        setShowLoader(false)
                         toast.error('Something went wrong')
                     }
                 });
@@ -231,7 +235,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                         </Col>
                     </Row>
                     <div >
-                        <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
+                        <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  loading={showLoader} disabled={showLoader}/>
                         <SaveModal route = {routePaths.Visitor.listVisitor} open={open} setOpen={setOpen}/>
                         <CustomAlert/>
                     </div>

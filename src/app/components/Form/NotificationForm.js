@@ -16,6 +16,7 @@ import { Cookies } from 'react-cookie';
 import BuildingDropDown from '../DropDown';
 import UserDropDown from '../DropDown/UserDropDown';
 import RealEstateDropDown from '../DropDown/RealEstateDropDown';
+import { FaBell } from 'react-icons/fa';
 
 const NotificationForm = ({ showDrawer }) => {
     const cookie = new Cookies();
@@ -30,6 +31,7 @@ const NotificationForm = ({ showDrawer }) => {
     const [notifyeeAll, setNotifyeeAll] = useState(false)
     const [selectedBuilding, setSelectedBuilding] = useState('');
     const [ user, setSelectedUser] = useState('')
+    const [showLoader, setShowLoader] = useState(false)
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -65,6 +67,7 @@ const NotificationForm = ({ showDrawer }) => {
         };
         let url = apiRoutes.notifyTenant;
         try {
+            setShowLoader(true)
             await axios
                 .post(url,
                     {
@@ -77,6 +80,7 @@ const NotificationForm = ({ showDrawer }) => {
                     }
                     , config)
                 .then((response) => {
+                    setShowLoader(false);
                     navigate(routePaths.Tenant.listTenant)
                     // console.log(response)
                 });
@@ -92,7 +96,7 @@ const NotificationForm = ({ showDrawer }) => {
                     <Header title={'Notification Center'} route={routePaths.Admin.login} />
                 }
                 <div className='mb_form_heading'>
-                    <h2>Notify {role}</h2>
+                    <h2>Notify Users <FaBell  style={{ color: "#4A0D37" }}/> </h2>
                 </div>
             </div>
             <div className="body">
@@ -149,7 +153,8 @@ const NotificationForm = ({ showDrawer }) => {
                     </Col>
                 </Row>
                 <div className='addform_btn'>
-                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
+                    <CustomButton handleClick={handleSave} buttonName={<FaBell  style={{ color: "white" }}/> } bgColor={'#4A0D37'} color={'#F8F8F8'} 
+                      loading={showLoader} disabled={showLoader} />
                     <CustomAlert />
                 </div>
             </div>

@@ -41,6 +41,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
     const [selectedApartment, setSelectedApartment] = useState('');
     const [tenantAccount , setTenantAccount] = useState('');
     const [tenantName , setTenantName] = useState('');
+    const [showLoader, setShowLoader] = useState(false)
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -70,6 +71,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
         let url = apiRoutes.postTenant;
         const createdBy = cookie.get("userId")
         const role = cookie.get("role");
+        setShowLoader(true)
         try {
             await axios
                 .post(url,
@@ -89,6 +91,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
                     , config)
                 .then((response) => {
                     if (response?.data?.status == 200) {
+                        setShowLoader(false)
                         setTenantAccount(response?.data?.data._id);
                         setTenantName(response?.data?.data.tenantName)
                         setModalOpen(true)
@@ -202,7 +205,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         </Form.Item>
                     </Col>
                 </Row>
-                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
+                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  loading={showLoader} disabled={showLoader}/>
             </div>
             {/* for receipt modal testing */}
             <ReceiptModal 

@@ -36,6 +36,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
     const [balcony, setBalcony] = useState(false);
     const [apartmentType, setApartmentType] = useState("");
     // const [flatNos, setFlatNos] = useState('')
+    const [showLoader, setShowLoader] = useState(false)
 
     const handleRadioChange = (e) => {
         setInputs({furnished: e.target.value});
@@ -89,12 +90,13 @@ const AppartmentForm = ({ title, showDrawer }) => {
                 "flatNo": apartmentNamesArray,
                 "noOfApartments": parseInt(inputs.apartmentNo)
             };
-            console.log('data', data)
+            setShowLoader(true)
             await axios.post(url,
                 data,
                 config)
                 .then((response) => {
                     if (response.data.status == 200) {
+                        setShowLoader(false)
                         toast.success('Apartment Created Successfully')
                         navigate(routePaths.Admin.listAppartment);
                     } 
@@ -249,7 +251,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
                 </Row>
                 <br/> 
                 <div>                    
-                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  />
+                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  loading={showLoader} disabled={showLoader} />
                     <ApartmentModal open={open} onCancel = {onCancel} setSelectedBuilding={setSelectedBuilding} 
                          handleChange = {handleChange}
                         handleSave = {addApartment} data = {inputs}
