@@ -17,12 +17,9 @@ export const Login = (props) => {
             <img src={loginPic} />
           </div>
           <div className="login_form">
-            <div className="login_form_heading">
-              <h2>{props.loginHeading}</h2>
-            </div>
-                <div className="login_form_inputs">
-                  <LoginForm name="Login" />
-                </div>
+              <div className="login_form_inputs">
+                <LoginForm name="Login" />
+              </div>
           </div>
         </div>
       </div>

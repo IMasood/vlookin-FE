@@ -22,9 +22,6 @@ const AdminDashboard = ({ data }) => {
 
     return (
         <div>
-            {isMobile ? <MobileHeader route={routePaths.Admin.login} showDrawer={showDrawer} /> :
-                <Header  route={routePaths.Admin.login} />
-            }
             <SideBar children={data} items={adminSidebar} role={role} userName = {userName} showDrawer={showDrawer} open={open} setOpen={setOpen} />
         </div>
     )

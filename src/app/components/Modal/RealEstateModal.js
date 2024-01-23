@@ -13,6 +13,7 @@ export const AddRealEstateModal = ({open, setOpen, onCancel, setRealEstateAdded}
         realEstateName: '',
         code:''
     })
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (event) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -22,11 +23,14 @@ export const AddRealEstateModal = ({open, setOpen, onCancel, setRealEstateAdded}
         e.preventDefault();
         try {
             if(inputs.realEstateName){
-                const res = addRealEstate(inputs);
+                setLoading(true)
+                addRealEstate(inputs);
             }else{
+                setLoading(false)
                 toast.error('Complete Form')
             }            
         } catch (error) {
+            setLoading(false)
             toast.error('Something went wrong')
         }
     }
@@ -80,7 +84,7 @@ export const AddRealEstateModal = ({open, setOpen, onCancel, setRealEstateAdded}
                     <h6>Real Estate Name</h6>
                     <Input name='realEstateName' onChange={handleChange} value={inputs.name} style={{width:'50%'}}/>
                     <br/>
-                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} />                    
+                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} loading={loading} />                    
                 </div>
             </Modal>
             <CustomAlert/>

@@ -116,8 +116,8 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
             userId: inputs.userId,
             gender: gender,
             allowAMS: checked,
-            realEstate: selectedRealEstate,
-            buildingId: selectedBuilding || "",
+            realEstate: selectedRealEstate || '',
+            buildingId: selectedBuilding || '',
           },
           config
         )
@@ -137,6 +137,8 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
           }
         });
     } catch (error) {
+      setShowLoader(false);
+
       toast.error(error?.response?.data?.message);
     }
   };

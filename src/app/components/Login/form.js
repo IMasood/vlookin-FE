@@ -91,7 +91,7 @@ export const LoginForm = (props) => {
         
           switch (role) {
             case "admin":
-              navigate(routePaths.Admin.dashboard);
+              navigate(routePaths.Admin.addbuilding);
               break;
             case "tenant":
               navigate(routePaths.User.dashboard);
