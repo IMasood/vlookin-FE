@@ -8,14 +8,13 @@ import { useMediaQuery } from 'react-responsive'
 import MobileHeader from '../Header/MobileHeader'
 import BuildingDropDown from '../DropDown'
 import { Cookies } from 'react-cookie'
-import { apiRoutes, routePaths } from '../../routes/config'
+import { routePaths } from '../../routes/config'
 import { useLocation } from 'react-router'
 import RealEstateDropDown from '../DropDown/RealEstateDropDown'
 
 const CusTable = ({ columns, data, heading, subHeading, route, loading, showDrawer, searchQuery, setSearchQuery, setSelectedBuilding, setSelectedRealEstate }) => {
   const cookies = new Cookies();
-  const role = cookies.get("role");
-  const userId = cookies.get("userId");
+  const role = cookies.get("role").toLowerCase();
   const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
   let location = useLocation()
   const handleSearchChange = (event) => {
