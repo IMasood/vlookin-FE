@@ -128,6 +128,7 @@ const NotificationForm = ({ showDrawer }) => {
                                 value={inputs.desc}
                                 onChange={handleChange}
                                 placeholder="Add Description"
+                                className="apartment_form_input"
                             /> 
 
                         </div>

@@ -69,7 +69,7 @@
 
 } 
 .form_items{
-    margin-bottom: 10px !important;
+    /* margin-bottom: 10px !important; */
 }
 
 @media screen and (max-width: 1000px) {

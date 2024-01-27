@@ -159,8 +159,7 @@ export const LoginForm = (props) => {
               placeholder="User Id"
               value={inputs.userId}
               onChange={handleChange}
-              className="login_form_input{
-              "
+              className="login_form_input"
             />
           </Form.Item>
           <Form.Item

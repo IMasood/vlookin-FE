@@ -7,7 +7,8 @@ import { BiMessageError } from 'react-icons/bi';
 import { getItem } from './functions';
 
 export const adminSidebar = [
-    getItem('Visitor', 'add_visitor', <RiWalkFill />),
+    getItem('Visitor', '2', <RiWalkFill />,
+    [getItem('Add Visitor', 'add_visitor', <HiUserAdd />)]),
     getItem('Tenant', '2', <FaWarehouse />,
         [getItem('Add Tenant', 'addtenant', <HiUserAdd />),
         getItem('List Tenant', 'tenantlist', <FaThList />),

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import SideBar from '../../components/Layouts/SideBar'
-import TenateForm from '../../components/Form/TenateForm';
 import { getItem } from '../../utils/functions';
 import { FaBuilding, FaThList, FaWarehouse } from 'react-icons/fa';
 import { HiUserAdd } from 'react-icons/hi';
@@ -8,6 +7,7 @@ import { MdApartment } from 'react-icons/md';
 import { RiWalkFill } from 'react-icons/ri';
 import { BsBuildingFillAdd } from 'react-icons/bs';
 import { Cookies } from 'react-cookie';
+import TenantForm from '../../components/Form/TenanteForm';
 
 
 const DashboardScr = () => {
@@ -42,7 +42,7 @@ const DashboardScr = () => {
 
     return (
         <div>
-            <SideBar children={<TenateForm showDrawer={showDrawer} role={role}/> } items={adminItems} role={role ? role : ''} userName={userName ? userName : ''}  showDrawer={showDrawer} open={open} setOpen={setOpen}/>
+            <SideBar children={<TenantForm showDrawer={showDrawer} role={role}/> } items={adminItems} role={role ? role : ''} userName={userName ? userName : ''}  showDrawer={showDrawer} open={open} setOpen={setOpen}/>
         </div>
     )
 }

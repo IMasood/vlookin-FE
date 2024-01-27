@@ -162,7 +162,7 @@ const BuildingForm = ({showDrawer}) => {
 
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
-                        <div style={{ marginTop: '15px' }}>
+                        <div style={{ marginTop: '46px' }}>
                         <Form.Item
                                 rules={
                                     [{ required: true, message: "Please enter Building Name" }]

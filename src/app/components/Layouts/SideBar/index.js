@@ -4,10 +4,7 @@ import {
   Menu,
   theme,
   Avatar,
-  Button,
   Drawer,
-  Radio,
-  Space,
 } from "antd";
 import { useState } from "react";
 import { Images } from "../../../../assets";
@@ -16,7 +13,6 @@ import { routePaths } from "../../../routes/config";
 import "./style.css";
 import { Content } from "antd/es/layout/layout";
 import { useMediaQuery } from "react-responsive";
-import { FiMenu } from "react-icons/fi";
 import { blackColor, whiteColor } from "../../../../assets/colors";
 
 const { Sider } = Layout;

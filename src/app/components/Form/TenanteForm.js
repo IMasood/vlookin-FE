@@ -17,7 +17,7 @@ import ApartmentsDropdown from '../DropDown/apartmentDropDown';
 import { Cookies } from 'react-cookie';
 import { redColor, whiteColor } from '../../../assets/colors';
 
-const TenateForm = ({ title, showDrawer, role }) => {
+const TenantForm = ({ title, showDrawer, role }) => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const [modalOpen, setModalOpen] = useState(false);
@@ -166,6 +166,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         <label>Building Name</label>
                         <BuildingDropDown setSelectedBuilding={setSelectedBuilding} isBuildingSelected = {setBuildingSelected}
                         />
+                        <br/>
                         {buildingSelected && 
                             <ApartmentsDropdown  setSelectedApartment={setSelectedApartment} buildingId={selectedBuilding}/>
                         }
@@ -176,14 +177,15 @@ const TenateForm = ({ title, showDrawer, role }) => {
                             value={inputs.officeNo}
                             onChange={handleChange}
                         />
+                    <Form>
                         <Form.Item
                                 name='creationDate'
+                                label='Creation Date'
                             >
-                            <label>Creation Date</label>
+                            {/* <label>Creation Date</label> */}
                             <Input
                                 placeholder="Creation Date"
                                 className="visitor_form_input"
-                                // className="form_input"
                                 name='creationDate'
                                 type='date'
                                 value={inputs.creationDate}
@@ -192,18 +194,18 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         </Form.Item>
                         <Form.Item
                                 name='joiningDate'
+                                label = 'Joining Date'
                             >
-                            <label >Joining Date</label>
                                 <Input
                                 placeholder="Joining Date"
                                 className="visitor_form_input"
-                                // className="form_input"
                                 name='joiningDate'
                                 type='date'
                                 value={inputs.joiningDate}
                                 onChange={handleChange}
                             />
                         </Form.Item>
+                    </Form>
                     </Col>
                 </Row>
                 <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor}  loading={showLoader} disabled={showLoader}/>
@@ -223,4 +225,4 @@ const TenateForm = ({ title, showDrawer, role }) => {
     )
 }
 
-export default TenateForm;
+export default TenantForm;

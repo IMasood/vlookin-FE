@@ -6,16 +6,17 @@
 .search_bar {
     width: 250px;
     margin: 25px 0;
+    border: 1px solid #333333;
 }
 
 .table {
-    color: #4A0D37;
+    color: #333333;
 }
 
 .icon {
     display: flex;
     justify-content: space-between;
-    color: #4A0D37;
+    color: #333333;
     width: 60px;
     font-size: 20px;
 }
@@ -27,7 +28,7 @@
 }
 
 .mb_table_heading {
-    color: #4A0D37;
+    color: #333333;
     padding: 30px;
     display: none;
 }
@@ -54,8 +55,12 @@
     }
 
     .mb_table_heading {
-        color: #4A0D37;
+        color: #333333;
         padding: 30px;
         display: block;
     }
+}
+.ant-btn-primary{
+    background-color: #A01602 !important;
+
 }

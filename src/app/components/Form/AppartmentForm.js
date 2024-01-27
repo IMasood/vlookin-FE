@@ -241,6 +241,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
                         <div>
                             <TextArea 
                                 rows={4} 
+                                className="apartment_form_input"
                                 placeholder="Comment" 
                                 name='comments'
                                 value={inputs.comments}

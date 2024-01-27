@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SideBar from "../../../components/Layouts/SideBar";
 import { Col, Dropdown, Form, Input, Layout, Radio, Row, theme } from "antd";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../../../components/Header/MobileHeader";
@@ -14,6 +13,7 @@ import { useNavigate } from "react-router";
 import BuildingDropDown from "../../../components/DropDown";
 import { Cookies } from "react-cookie";
 import RealEstateDropDown from "../../../components/DropDown/RealEstateDropDown";
+import { redColor, whiteColor } from "../../../../assets/colors";
 export const AddSuperAdminUser = ({ showDrawer }) => {
   const [checked, setChecked] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
@@ -239,9 +239,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               onChange={handleInputs}
               disabled={category == "tenant" ? true : false}
             />
-          </Col>
-          <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
-            <Form.Item>
               <Input
                 placeholder="Contact"
                 className="form_input"
@@ -250,7 +247,10 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 onChange={handleInputs}
                 disabled={category == "tenant" ? true : false}
               />
-              <div>
+
+          </Col>
+          <Col offset={isMobile ? 0 : 4} md={10} sm={16} style={{marginTop:'68px'}}>
+            <Form.Item>
                 <p>Gender</p>
                 <Radio.Group
                   onChange={onChange}
@@ -260,11 +260,10 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                   <Radio value={"male"}>Male</Radio>
                   <Radio value={"female"}>Female</Radio>
                 </Radio.Group>
-              </div>
               <br />
               {
                 category != 'admin' && 
-                <div>
+                <>
                   <p style={{ color: "#4A0D37" }}>Real Estate</p>
                   <RealEstateDropDown
                     disabled={category == "tenant" ? true : false}
@@ -275,7 +274,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                     disabled={category == "tenant" ? true : false}
                     realEstateId={selectedRealEstate}
                   />
-                </div>
+                </>
                 
               }
             </Form.Item>
@@ -286,15 +285,15 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
             <CustomButton
               handleClick={handleGoTo}
               buttonName={"Redirecting"}
-              bgColor={"#4A0D37"}
-              color={"#F8F8F8"}
+              bgColor={redColor}
+              color={whiteColor}
             />
           ) : (
             <CustomButton
               handleClick={handleSave}
               buttonName={"Save"}
-              bgColor={"#4A0D37"}
-              color={"#F8F8F8"}
+              bgColor={redColor}
+              color={whiteColor}
               loading={showLoader} disabled={showLoader}
             />
           )}

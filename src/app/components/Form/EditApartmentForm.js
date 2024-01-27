@@ -310,6 +310,7 @@ const EditAppartmentForm = ({ title, showDrawer }) => {
                 name="comments"
                 value={inputs.comments}
                 onChange={handleChange}
+                className="apartment_form_input"
               />
             </div>
           </Col>

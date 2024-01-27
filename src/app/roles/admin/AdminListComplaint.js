@@ -4,7 +4,6 @@ import CusTable from "../../components/Table/Table";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { CustomAlert } from "../../components/Alert";
-import { useNavigate } from "react-router";
 import SideBar from "../../components/Layouts/SideBar";
 import { FaEye } from "react-icons/fa";
 import { adminSidebar } from "../../utils/roleSidebar";

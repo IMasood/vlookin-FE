@@ -10,6 +10,9 @@
     padding: 15px 100px;
     margin-top: 15px;
 }
+.btn:hover{
+border-color: #333333;
+}
 
 .body h2 {
     font-weight: 400;
@@ -137,3 +140,4 @@
     border: 1px solid #333333;
     /* padding: 8px; */;
 }
+
