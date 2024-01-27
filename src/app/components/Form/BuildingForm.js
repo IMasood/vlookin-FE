@@ -14,6 +14,7 @@ import MobileHeader from '../Header/MobileHeader';
 import { AddRealEstateModal } from '../Modal/RealEstateModal';
 import RealEstateDropDown from '../DropDown/RealEstateDropDown';
 import { Cookies } from 'react-cookie';
+import { redColor, whiteColor } from '../../../assets/colors';
 
 const BuildingForm = ({showDrawer}) => {
     const cookie = new Cookies()
@@ -122,7 +123,7 @@ const BuildingForm = ({showDrawer}) => {
                         <Button 
                             variant='contained'
                             onClick={openRealEstateModal}
-                            style ={{backgroundColor:'#4A0D37', color: '#F8F8F8'}}
+                            style ={{backgroundColor:redColor, color: whiteColor}}
                         >
                             Add Real Estate
                         </Button>
@@ -194,7 +195,7 @@ const BuildingForm = ({showDrawer}) => {
                     </Col>
                 </Row>
                 <div className='addform_btn'>
-                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  loading={showLoader} disabled={showLoader} />
+                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor}  loading={showLoader} disabled={showLoader} />
                 <AddRealEstateModal open={open} onCancel={onCancel} setRealEstateAdded={setRealEstateAdded}/>
                 <CustomAlert/>
                 </div>

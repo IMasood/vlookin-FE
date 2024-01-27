@@ -5,21 +5,33 @@
     left: 0;
     top: 0;
     bottom: 0;
-    background-color: #4A0D37
 }
+.ant-menu-title-content{
+    color:#333333 !important;
+    font-size: 16px;
+}
+.svg.ant-menu-item-icon{
+    color:#333333 !important; 
+}
+.ant-menu-item-icon{
+    color: #333333 !important;
+}
+.ant-menu-item .ant-menu-item-selected {
+    color:#333333 !important;
 
+}
 .ant-drawer-content-wrapper{
     width: 250px !important;
 }
 .ant-menu-sub {
-    background: #4A0D37 !important;
+    background: #F2F2F2 !important;
 }
 
 .logo_sidebar {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #F8F8FF;
+    color: #333333;
 }
 
 .logo_sidebar img {
@@ -45,7 +57,7 @@
 }
 
 .user_role p {
-    color: #Ffffff;
+    color: #333333;
     font-size: 16px;
     font-family: 'Open Sans';
     line-height: 25px;
@@ -56,12 +68,12 @@
     font-family: 'Open Sans';
     font-size: 12px;
     line-height: 25px;
-    color: #F8F8FF;
+    color: #333333;
     margin-left: 12px;
 }
 
 .menu_Items {
-    border-bottom: 0.5px solid #F8F8FF;
+    border-bottom: 0.5px solid #333333;
     border-radius: 0 !important;
 }
 
@@ -74,7 +86,7 @@
 }
 
 .add-user {
-    color: #f8f8ff;
+    color: #333333;
     text-align: center;
     font: 13px "Kumbh Sans", sans-serif;
     position: relative;
@@ -85,7 +97,7 @@
     flex-direction: row;
     align-items: center;
     padding: 10px 27px 10px 92px;
-    border-bottom: 0.5px solid #F8F8FF;
+    border-bottom: 0.5px solid #333333;
     border-radius: 0 !important;
 }
 
@@ -95,5 +107,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #F8F8FF;
+    color: #333333;
 }

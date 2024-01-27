@@ -11,6 +11,7 @@ import { Cookies } from 'react-cookie'
 import { routePaths } from '../../routes/config'
 import { useLocation } from 'react-router'
 import RealEstateDropDown from '../DropDown/RealEstateDropDown'
+import { blackColor, grayColor } from '../../../assets/colors'
 
 const CusTable = ({ columns, data, heading, subHeading, route, loading, showDrawer, searchQuery, setSearchQuery, setSelectedBuilding, setSelectedRealEstate }) => {
   const cookies = new Cookies();
@@ -41,14 +42,15 @@ const CusTable = ({ columns, data, heading, subHeading, route, loading, showDraw
             <Oval
               height={50}
               width={50}
-              color="#4A0D37"
               wrapperStyle={{}}
               wrapperClass=""
               visible={true}
               ariaLabel='oval-loading'
-              secondaryColor="#6A164F"
               strokeWidth={5}
               strokeWidthSecondary={5}
+              color={grayColor}
+              secondaryColor={blackColor}
+  
             />
           </div> : 
             <Table className='table' columns={columns} dataSource={data} style={{ color: '#4A0D37' }} />

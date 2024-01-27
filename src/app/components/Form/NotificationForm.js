@@ -17,6 +17,7 @@ import BuildingDropDown from '../DropDown';
 import UserDropDown from '../DropDown/UserDropDown';
 import RealEstateDropDown from '../DropDown/RealEstateDropDown';
 import { FaBell } from 'react-icons/fa';
+import { redColor } from '../../../assets/colors';
 
 const NotificationForm = ({ showDrawer }) => {
     const cookie = new Cookies();
@@ -139,7 +140,7 @@ const NotificationForm = ({ showDrawer }) => {
                             }
 
                             <Form.Item>
-                                <label style={{ color: '#4A0D37' }}>Notifyee All</label>
+                                <label>Notifyee All</label>
                                 <Checkbox onChange={handleNotifyeeChange} value={notifyeeAll} style={{ color: '#ffffff', marginLeft: "12px" }}></Checkbox>
                             </Form.Item>
                             {
@@ -153,7 +154,7 @@ const NotificationForm = ({ showDrawer }) => {
                     </Col>
                 </Row>
                 <div className='addform_btn'>
-                    <CustomButton handleClick={handleSave} buttonName={<FaBell  style={{ color: "white" }}/> } bgColor={'#4A0D37'} color={'#F8F8F8'} 
+                    <CustomButton handleClick={handleSave} buttonName={<FaBell  style={{ color: "white" }}/> } bgColor={redColor} color={'#F8F8F8'} 
                       loading={showLoader} disabled={showLoader} />
                     <CustomAlert />
                 </div>

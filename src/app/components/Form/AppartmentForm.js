@@ -11,6 +11,7 @@ import { ApartmentModal } from '../Modal/ApartmentModal';
 import {toast} from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { redColor, whiteColor } from '../../../assets/colors';
 
 const AppartmentForm = ({ title, showDrawer }) => {
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
@@ -251,7 +252,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
                 </Row>
                 <br/> 
                 <div>                    
-                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  loading={showLoader} disabled={showLoader} />
+                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor}  loading={showLoader} disabled={showLoader} />
                     <ApartmentModal open={open} onCancel = {onCancel} setSelectedBuilding={setSelectedBuilding} 
                          handleChange = {handleChange}
                         handleSave = {addApartment} data = {inputs}

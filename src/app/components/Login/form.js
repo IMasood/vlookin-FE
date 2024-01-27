@@ -9,6 +9,7 @@ import { RolesSelector } from "../DropDown/rolesSelector";
 import { toast } from "react-toastify";
 import { CustomAlert } from "../Alert";
 import { Cookies, useCookies } from "react-cookie";
+import { blackColor, grayColor, redColor, whiteColor } from "../../../assets/colors";
 
 export const LoginForm = (props) => {
   const navigate = useNavigate();
@@ -132,12 +133,12 @@ export const LoginForm = (props) => {
           <Oval
             height={50}
             width={50}
-            color="#4A0D37"
             wrapperStyle={{}}
             wrapperClass=""
             visible={true}
             ariaLabel="oval-loading"
-            secondaryColor="#6A164F"
+            color={grayColor}
+            secondaryColor={blackColor}
             strokeWidth={5}
             strokeWidthSecondary={5}
           />
@@ -189,8 +190,8 @@ export const LoginForm = (props) => {
           <CustomButton
             handleClick={handleSubmit}
             buttonName={props.name}
-            bgColor={"#4A0D37"}
-            color={"#F8F8F8"}
+            bgColor={redColor}
+            color={whiteColor}
           />
         </Form>
       )}

@@ -17,6 +17,7 @@ import "./style.css";
 import { Content } from "antd/es/layout/layout";
 import { useMediaQuery } from "react-responsive";
 import { FiMenu } from "react-icons/fi";
+import { blackColor, whiteColor } from "../../../../assets/colors";
 
 const { Sider } = Layout;
 
@@ -134,7 +135,7 @@ const SideBar = ({
             left: 0,
             top: 0,
             bottom: 0,
-            backgroundColor: "#4A0D37",
+            backgroundColor: whiteColor,
           }}
         >
           <div
@@ -148,7 +149,7 @@ const SideBar = ({
             className="User_avatar_container"
             style={{ display: collapsed ? "none" : "flex" }}
           >
-            <Avatar style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}>
+            <Avatar style={{ backgroundColor: whiteColor, color: blackColor }}>
               {userName ? userName.charAt(0) : ""}
             </Avatar>
             <div className="user_role">
@@ -167,7 +168,7 @@ const SideBar = ({
             defaultSelectedKeys={["1"]}
             mode="inline"
             items={items}
-            style={{ backgroundColor: "#4A0D37" }}
+            style={{ backgroundColor: whiteColor, color:blackColor }}
           />
         </Sider>
       ) : (
@@ -178,11 +179,10 @@ const SideBar = ({
             closable={true}
             onClose={onClose}
             open={open}
-            style={{ width: "250px", backgroundColor: "#4A0D37" }}
+            style={{ width: "250px", backgroundColor: whiteColor }}
             key={placement}
           >
             <Sider
-
               width={243}
               style={{
                 overflow: "auto",
@@ -191,27 +191,24 @@ const SideBar = ({
                 left: 0,
                 top: 0,
                 bottom: 0,
-                backgroundColor: "#4A0D37",
+                backgroundColor: whiteColor,
               }}
             >
               <div
                 className="logo_sidebar"
-                // style={{ display: collapsed ? 'none' : 'flex' }}
               >
                 <img src={Images.logo}></img>
                 <CloseOutlined
                   onClick={() => {
-                    // setCollapsed(true)
                     setOpen(false);
                   }}
                 />
               </div>
               <div
                 className="User_avatar_container"
-                // style={{ display: collapsed ? 'none' : 'flex' }}
               >
                 <Avatar
-                  style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}
+                  style={{ backgroundColor: whiteColor, color: blackColor }}
                 >
                   {userName ? userName.charAt(0) : ""}
                 </Avatar>
@@ -226,7 +223,7 @@ const SideBar = ({
                 defaultSelectedKeys={["1"]}
                 mode="inline"
                 items={items}
-                style={{ backgroundColor: "#4A0D37" }}
+                style={{ backgroundColor: whiteColor, color:blackColor }}
               />
             </Sider>
           </Drawer>
@@ -235,6 +232,7 @@ const SideBar = ({
       <Content
         style={{
           padding: `${isMobile ? 0 : "0 0 0 245px"}`,
+          background:'white'
         }}
       >
         {children}

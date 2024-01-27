@@ -4,6 +4,7 @@ import './style.css'
 import { CustomButton } from '../Button'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { redColor, whiteColor } from '../../../assets/colors'
 
 const OTPmodal = ({open, onCancel, setReceiptModal, setModalOpen}) => {
 
@@ -70,7 +71,7 @@ const OTPmodal = ({open, onCancel, setReceiptModal, setModalOpen}) => {
             <input type='text' minLength={1} maxLength={1} />
           </div>
           <p className='resend'>Didn't receive OTP?<a className='resend_link'>Resend OTP</a></p>
-          <CustomButton handleClick={handleVerify}  buttonName={'Verify'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
+          <CustomButton handleClick={handleVerify}  buttonName={'Verify'} bgColor={redColor} color={whiteColor} />
         </div>
       </Modal>
     </>

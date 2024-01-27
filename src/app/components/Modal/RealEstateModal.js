@@ -6,6 +6,7 @@ import { apiRoutes, routePaths } from '../../routes/config'
 import { toast } from 'react-toastify'
 import { CustomAlert } from '../Alert'
 import axios from 'axios'
+import { redColor, whiteColor } from '../../../assets/colors'
 
 export const AddRealEstateModal = ({open, setOpen, onCancel, setRealEstateAdded}) => {
 
@@ -84,7 +85,7 @@ export const AddRealEstateModal = ({open, setOpen, onCancel, setRealEstateAdded}
                     <h6>Real Estate Name</h6>
                     <Input name='realEstateName' onChange={handleChange} value={inputs.name} style={{width:'50%'}}/>
                     <br/>
-                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} loading={loading} />                    
+                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor} loading={loading} />                    
                 </div>
             </Modal>
             <CustomAlert/>

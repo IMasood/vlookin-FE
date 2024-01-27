@@ -13,6 +13,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { apiRoutes, routePaths } from '../../routes/config';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { Cookies } from 'react-cookie';
+import { redColor, whiteColor } from '../../../assets/colors';
 
 const ComplaintForm = ({ showDrawer }) => {
     const cookie = new Cookies();
@@ -193,7 +194,7 @@ const ComplaintForm = ({ showDrawer }) => {
                     </Col>
                 </Row>
                 <div className='addform_btn'>
-                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'} loading={showLoader} disabled={showLoader} />
+                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor} loading={showLoader} disabled={showLoader} />
                     <CustomAlert />
                 </div>
             </div>

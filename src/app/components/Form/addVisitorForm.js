@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import MobileHeader from '../Header/MobileHeader';
 import ApartmentsDropdown from '../DropDown/apartmentDropDown';
+import { redColor, whiteColor } from '../../../assets/colors';
 
 const AddVisitorForm = ({ title, showDrawer }) => {
     const navigate = useNavigate()
@@ -148,7 +149,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                             <Form.Item
                                 name='date'
                             >
-                                <label style={{color:'#4A0D37'}}>Required From</label>
+                                <label>Required From</label>
                                 <Input
                                     placeholder="Visitng Date"
                                     className="visitor_form_input"
@@ -159,11 +160,11 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                                 />
                             </Form.Item>
                             <Form.Item>
-                                <label style={{ color: '#4A0D37' }}>Studio Flat</label>
+                                <label>Studio Flat</label>
                                 <Checkbox onChange={handleFlatChange} value={studioFlat} style={{ color: '#ffffff', marginLeft: "12px" }}></Checkbox>
                             </Form.Item>
                             <Form.Item>
-                                <label style={{ color: '#4A0D37' }}>Flat Type</label>
+                                <label>Flat Type</label>
                                 <CounterBtn placeholder='Bed Rooms' state={maxRooms} setState={setMaxRooms} disabled={studioFlat ? true : false} />
                                 <Input
                                     placeholder="Other"
@@ -197,7 +198,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                                 />
                             </Form.Item>
                             <Form.Item>
-                                <label style={{ color: '#4A0D37' }}>Building Name</label>
+                                <label>Building Name</label>
                                 <BuildingDropDown 
                                     setSelectedBuilding={setSelectedBuilding}
                                     isBuildingSelected = {setBuildingSelected}
@@ -235,7 +236,7 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                         </Col>
                     </Row>
                     <div >
-                        <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  loading={showLoader} disabled={showLoader}/>
+                        <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor}  loading={showLoader} disabled={showLoader}/>
                         <SaveModal route = {routePaths.Visitor.listVisitor} open={open} setOpen={setOpen}/>
                         <CustomAlert/>
                     </div>

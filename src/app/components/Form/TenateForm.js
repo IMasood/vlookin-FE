@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Col, Input, Row, Form } from "antd";
-import { CustomButton, CustomOutlineButton } from '../Button';
+import { CustomButton } from '../Button';
 import './style.css';
 import { Header } from '../Header';
 import OTPmodal from '../Modal/OTPmodal';
@@ -15,6 +15,7 @@ import MobileHeader from '../Header/MobileHeader';
 import ReceiptModal from '../Modal/ReceiptModal';
 import ApartmentsDropdown from '../DropDown/apartmentDropDown';
 import { Cookies } from 'react-cookie';
+import { redColor, whiteColor } from '../../../assets/colors';
 
 const TenateForm = ({ title, showDrawer, role }) => {
     const navigate = useNavigate();
@@ -162,7 +163,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         </div>
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
-                        <label style={{ color: '#4A0D37' }}>Building Name</label>
+                        <label>Building Name</label>
                         <BuildingDropDown setSelectedBuilding={setSelectedBuilding} isBuildingSelected = {setBuildingSelected}
                         />
                         {buildingSelected && 
@@ -178,7 +179,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         <Form.Item
                                 name='creationDate'
                             >
-                            <label style={{color:'#4A0D37'}}>Creation Date</label>
+                            <label>Creation Date</label>
                             <Input
                                 placeholder="Creation Date"
                                 className="visitor_form_input"
@@ -192,7 +193,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         <Form.Item
                                 name='joiningDate'
                             >
-                            <label style={{color:'#4A0D37'}}>Joining Date</label>
+                            <label >Joining Date</label>
                                 <Input
                                 placeholder="Joining Date"
                                 className="visitor_form_input"
@@ -205,7 +206,7 @@ const TenateForm = ({ title, showDrawer, role }) => {
                         </Form.Item>
                     </Col>
                 </Row>
-                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={'#4A0D37'} color={'#F8F8F8'}  loading={showLoader} disabled={showLoader}/>
+                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor}  loading={showLoader} disabled={showLoader}/>
             </div>
             {/* for receipt modal testing */}
             <ReceiptModal 

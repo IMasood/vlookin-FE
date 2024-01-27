@@ -1,6 +1,7 @@
 import React from "react";
 import { CustomButton } from "../Button";
 import {DeleteOutlined } from "@ant-design/icons";
+import { redColor, whiteColor } from "../../../assets/colors";
 
 const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
 
@@ -116,8 +117,8 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
         </tbody>
       </table>
       <div className='receipt-table-footer'>
-        <CustomButton handleClick={addRow} buttonName={'Add Row'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
-        <CustomButton handleClick={handleSubmit} buttonName={'Submit'} bgColor={'#4A0D37'} color={'#F8F8F8'} />
+        <CustomButton handleClick={addRow} buttonName={'Add Row'} bgColor={redColor} color={whiteColor} />
+        <CustomButton handleClick={handleSubmit} buttonName={'Submit'} bgColor={redColor} color={whiteColor} />
       </div>
 
     </div>

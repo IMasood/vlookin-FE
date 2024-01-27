@@ -91,23 +91,24 @@ const BuildingDropDown = ({
   };
 
   return (
-    <div>
-    <Select
-      placeholder={placeholder ? placeholder : "Select a building"}
-      onChange={handleChange}
-      // value={value}
-      className={className ? className :"building_selector"}
-      disabled={disabled ? disabled : disableBuilding}
-    >
-      
-      {buildingData.map((building) => (
-        <Option key={building._id} value={building._id}>
-          {building.buildingName} - {building.buildingCode}
-        </Option>
-      ))}
-    </Select>
-    <CustomAlert/>
-    </div>
+    <>
+      <Select
+        placeholder={placeholder ? placeholder : "Select a building"}
+        onChange={handleChange}
+        // value={value}
+        className={className ? className :"building_selector"}
+        disabled={disabled ? disabled : disableBuilding}
+        style={{border:'1px solid #373333'}}
+      >
+        
+        {buildingData.map((building) => (
+          <Option key={building._id} value={building._id} >
+            {building.buildingName} - {building.buildingCode}
+          </Option>
+        ))}
+      </Select>
+      <CustomAlert/>
+    </>
   );
 };
 
