@@ -38,7 +38,12 @@ export const LoginForm = (props) => {
     setLoading(true);
     e.preventDefault();
     try {
+      if(inputs.userId && inputs.password && role){
         userSignUp(inputs);
+      }else{
+        setLoading(false);
+        toast.error('Please enter email and password')
+      }
     } catch (er) {
       setLoading(false);
     }
@@ -63,7 +68,7 @@ export const LoginForm = (props) => {
         {
           email: inputs.userId,
           password: inputs.password,
-          role: role == 'tenant' ? role : ''
+          role: role 
         },
         config
       )

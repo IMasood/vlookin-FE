@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { apiRoutes, routePaths } from "../../routes/config";
 import CusTable from "../../components/Table/Table";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { CustomAlert } from "../../components/Alert";
 import { useNavigate } from "react-router";
 import SideBar from "../../components/Layouts/SideBar";
-import { FaEye, FaWarehouse, FaThList } from "react-icons/fa";
+import { FaWarehouse, FaThList } from "react-icons/fa";
 import ViewCompliantModal from "../../components/Modal/ViewCompliantModal";
-import { DeleteModal } from "../../components/Modal";
 import { HiUserAdd } from "react-icons/hi";
 import { getItem } from "../../utils/functions";
 import { BiMessageError } from "react-icons/bi";
@@ -17,7 +14,6 @@ import { Cookies } from "react-cookie";
 
 export const ListComplaint = () => {
   const cookie = new Cookies()
-  const navigate = useNavigate();
   let tenantId = cookie.get('userId');
   const role = cookie.get("role"); 
   const userName = cookie.get('name');

@@ -1,12 +1,15 @@
 import ApiServices from "../ApiServices";
 
+const BASE_URL = "http://195.35.45.131:8080/"
+
 const listService = {
   getList: async (pageNumber, pageSize) => {
     let dataToPost = {
       pageNumber: pageNumber,
       pageSize: pageSize,
     };
-    return ApiServices.post("api/v1/bank/receipt/list", dataToPost).then(
+    let endpoint = `${BASE_URL}api/v1/bank/receipt/list`
+    return ApiServices.post(endpoint, dataToPost).then(
       (response) => {
         // Modify the response if needed
         return response;
@@ -15,7 +18,9 @@ const listService = {
   },
 
   addItem: async (item) => {
-    return ApiServices.post("api/v1/bank/receipt/list", { item }).then(
+    let endpoint = `${BASE_URL}api/v1/bank/receipt/list`
+
+    return ApiServices.post(endpoint, { item }).then(
       (response) => {
         // Modify the response if needed
         return response;

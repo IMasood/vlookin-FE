@@ -77,6 +77,8 @@ const home = {
   home: "/",
 };
 
+export const BASE_URL = 'http://195.35.45.131:4000';
+
 export const apiRoutes = {
   postUser: "http://195.35.45.131:4000/auth/login",
   getUsers: "http://195.35.45.131:4000/user?",

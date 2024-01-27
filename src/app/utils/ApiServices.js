@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const BASE_URL = "http://195.35.45.131:8080"; // Replace with your API base URL
+ // Replace with your API base URL
 
 const ApiServices = {
   // Example GET request
   get: async (endpoint) => {
     try {
-      const response = await axios.get(`${BASE_URL}/${endpoint}`);
+      const response = await axios.get(endpoint);
       return response.data;
     } catch (error) {
       console.error("Error making GET request:", error);
@@ -17,7 +17,7 @@ const ApiServices = {
   // Example POST request
   post: async (endpoint, data) => {
     try {
-      const response = await axios.post(`${BASE_URL}/${endpoint}`, data);
+      const response = await axios.post(endpoint, data);
       return response.data;
     } catch (error) {
       console.error("Error making POST request:", error);

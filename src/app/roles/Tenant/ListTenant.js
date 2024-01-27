@@ -104,15 +104,15 @@ const ListTenant = () => {
       .then((res) => {
         setListData(res?.data.data.map((row ) => (
           { 
-          tenantName: row.tenantName,
-          email: row.email, 
-          contact: row.contact,
-          flatNo:row.flatNo,
-          officeNo:row.officeNo,
-          nationality:row.nationality,
-          buildingName:row.buildingId?.buildingName,
-          flatNo:row.apartmentId?.flatNo,
-          _id: row._id
+              tenantName: row.tenantName,
+              email: row.email, 
+              contact: row.contact,
+              flatNo:row.flatNo,
+              officeNo:row.officeNo,
+              nationality:row.nationality,
+              buildingName:row.buildingId?.buildingName,
+              flatNo:row.apartmentId?.flatNo,
+              _id: row._id
             }
           )));
         setLoading(false);
