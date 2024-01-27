@@ -102,7 +102,7 @@ const ListTenant = () => {
     axios
       .get(url)
       .then((res) => {
-        setListData(res?.data.data.map((row ) => (
+        setListData(res?.data.data.map((row,id ) => (
           { 
               tenantName: row.tenantName,
               email: row.email, 
@@ -112,7 +112,8 @@ const ListTenant = () => {
               nationality:row.nationality,
               buildingName:row.buildingId?.buildingName,
               flatNo:row.apartmentId?.flatNo,
-              _id: row._id
+              _id: row._id,
+              key:row.id
             }
           )));
         setLoading(false);

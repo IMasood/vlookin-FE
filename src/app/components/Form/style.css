@@ -141,3 +141,6 @@ border-color: #333333;
     /* padding: 8px; */;
 }
 
+:where(.css-dev-only-do-not-override-1g853jt).ant-radio-button-wrapper:not(:first-child)::before{
+    background-color: none !important;
+}

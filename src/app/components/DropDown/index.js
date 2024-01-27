@@ -95,10 +95,10 @@ const BuildingDropDown = ({
       <Select
         placeholder={placeholder ? placeholder : "Select a building"}
         onChange={handleChange}
-        // value={value}
         className={className ? className :"building_selector"}
         disabled={disabled ? disabled : disableBuilding}
         style={{border:'1px solid #373333'}}
+        optionLabelProp="children" 
       >
         
         {buildingData.map((building) => (
