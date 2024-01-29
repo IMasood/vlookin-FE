@@ -181,17 +181,25 @@ const AppartmentForm = ({ title, showDrawer }) => {
                         </div>
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={18}>
-                        <Input
-                            placeholder="Area"
-                            className="apartment_form_input"
+                    <Form>
+                        <Form.Item
                             name='area'
-                            value={inputs.area}
-                            onChange={handleChange}
-                            
-                        />
-                        <div style={{ marginTop: '15px' }}>
-
-                            <p className='form_label'>Furnished</p>
+                            rules={[
+                                {
+                                    required:true,
+                                    message:'Please enter area of an apartment'
+                                }
+                            ]}>
+                            <Input
+                                placeholder="Area *"
+                                className="apartment_form_input"
+                                name='area'
+                                value={inputs.area}
+                                onChange={handleChange}
+                                
+                            />
+                        </Form.Item>
+                        <p className='form_label'>Furnished</p>
                             <Form.Item
                                 name="radio-button"
                                 className='form_radio_inputs'
@@ -209,9 +217,6 @@ const AppartmentForm = ({ title, showDrawer }) => {
                                     <Radio.Button className='radio_btn' value="Full-Furnished">Full-Furnished</Radio.Button>
                                 </Radio.Group>
                             </Form.Item>
-                        </div>
-                        <div style={{ marginTop: '15px' }}>
-
                             <p className='form_label'>Balcony</p>
                             <Form.Item
                                 name="radio-button"
@@ -229,15 +234,20 @@ const AppartmentForm = ({ title, showDrawer }) => {
                                     <Radio.Button className='radio_btn' value="false">No</Radio.Button>
                                 </Radio.Group>
                             </Form.Item>
-                        </div>
-                        <Input
-                            placeholder="Rent"
-                            className="apartment_form_input"
-                            name='rent'
-                            value={inputs.rent}
-                            onChange={handleChange}
-                        />
-                        <br/> <br/>
+                        <Form.Item
+                           name='rent' 
+                           rules={[
+                            {required:true, message:'Please enter rent of an apartment'}
+                            ]} >
+                            <Input
+                                placeholder="Rent *"
+                                className="apartment_form_input"
+                                name='rent'
+                                value={inputs.rent}
+                                onChange={handleChange}
+                            />
+                        </Form.Item>
+                    </Form>
                         <div>
                             <TextArea 
                                 rows={4} 
@@ -248,7 +258,6 @@ const AppartmentForm = ({ title, showDrawer }) => {
                                 onChange={handleChange}
                             />
                         </div>
-
                     </Col>
                 </Row>
                 <br/> 

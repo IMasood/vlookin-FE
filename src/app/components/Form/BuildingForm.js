@@ -129,68 +129,74 @@ const BuildingForm = ({showDrawer}) => {
                         </Button>
                         }
                         <div style={{ marginTop: '15px' }}>
+                        <Form>
                             <Form.Item
+                                name='ownerName'
                                 rules={
                                     [{ required: true, message: "Please enter Name" }]
                                 }
                             >
                                 <Input
-                                    placeholder="Owner name"
+                                    placeholder="Owner name *"
                                     className="form_input"
                                     name='ownerName'
                                     value={inputs.ownerName}
                                     onChange={handleChange}
                                 />
                             </Form.Item>
-                            <p className='form_label'>No of floors</p>
-                            <CounterBtn placeholder='Count of floor' state={floor} setState={setFloor} />
                             <Form.Item
+                                name='watchMan'
                                 rules={
                                     [{ required: true, message: "Please enter watchman Name" }]
                                 }
                             >
                                 <Input
-                                    placeholder="Watchman"
+                                    placeholder="Watchman *"
                                     className="form_input"
                                     name='watchMan'
                                     value={inputs.watchMan}
                                     onChange={handleChange}
                                 />
                             </Form.Item>
+                        </Form>
+                            <p className='form_label'>No of floors</p>
+                            <CounterBtn placeholder='Count of floor' state={floor} setState={setFloor} />
                         </div>
 
 
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <div style={{ marginTop: '46px' }}>
-                        <Form.Item
-                                rules={
-                                    [{ required: true, message: "Please enter Building Name" }]
-                                }
-                            >
-                                <Input
-                                    placeholder="Building name"
-                                    className="form_input"
-                                    name='buildingName'
-                                    value={inputs.buildingName}
-                                    onChange={handleChange}
-                                />
-                            </Form.Item>
-                            <p className='form_label'>No of parking floors</p>
-                            <CounterBtn placeholder='Count of floor' state={parkingFloor} setState={setParkingFloor} />
+                        <Form>
                             <Form.Item
-                                rules={
-                                    [{ required: true, message: "Please enter landamark" }]
-                                }
+                                    name='buildingName'
+                                    rules={
+                                        [{ required: true, message: "Please enter Building Name" }]
+                                    }
+                                >
+                                    <Input
+                                        placeholder="Building name *"
+                                        className="form_input"
+                                        name='buildingName'
+                                        value={inputs.buildingName}
+                                        onChange={handleChange}
+                                    />
+                                </Form.Item>
+                            <Form.Item
+                                    name='location'
+                                    rules={[{ required: true, message: "Please enter landamark" }] }
                             >
                                 <Input
-                                    placeholder="Popular location"
+                                    placeholder="Popular location *"
                                     className="form_input"
                                     name='location'
                                     value={inputs.location}
                                     onChange={handleChange}
                                 />
                             </Form.Item>
+                        </Form>
+                            <p className='form_label'>No of parking floors</p>
+                            <CounterBtn placeholder='Count of floor' state={parkingFloor} setState={setParkingFloor} />
                         </div>
                     </Col>
                 </Row>

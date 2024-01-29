@@ -137,60 +137,73 @@ const ComplaintForm = ({ showDrawer }) => {
                     <Col md={10} sm={16}>
                         <div style={{ marginTop: '15px' }}>
                             <p className='form_label'>Category</p>
-                            <Form.Item
-                            >
-                                <Dropdown.Button menu={menuProps} trigger={['click']} icon={<IoMdArrowDropdown />}>
-                                    {category}
-                                </Dropdown.Button>
-                            </Form.Item>
-                            <Form.Item
-                                rules={
-                                    [{ required: true, message: "Please enter Name" }]
-                                }
-                            >
-                                <Input
-                                    placeholder="User name"
-                                    className="form_input"
+                            <Form>
+                                <Form.Item name='category' rules={[ {required:true, message:'Choose category'} ]}>
+                                    <Dropdown.Button menu={menuProps} trigger={['click']} icon={<IoMdArrowDropdown />}>
+                                        {category}
+                                    </Dropdown.Button>
+                                </Form.Item>
+                                <Form.Item
                                     name='userName'
-                                    value={tenantName}
-                                    disabled={true}
-                                />
-                            </Form.Item>
-                            <TextArea
-                                showCount
-                                maxLength={100}
-                                style={{
-                                    height: 120,
-                                    marginBottom: 24,
-                                }}
-                                name='desc'
-                                value={inputs.desc}
-                                onChange={handleChange}
-                                placeholder="Add Description"
-                                className="apartment_form_input"
-                            />
+                                    rules={
+                                        [{ required: true, message: "Please enter Name" }]
+                                    }
+                                >
+                                    <Input
+                                        placeholder="User name"
+                                        className="form_input"
+                                        name='userName'
+                                        value={tenantName}
+                                        disabled={true}
+                                    />
+                                </Form.Item>
+                                <Form.Item 
+                                    name='desc'
+                                    rules={[
+                                        {required:true, message:'Please write description of complain'}
+                                    ]}>
+                                    <TextArea
+                                        showCount
+                                        maxLength={100}
+                                        style={{
+                                            height: 120,
+                                            marginBottom: 24,
+                                        }}
+                                        name='desc'
+                                        value={inputs.desc}
+                                        onChange={handleChange}
+                                        placeholder="Add Description"
+                                        className="apartment_form_input"
+                                    />
+                                </Form.Item>
+                            </Form>
                         </div>
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <div style={{ marginTop: '15px' }}>
-                            <Form.Item
-                                name="upload"
-                                label="Upload Picture"
-                                valuePropName="fileList"
-                                getValueFromEvent={normFile}
-                            >
-                                <Upload
-                                    name="logo"
-                                    listType="picture"
-                                    beforeUpload={(file) => {
-                                        return false;
-                                    }}
-                                    onChange={onChange} // Use the onChange callback to manage fileList state
-                                    fileList={fileList} // Pass the fileList state to the Upload component
+                            <Form>
+                                <Form.Item
+                                    name="upload"
+                                    label="Upload Picture"
+                                    valuePropName="fileList"
+                                    getValueFromEvent={normFile}
+                                    rules={[
+                                        {required:'true', message:'Please upload picture of complaint'}
+                                    ]}
                                 >
-                                    <Button icon={<UploadOutlined />}>Click to upload</Button>
-                                </Upload>
-                            </Form.Item>
+                                    <Upload
+                                        name="logo"
+                                        listType="picture"
+                                        beforeUpload={(file) => {
+                                            return false;
+                                        }}
+                                        onChange={onChange} // Use the onChange callback to manage fileList state
+                                        fileList={fileList} // Pass the fileList state to the Upload component
+                                    >
+                                        <Button icon={<UploadOutlined />}>Click to upload</Button>
+                                    </Upload>
+                                </Form.Item>
+                            </Form>
                         </div>
                     </Col>
                 </Row>

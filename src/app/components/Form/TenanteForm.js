@@ -120,47 +120,79 @@ const TenantForm = ({ title, showDrawer, role }) => {
             <div className="body">
                 <Row >
                     <Col md={10} sm={16}>
-                        <Input
-                            placeholder="Full name"
-                            className="form_input"
-                            name='name'
-                            value={inputs.name}
-                            onChange={handleChange}
-                        />
-                        <Input
-                            placeholder="Email"
-                            className="form_input"
-                            name='email'
-                            type='email'
-                            value={inputs.email}
-                            onChange={handleChange}
+                        <Form>
+                            <Form.Item 
+                                    name='name'
+                                    rules={[
+                                    {required:true, message:'Please enter name'}
+                                ]}>
+                                <Input
+                                    placeholder="Full name *"
+                                    className="form_input"
+                                    name='name'
+                                    value={inputs.name}
+                                    onChange={handleChange}
+                                />
 
-                        />
-                        <Input
-                            placeholder="Password"
-                            className="form_input"
-                            name='password'
-                            type='password'
-                            value={inputs.password}
-                            onChange={handleChange}
-
-                        />
-                        <div>
+                            </Form.Item>
+                            <Form.Item 
+                                    name='email'
+                                    rules={[
+                                    {required:true, message:'Please enter email'}
+                                ]}>
+                                <Input
+                                    placeholder="Email *"
+                                    className="form_input"
+                                    name='email'
+                                    type='email'
+                                    value={inputs.email}
+                                    onChange={handleChange}
+                                />
+                            </Form.Item>
+                            <Form.Item 
+                                    name='password'
+                                    rules={[
+                                    {required:true, message:'Please enter password'}
+                                ]}>
+                                <Input
+                                    placeholder="Password *"
+                                    className="form_input"
+                                    name='password'
+                                    type='password'
+                                    value={inputs.password}
+                                    onChange={handleChange}
+                                />
+                            </Form.Item>
+                            <Form.Item 
+                                name='mobileNo'
+                                rules={[
+                                    {required:true, message:'Please enter mobile number of tenant'}
+                                ]}>
                             <Input
-                                placeholder="Mobile No."
+                                placeholder="Mobile No *"
                                 className="form_input"
                                 name='mobileNo'
                                 value={inputs.mobileNo}
                                 onChange={handleChange}
                             />
+
+                            </Form.Item>
+                            <Form.Item 
+                                name='nationality'
+                                rules={[
+                                    {required:true, message:'Please enter nationality'}
+                                ]}>
                             <Input
-                                placeholder="Nationality"
+                                placeholder="Nationality *"
                                 className="form_input"
                                 name='nationality'
                                 value={inputs.nationality}
                                 onChange={handleChange}
                             />
-                        </div>
+
+                            </Form.Item>
+
+                        </Form>
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <label>Building Name</label>
@@ -170,19 +202,26 @@ const TenantForm = ({ title, showDrawer, role }) => {
                         {buildingSelected && 
                             <ApartmentsDropdown  setSelectedApartment={setSelectedApartment} buildingId={selectedBuilding}/>
                         }
-                        <Input
-                            placeholder="Office No. "
-                            className="form_input"
-                            name='officeNo'
-                            value={inputs.officeNo}
-                            onChange={handleChange}
-                        />
                     <Form>
+                        <Form.Item 
+                                name='officeNo'
+                                rules={[
+                                    {required:true, message:'Please enter office No'}
+                                ]}>
+                            <Input
+                                placeholder="Office No *"
+                                className="form_input"
+                                name='officeNo'
+                                value={inputs.officeNo}
+                                onChange={handleChange}
+                            />
+                        </Form.Item>
                         <Form.Item
                                 name='creationDate'
                                 label='Creation Date'
-                            >
-                            {/* <label>Creation Date</label> */}
+                                rules={[
+                                    {required:true, message:'Please enter creation date'}
+                                ]}>
                             <Input
                                 placeholder="Creation Date"
                                 className="visitor_form_input"
@@ -195,15 +234,18 @@ const TenantForm = ({ title, showDrawer, role }) => {
                         <Form.Item
                                 name='joiningDate'
                                 label = 'Joining Date'
+                                rules={[
+                                    {required:true, message:'Please enter joining date'}
+                                ]}
                             >
                                 <Input
-                                placeholder="Joining Date"
-                                className="visitor_form_input"
-                                name='joiningDate'
-                                type='date'
-                                value={inputs.joiningDate}
-                                onChange={handleChange}
-                            />
+                                    placeholder="Joining Date"
+                                    className="visitor_form_input"
+                                    name='joiningDate'
+                                    type='date'
+                                    value={inputs.joiningDate}
+                                    onChange={handleChange}
+                                />
                         </Form.Item>
                     </Form>
                     </Col>
