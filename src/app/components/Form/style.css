@@ -45,7 +45,10 @@ border-color: #333333;
 
 :where(.css-dev-only-do-not-override-txh9fw).ant-radio-button-wrapper:not(:first-child)::before{
     width: 0 !important;
+    background-color: none !important;
+    background:none !important ;
 }
+
 .form_radio_inputs .ant-radio-button-wrapper-checked {
     /* background: #4A0D37 !important; */
     background: #333333 !important;
@@ -141,6 +144,3 @@ border-color: #333333;
     /* padding: 8px; */;
 }
 
-:where(.css-dev-only-do-not-override-1g853jt).ant-radio-button-wrapper:not(:first-child)::before{
-    background-color: none !important;
-}
