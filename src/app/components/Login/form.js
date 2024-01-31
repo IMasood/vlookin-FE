@@ -69,7 +69,7 @@ export const LoginForm = (props) => {
         {
           email: inputs.userId,
           password: inputs.password,
-          role: role 
+          role: role ? role : 'tenant'
         },
         config
       )
