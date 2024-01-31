@@ -45,8 +45,8 @@ border-color: #333333;
 
 :where(.css-dev-only-do-not-override-txh9fw).ant-radio-button-wrapper:not(:first-child)::before{
     width: 0 !important;
-    background-color: none !important;
-    background:none !important ;
+    background-color: transparent !important;
+    background:transparent !important ;
 }
 
 .form_radio_inputs .ant-radio-button-wrapper-checked {
