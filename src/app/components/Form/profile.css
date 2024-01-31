@@ -8,8 +8,8 @@ body {
 
 .profile-head {
   min-height: 66vh;
-  background: #009FFF;
-  background: linear-gradient(to right, #420B31, #721655);
+  /* background: #009FFF; */
+  background: linear-gradient(to right, #A01602, #333333, #5B5B5B);
   color: white;
   clip-path: ellipse(100vw 60vh at 50% 50%);
   display: flex;

@@ -18,7 +18,7 @@ export const LoginForm = (props) => {
     userId: "",
     password: "",
   });
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("tenant");
   const [cookies, setCookies, removeCookie] = useCookies();
 
   const cookie = new Cookies();
@@ -69,7 +69,7 @@ export const LoginForm = (props) => {
         {
           email: inputs.userId,
           password: inputs.password,
-          role: role ? role : 'tenant'
+          role: role == 'tenant' ? role : ''
         },
         config
       )
