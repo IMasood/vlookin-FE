@@ -47,6 +47,7 @@ import TenancyExpiryList from "../roles/superAdmin/AccountingManagementSystem/Te
 import BankPaymentVoucher from "../roles/superAdmin/AccountingManagementSystem/BankPaymentVoucher";
 import NotifyTenant from "../roles/admin/NotifyTenant";
 import NotifyAdmin from "../roles/superAdmin/NotifyAdmin";
+import { ProtectRoutes } from "../hooks/protectRoutes";
 
 const WebRoutes = () => {
   const cookies = new Cookies();
@@ -58,7 +59,10 @@ const WebRoutes = () => {
       <Router>
         <Routes>
           <Route path={routePaths.Admin.login} exact element={<Login />} />
-          <Route path={routePaths.Admin.dashboard} exact element={<AdminDashboard /> }/>
+          <Route element={ <ProtectRoutes /> }>
+            <Route path={routePaths.Admin.dashboard} exact element={<AdminDashboard /> }/>
+            {/* <Route path='/home' element={ <Home /> } /> */}
+          </Route>
           <Route  path={routePaths.Admin.addUser} exact element={ <AddUsers /> }/>
           <Route path={routePaths.Admin.listUser} exact element={ <ListUser /> }/>
           <Route path={routePaths.Admin.listAppartment} exact element={<ListAppartment /> }/>
