@@ -102,7 +102,8 @@ export const apiRoutes = {
   myBuilding: "http://195.35.45.131:4000/building/details",
   getSelectedApartment: "http://195.35.45.131:4000/apartment?",
   notifyTenant : "http://195.35.45.131:4000/notify/tenant?",
-  notifyAdmin: "http://195.35.45.131:4000/notify/admin?"
+  notifyAdmin: "http://195.35.45.131:4000/notify/admin?",
+  uploadImage: "http://195.35.45.131:4000/maintenance/uploadImage",
 
 };
 

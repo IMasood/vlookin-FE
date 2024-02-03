@@ -14,7 +14,6 @@ const ViewCompliantModal = ({ visibleModal, setVisibleModal, data, path, selecte
   const [status, setStatus] = useState("In Progress");
   const [selectedMaintenance, setSelectedMaintenance] = useState('')
 
-
   const items = [
     {
       label: "IN PROGRESS",
@@ -129,13 +128,12 @@ const ViewCompliantModal = ({ visibleModal, setVisibleModal, data, path, selecte
                     {status}
                   </Dropdown.Button>
                   <br/>
-                  {data?.images?.map((image) => {
+                  {data?.images?.map((image, id) => {
                     return (
-                      <div>
-                        <a href={image.url}> View Image </a>
+                      <div key={image._id}>
+                        <a href={image?.url}> View Image </a>
                       </div>
                     )
-
                   })}
                 </div>
                 <div className="update-btn">

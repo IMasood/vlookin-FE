@@ -14,6 +14,7 @@ import { apiRoutes, routePaths } from '../../routes/config';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { Cookies } from 'react-cookie';
 import { redColor, whiteColor } from '../../../assets/colors';
+import UploadImage from './upload';
 
 const ComplaintForm = ({ showDrawer }) => {
     const cookie = new Cookies();
@@ -33,14 +34,11 @@ const ComplaintForm = ({ showDrawer }) => {
         setInputs({ ...inputs, [event.target.name]: event.target.value });
     };
 
-    const onChange = (info) => {
-        setFileList(info.fileList)
-    }
-    const handleSave = (e) => {
+    const handleSave = (e) => {        
         e.preventDefault();
         try {
             if (inputs.desc) {
-                submitForm(inputs, File);
+                submitForm(inputs);
             } else {
                 toast.error('Complete Form')
             }
@@ -78,30 +76,29 @@ const ComplaintForm = ({ showDrawer }) => {
         onClick: handleMenuClick,
     };
 
-    const normFile = (e) => {
-        if (Array.isArray(e)) {
-            return e;
-        }
-        return e?.fileList;
-
-    };
 
     const submitForm = async () => {
         const tenantId = cookie.get('userId')
         const buildingId = cookie.get('buildingId'); //will update it later by using redux
-
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             },
         };
         let url = apiRoutes.createComplaints;
+
+        let imageList = fileList.map((items) => (
+            {
+                imageId:items.response.data[0].imageId,
+                url:items.response.data[0].url
+            }            
+          ))
         try {
             setShowLoader(true)
             await axios
                 .post(url,
                     {
-                        images: fileList,
+                        images: imageList,
                         createdBy: tenantName,
                         description: inputs.desc,
                         tenantId: tenantId ,
@@ -181,7 +178,8 @@ const ComplaintForm = ({ showDrawer }) => {
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
                         <div style={{ marginTop: '15px' }}>
-                            <Form>
+                            <UploadImage fileList={fileList} setFileList={setFileList}/>
+                            {/* <Form>
                                 <Form.Item
                                     name="upload"
                                     label="Upload Picture"
@@ -203,7 +201,7 @@ const ComplaintForm = ({ showDrawer }) => {
                                         <Button icon={<UploadOutlined />}>Click to upload</Button>
                                     </Upload>
                                 </Form.Item>
-                            </Form>
+                            </Form> */}
                         </div>
                     </Col>
                 </Row>

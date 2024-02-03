@@ -128,6 +128,7 @@ export const AdminListComplaint = () => {
                 createdBy:row.createdBy,
                 category: row.category,
                 status:row.status,
+                images:row.images,
                 ID: row._id,
               }
             )));
