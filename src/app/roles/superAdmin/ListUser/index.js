@@ -21,13 +21,7 @@ export const ListUser = () => {
   const userName = cookies.get('name');
 
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([
-    {
-      userName: "",
-      email: "",
-      role: "",
-    },
-  ]);
+  const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
   const [complaints, setComplaint] = useState([]);
@@ -55,10 +49,6 @@ export const ListUser = () => {
     }
   };
 
-  const handleView = (record) => {
-    setVisibleModal(true);
-    setComplaint(record);
-  };
 
   const columns = [
     {
@@ -106,7 +96,17 @@ export const ListUser = () => {
     .then((response) => {
       if(response?.data.data.length > 0){
         const data = response?.data.data;
-        setData(data);
+        setData(data.map((row,id ) => (
+          { 
+              key:id,
+              userName: row.userName,
+              email: row.email, 
+              role:row.role,
+              contact: row.contact,
+              gender:row.gender,
+              ID: row._id,
+            }
+          )));
         setLoading(false);
       }else{
         setLoading(false);

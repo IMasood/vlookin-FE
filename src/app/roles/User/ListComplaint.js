@@ -92,7 +92,18 @@ export const ListComplaint = () => {
     axios
       .get(`${apiRoutes.getComplaints}?tenantId=${tenantId}`)
       .then((res) => {
-        setData(res.data.data);
+        const data = res?.data.data;
+        setData(data.map((row,id ) => (
+          { 
+              key:id,
+              complaintId: row.complaintId,
+              description: row.description, 
+              createdBy:row.createdBy,
+              category: row.category,
+              status:row.status,
+              ID: row._id,
+            }
+          )));
         setLoading(false);
       })
       .catch((e) => console.log(e));

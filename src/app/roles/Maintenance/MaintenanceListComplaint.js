@@ -103,8 +103,19 @@ export const MaintenanceListComplaint = () => {
     axios
       .get(`${apiRoutes.getComplaints}?buildingId=${buildingId}`)
       .then((res) => {
-        setData(res.data.data);
-        setLoading(false);
+        const data = res?.data.data;
+        setData(data.map((row,id ) => (
+          { 
+              key:id,
+              complaintId: row.complaintId,
+              description: row.description, 
+              createdBy:row.createdBy,
+              category: row.category,
+              status:row.status,
+              ID: row._id,
+            }
+          )));
+          setLoading(false);
       })
       .catch((e) => setLoading(false));
   }, []);

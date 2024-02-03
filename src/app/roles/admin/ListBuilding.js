@@ -90,16 +90,18 @@ export const ListBuilding = () => {
     axios
       .get(`${apiRoutes.getSelectedBuilding}userId=${userId}`)
       .then((res) => {
-        setData(res.data.data.map((row ) => (
+        const data = res?.data.data
+        setData(data.map((row,id ) => (
           { 
-            fullName: row.fullName,
-            buildingName: row.buildingName, 
-            buildingCode: row.buildingCode,
-            landmark:row.landmark,
-            floorCount:row.floorCount,
-            parkingCount:row.parkingCount,
-            realEstateName:row.realEstateId.name,
-            _id: row._id
+              key:id,
+              fullName: row.fullName,
+              buildingName: row.buildingName, 
+              buildingCode:row.buildingCode,
+              landmark: row.landmark,
+              floorCount:row.floorCount,
+              parkingCount:row.parkingCount,
+              realEstateName:row.realEstateId.name,
+              ID: row._id,
             }
           )));
         setLoading(false);

@@ -95,7 +95,17 @@ const ListVisitor = () => {
       .then((response) => {
         if(response?.data.data.length > 0){
           const data = response?.data.data;
-          setVisitor(data);
+          setVisitor(data.map((row,id ) => (
+            { 
+                key:id,
+                visitorName: row.visitorName,
+                buildingName: row.buildingName, 
+                visitDate:row.visitDate,
+                flatNo: row.flatNo,
+                email:row.email,
+                ID: row._id,
+              }
+            )));
           setLoading(false);
         }else{
           setLoading(false);

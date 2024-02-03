@@ -201,9 +201,9 @@ const BuildingForm = ({showDrawer}) => {
                     </Col>
                 </Row>
                 <div className='addform_btn'>
-                <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor}  loading={showLoader} disabled={showLoader} />
-                <AddRealEstateModal open={open} onCancel={onCancel} setRealEstateAdded={setRealEstateAdded}/>
-                <CustomAlert/>
+                    <CustomButton handleClick={handleSave} buttonName={'Save'} bgColor={redColor} color={whiteColor}  loading={showLoader} disabled={showLoader} />
+                    <AddRealEstateModal open={open} onCancel={onCancel} setRealEstateAdded={setRealEstateAdded}/>
+                    <CustomAlert/>
                 </div>
             </div>
         </>

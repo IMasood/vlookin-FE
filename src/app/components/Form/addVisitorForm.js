@@ -159,8 +159,10 @@ const AddVisitorForm = ({ title, showDrawer }) => {
                                     onChange={handleChange}
                                 />
                             </Form.Item>
-                            <Form.Item>
-                                <label>Studio Flat</label>
+                            <Form.Item
+                                label='Studio Flat'
+                                name="studioFlat"
+                                valuePropName="checked">
                                 <Checkbox onChange={handleFlatChange} value={studioFlat} style={{ color: '#ffffff', marginLeft: "12px" }}></Checkbox>
                             </Form.Item>
                             <Form.Item>

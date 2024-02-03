@@ -181,7 +181,8 @@ export const LoginForm = (props) => {
             />
           </Form.Item>
           <RolesSelector handleChange={roleChange} value={role} />
-          <Form.Item>
+          <Form.Item 
+          valuePropName="checked">
             <Checkbox onChange={onChange} style={{ color: "#ffffff" }}>
               Remember me
             </Checkbox>

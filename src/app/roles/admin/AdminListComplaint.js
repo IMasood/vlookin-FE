@@ -120,7 +120,17 @@ export const AdminListComplaint = () => {
       .then((response) => {
         if(response?.data.data.length > 0){
           const data = response?.data.data;
-          setData(data);
+          setData(data.map((row,id ) => (
+            { 
+                key:id,
+                complaintId: row.complaintId,
+                description: row.description, 
+                createdBy:row.createdBy,
+                category: row.category,
+                status:row.status,
+                ID: row._id,
+              }
+            )));
           setLoading(false);
         }else{
           setLoading(false);

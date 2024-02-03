@@ -53,7 +53,8 @@ const CusTable = ({ columns, data, heading, subHeading, route, loading, showDraw
   
             />
           </div> : 
-            <Table className='table' columns={columns} dataSource={data} style={{ color: '#4A0D37' }} />
+            <Table className='table' columns={columns} dataSource={data} style={{ color: '#4A0D37' }}
+           />
         }
       </div>
       <br />

@@ -104,6 +104,7 @@ const ListTenant = () => {
       .then((res) => {
         setListData(res?.data.data.map((row,id ) => (
           { 
+              key:id,
               tenantName: row.tenantName,
               email: row.email, 
               contact: row.contact,
@@ -113,7 +114,7 @@ const ListTenant = () => {
               buildingName:row.buildingId?.buildingName,
               flatNo:row.apartmentId?.flatNo,
               _id: row._id,
-              key:row.id
+              ID: row._id,
             }
           )));
         setLoading(false);

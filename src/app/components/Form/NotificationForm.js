@@ -104,6 +104,7 @@ const NotificationForm = ({ showDrawer }) => {
                 <Row >
                     <Col md={10} sm={16}>
                         <div style={{ marginTop: '15px' }}>
+                        <Form>
                             <Form.Item
                                 rules={
                                     [{ required: true, message: "Please enter title" }]
@@ -130,7 +131,7 @@ const NotificationForm = ({ showDrawer }) => {
                                 placeholder="Add Description"
                                 className="apartment_form_input"
                             /> 
-
+                        </Form>
                         </div>
                     </Col>
                     <Col offset={isMobile ? 0 : 4} md={10} sm={16}>
@@ -139,11 +140,16 @@ const NotificationForm = ({ showDrawer }) => {
                              : 
                                 <BuildingDropDown setSelectedBuilding={setSelectedBuilding} />
                             }
+                            <Form>
+                                <Form.Item 
+                                    label='Notifyee All'
+                                    name="notifyeeAll"
+                                    valuePropName="checked"
+                                    >
+                                    <Checkbox onChange={handleNotifyeeChange} value={notifyeeAll} style={{ color: '#ffffff', marginLeft: "12px" }}></Checkbox>
+                                </Form.Item>
+                            </Form>
 
-                            <Form.Item>
-                                <label>Notifyee All</label>
-                                <Checkbox onChange={handleNotifyeeChange} value={notifyeeAll} style={{ color: '#ffffff', marginLeft: "12px" }}></Checkbox>
-                            </Form.Item>
                             {
                                 notifyeeAll ? '' : 
                                 <div>

@@ -48,8 +48,17 @@ export const ListReceipts = () => {
     axios
       .get(apiRoutes.getReceipts)
       .then((res) => {
-        setData(res.data.data);
-        setLoading(false);
+        const data = res?.data.data;
+        setData(data.map((row,id ) => (
+          { 
+              key:id,
+              receiptDetails: row.receiptDetails,
+              parkingPrice: row.parkingPrice, 
+              periodOfContract:row.periodOfContract,
+              ID: row._id,
+            }
+          )));        
+          setLoading(false);
       })
       .catch((e) => console.log(e));
   }, []);

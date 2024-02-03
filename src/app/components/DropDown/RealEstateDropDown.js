@@ -45,7 +45,7 @@ const RealEstateDropDown = ({
       onChange={handleChange}
       className={className ? className : "building_selector"}
       disabled={disabled && disabled}
-
+      optionLabelProp="children" 
     >
       {realEstate?.map((realEstate) => (
         <Option 

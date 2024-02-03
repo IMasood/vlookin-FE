@@ -19,15 +19,7 @@ const SuperAdminListVisitor = () => {
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
 
-  const [visitor, setVisitor] = useState([
-    {
-      visitorName: "",
-      comments: "",
-      buildingName: "",
-      flatNo: "",
-      email: "",
-    },
-  ]);
+  const [visitor, setVisitor] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -108,8 +100,18 @@ const SuperAdminListVisitor = () => {
       .then((response) => {
         if(response?.data.data.length > 0){
           const data = response?.data.data;
-          setVisitor(data);
-          setLoading(false);
+          setVisitor(data.map((row,id ) => (
+            { 
+                key:id,
+                visitorName: row.visitorName,
+                buildingName: row.buildingName, 
+                visitDate:row.visitDate,
+                flatNo: row.flatNo,
+                email:row.email,
+                ID: row._id,
+              }
+            )));
+            setLoading(false);
         }else{
           setLoading(false);
           setVisitor([]);

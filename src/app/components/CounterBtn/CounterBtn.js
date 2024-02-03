@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import './style.css'
 

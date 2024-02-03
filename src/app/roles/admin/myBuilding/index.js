@@ -79,79 +79,28 @@ export const MyBuildings = () => {
         }
       ]
     },
-    {
-      title: "Visitors",
-      dataIndex: "visitors",
-      // key: "visitors",
-      children : [
-        {
-          title: 'Name',
-          dataIndex: "userName",
-          // key: "userName",
-          width:50
-        },
-        {
-          title: 'Email',
-          dataIndex: "email",
-          // key: "email",
-          width:50
-        },
-        {
-          title: 'Contact',
-          dataIndex: "contact",
-          // key: "contact",
-          width:50
-        }
-      ]
 
-    },
-    {
-      title: "Maintenance",
-      dataIndex: "maintenance",
-      // key: "maintenance",
-      children : [
-        {
-          title: 'Name',
-          dataIndex: "userName",
-          // key: "userName",
-          width:50
-        },
-        {
-          title: 'Email',
-          dataIndex: "email",
-          // key: "email",
-          width:50
-        },
-        {
-          title: 'Contact',
-          dataIndex: "contact",
-          // key: "contact",
-          width:50
-        }
-      ]
-
-    },
     {
       title: "Comaplaints",
       dataIndex: "complaints",
-      // key: "complaints",
+      key: "buildingcomplaints",
       children : [
         {
           title: 'Id',
           dataIndex: "complaintId",
-          // key: "complaintId",
+          key: "buildingcomplaintId",
           width:50
         },
         {
           title: 'Category',
           dataIndex: "category",
-          // key: "category",
+          key: "buildingcategory",
           width:50
         },
         {
           title: 'Status',
           dataIndex: "status",
-          // key: "status",
+          key: "buildingstatus",
           width:50
         }
       ]

@@ -94,8 +94,18 @@ export const Building = () => {
       .then((response) => {
         if(response?.data.data.length > 0){
           const data = response?.data.data;
-          setData(data);
-          setLoading(false);
+          setData(data.map((row,id ) => (
+            { 
+                key:id,
+                fullName: row.fullName,
+                buildingName: row.buildingName, 
+                buildingCode:row.buildingCode,
+                landmark: row.landmark,
+                floorCount:row.floorCount,
+                parkingCount:row.parkingCount,
+                ID: row._id,
+              }
+            )));
         }else{
           setLoading(false);
           setData([]);

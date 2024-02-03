@@ -95,6 +95,18 @@ export const ListAppartment = () => {
       axios.get(`${apiRoutes.getApartment}&buildingId=${selectedBuilding}`).then((response) => {
         if(response?.data.data.length > 0){
           const data = response?.data.data;
+          setData(data.map((row,id ) => (
+            { 
+                key:id,
+                apartmentType: row.apartmentType,
+                floorNo: row.floorNo, 
+                area:row.area,
+                rent: row.rent,
+                furnished:row.furnished,
+                flatNo:row.flatNo,
+                ID: row._id,
+              }
+            )));
           setData(data);
           setLoading(false);
         }else{
