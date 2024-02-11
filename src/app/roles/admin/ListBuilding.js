@@ -113,8 +113,10 @@ export const ListBuilding = () => {
           )));
         setLoading(false);
       })
-      .catch((e) => console.log(e));
-  }, []);
+      .catch((e) => {
+        setLoading(false);
+        console.log(e)});
+  });
 
 
   const filteredData = data.filter((item) =>

@@ -34,7 +34,6 @@ const EditAppartmentForm = ({ showDrawer }) => {
   const [bathroom, setBathroom] = useState("");
   const [dining, setDining] = useState("");
   const [living, setLiving] = useState("");
-  const [open, setOpen] = useState(false);
   const [balcony, setBalcony] = useState(false);
   const [showLoader, setShowLoader] = useState(false)
 
@@ -54,9 +53,6 @@ const EditAppartmentForm = ({ showDrawer }) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
   };
 
-  const onCancel = () => {
-    setOpen(false);
-  };
 
   const handleSave = (e) => {
     e.preventDefault();
@@ -140,7 +136,7 @@ const EditAppartmentForm = ({ showDrawer }) => {
 
   useEffect(() => {
     getApartments();
-  }, []);
+  });
 
   return (
     <>

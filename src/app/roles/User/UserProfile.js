@@ -44,7 +44,7 @@ const UserProfile = () => {
   useEffect(() => {
     let tenantId = cookie.get('userId');
     getUsers(tenantId);
-  }, []);
+  });
 
   return (
     <div>

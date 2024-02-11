@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Col, Input, Radio, Row } from "antd";
-import { CustomButton, CustomOutlineButton } from "../Button";
+import { Col, Input,Row } from "antd";
+import { CustomButton } from "../Button";
 import "./style.css";
 import { useNavigate, useParams } from "react-router";
 import { Header } from "../Header";
 import { routePaths } from "../../routes/config";
-import OTPmodal from "../Modal/OTPmodal";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { CustomAlert } from "../Alert";
@@ -13,12 +12,11 @@ import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../Header/MobileHeader";
 import BuildingDropDown from "../DropDown";
 
-const EditTenantForm = ({ title, showDrawer }) => {
+const EditTenantForm = ({ showDrawer }) => {
   const { id } = useParams();
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
   const navigate = useNavigate();
 
-  const [modalOpen, setModalOpen] = useState(false);
   const [inputs, setInputs] = React.useState({
     name: "",
     email: "",
@@ -34,17 +32,8 @@ const EditTenantForm = ({ title, showDrawer }) => {
   const handleChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
   };
-  const onSave = () => {
-    console.log("click");
-    setModalOpen(true);
-  };
-  const onCancel = () => {
-    setModalOpen(false);
-  };
 
-  const handleBuildingChange = (value) => {
-    setSelectedBuilding(value);
-  };
+
 
   const handleSave = async (event) => {
     event.preventDefault();
@@ -70,7 +59,7 @@ const EditTenantForm = ({ title, showDrawer }) => {
     };
     try {
       const res = await fetch(url, requestOptions);
-      if (res.status == 200) {
+      if (res.status === 200) {
         toast.success("Tenant Edited Successfully");
         navigate(routePaths.Tenant.listTenant);
       } else {
@@ -101,7 +90,7 @@ const EditTenantForm = ({ title, showDrawer }) => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  });
 
   return (
     <>

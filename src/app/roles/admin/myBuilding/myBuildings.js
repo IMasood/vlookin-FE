@@ -93,7 +93,7 @@ export const MyBuildings = () => {
         setLoading(false);
       })
       .catch((e) => console.log(e));
-  }, []);
+  });
   const filteredData = data.filter((item) =>
     item?.buildingName?.toLowerCase().includes(searchQuery.toLowerCase())
   );

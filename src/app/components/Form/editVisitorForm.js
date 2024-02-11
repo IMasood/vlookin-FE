@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Input, Radio, Row } from "antd";
+import { Col, Input, Radio, Row } from "antd";
 import { CustomButton } from "../Button";
 import "./style.css";
 import { Header } from "../Header";
@@ -54,7 +54,7 @@ const EditVisitorForm = ({ title, showDrawer }) => {
     };
     try {
       const res = await fetch(url, requestOptions);
-      if (res.data.status == 200) {
+      if (res.data.status === 200) {
         toast.success("Visitor Edited Successfully");
       }
     } catch (error) {
@@ -83,7 +83,7 @@ const EditVisitorForm = ({ title, showDrawer }) => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  });
 
   return (
     <>

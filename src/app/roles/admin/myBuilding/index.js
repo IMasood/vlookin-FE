@@ -136,7 +136,7 @@ export const MyBuildings = () => {
     setLoading(true);
     getBuildingDetails()
     getMyBuildings()
-  }, []);
+  });
 
 
   return (

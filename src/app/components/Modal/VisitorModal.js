@@ -97,7 +97,7 @@ const VisitorModal = ({ visibleModal, setVisibleModal, data, id }) => {
 
   useEffect(() => {
     getUsers(data);
-  }, []);
+  });
 
   return (
     <div>

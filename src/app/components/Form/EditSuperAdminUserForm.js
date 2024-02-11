@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SideBar from "../Layouts/SideBar";
-import { Col, Dropdown, Form, Input, Layout, Radio, Row, theme } from "antd";
+import { Col, Dropdown, Form, Input, Radio, Row } from "antd";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../Header/MobileHeader";
 import { routePaths } from "../../routes/config";
@@ -17,10 +16,6 @@ export const EditSuperAdminUser = ({ showDrawer }) => {
 
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
   const navigate = useNavigate();
-
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
 
   const [gender, setGender] = useState(1);
   const [category, setCategory] = useState("tenant");
@@ -104,7 +99,7 @@ export const EditSuperAdminUser = ({ showDrawer }) => {
     };
     try {
       const res = await fetch(url, requestOptions);
-      if (res.status == 200) {
+      if (res.status === 200) {
         toast.success("User Created Successfully");
         navigate(routePaths.Tenant.listTenant);
       } else {
@@ -136,7 +131,7 @@ export const EditSuperAdminUser = ({ showDrawer }) => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  });
 
   return (
     <>

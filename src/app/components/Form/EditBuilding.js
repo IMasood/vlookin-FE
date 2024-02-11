@@ -99,7 +99,7 @@ const EditBuildingForm = ({ showDrawer }) => {
 
   useEffect(() => {
     getBuildings();
-  }, []);
+  });
 
   return (
     <>

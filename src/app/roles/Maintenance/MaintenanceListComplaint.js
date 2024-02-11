@@ -3,7 +3,6 @@ import { apiRoutes, routePaths } from "../../routes/config";
 import CusTable from "../../components/Table/Table";
 import axios from "axios";
 import { CustomAlert } from "../../components/Alert";
-import { useNavigate } from "react-router";
 import SideBar from "../../components/Layouts/SideBar";
 import { FaEye } from "react-icons/fa";
 import ViewCompliantModal from "../../components/Modal/ViewCompliantModal";
@@ -12,7 +11,6 @@ import { getItem } from "../../utils/functions";
 import { Cookies } from "react-cookie";
 
 export const MaintenanceListComplaint = () => {
-  const navigate = useNavigate();
   const cookies = new Cookies();
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
@@ -118,7 +116,7 @@ export const MaintenanceListComplaint = () => {
           setLoading(false);
       })
       .catch((e) => setLoading(false));
-  }, []);
+  });
 
   const filteredData = data.filter((item) =>
     item?.complaintId?.toLowerCase().includes(searchQuery.toLowerCase())

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { apiRoutes, routePaths } from "../../routes/config";
 import CusTable from "../../components/Table/Table";
 import { CustomAlert } from "../../components/Alert";
-import { useNavigate } from "react-router";
 import SideBar from "../../components/Layouts/SideBar";
 import { FaWarehouse, FaThList } from "react-icons/fa";
 import ViewCompliantModal from "../../components/Modal/ViewCompliantModal";
@@ -107,7 +106,7 @@ export const ListComplaint = () => {
         setLoading(false);
       })
       .catch((e) => console.log(e));
-  }, []);
+  });
 
   const filteredData = data.filter((item) =>
     item?.complaintId?.toLowerCase().includes(searchQuery.toLowerCase())

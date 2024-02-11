@@ -19,7 +19,7 @@ export const LoginForm = (props) => {
     password: "",
   });
   const [role, setRole] = useState("tenant");
-  const [cookies, setCookies, removeCookie] = useCookies();
+  const [ setCookies] = useCookies();
 
   const cookie = new Cookies();
 
@@ -54,7 +54,7 @@ export const LoginForm = (props) => {
   useEffect(() => {
     cookie.get('token');
         
-  }, []);
+  });
 
   const userSignUp = async (inputs) => {
     const config = {
@@ -69,12 +69,12 @@ export const LoginForm = (props) => {
         {
           email: inputs.userId,
           password: inputs.password,
-          role: role == 'tenant' ? role : ''
+          role: role === 'tenant' ? role : ''
         },
         config
       )
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           toast.success("Logged in successfully");
           setLoading(false);
           const expirationDate = new Date();

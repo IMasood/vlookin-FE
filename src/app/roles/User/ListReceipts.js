@@ -3,9 +3,8 @@ import { apiRoutes, routePaths } from "../../routes/config";
 import CusTable from "../../components/Table/Table";
 import axios from "axios";
 import { CustomAlert } from "../../components/Alert";
-import { useNavigate } from "react-router";
 import SideBar from "../../components/Layouts/SideBar";
-import { FaThList, FaWarehouse, FaBuilding } from "react-icons/fa";
+import { FaThList, FaWarehouse } from "react-icons/fa";
 import { HiUserAdd } from "react-icons/hi";
 import { getItem } from "../../utils/functions";
 import { BiMessageError } from "react-icons/bi";
@@ -14,9 +13,7 @@ import { MdOutlineDomainDisabled } from "react-icons/md";
 // Action changes need to be done
 
 export const ListReceipts = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [visibleModal, setVisibleModal] = useState(false);
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -61,7 +58,7 @@ export const ListReceipts = () => {
           setLoading(false);
       })
       .catch((e) => console.log(e));
-  }, []);
+  });
 
   // const filteredData = data.filter((item) =>
   //     item?.complaintId?.toLowerCase().includes(searchQuery.toLowerCase())

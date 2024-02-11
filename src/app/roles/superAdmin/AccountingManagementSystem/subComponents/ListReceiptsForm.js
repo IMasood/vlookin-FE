@@ -33,7 +33,7 @@ const ListReceiptsForm = (showDrawer) => {
         console.log(response);
       }
     });
-  }, []);
+  });
 
   const [deleteModals, setDeleteModals] = useState(false);
 
