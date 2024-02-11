@@ -5,25 +5,18 @@ import {
   Row,
   Radio,
   Col,
-  Dropdown,
-  message,
-  Form,
   Input,
 } from "antd";
 import { useMediaQuery } from "react-responsive";
-import { IoMdArrowDropdown } from "react-icons/io";
 import TextArea from "antd/es/input/TextArea";
 import "./style.css";
 import { CustomButton } from "../Button";
-import { async } from "q";
 import { toast } from "react-toastify";
-import { routePaths } from "../../routes/config";
-import { EditOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { CustomAlert } from "../Alert";
+import { redColor, whiteColor } from "../../../assets/colors";
 
-const VisitorModal = ({ visibleModal, setVisibleModal, data, path, id }) => {
-  const [editStatus, setEditStatus] = useState(false);
+
+const VisitorModal = ({ visibleModal, setVisibleModal, data, id }) => {
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
@@ -42,9 +35,7 @@ const VisitorModal = ({ visibleModal, setVisibleModal, data, path, id }) => {
     setVisibleModal(false);
   };
 
-  const handleEdit = () => {
-    setEditStatus(true);
-  };
+
 
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
@@ -72,7 +63,7 @@ const VisitorModal = ({ visibleModal, setVisibleModal, data, path, id }) => {
     };
     try {
       const res = await fetch(url, requestOptions);
-      if (res.status == 200) {
+      if (res.status === 200) {
         setVisibleModal(false);
         toast.success("Visitor Updated Successfully");
       } else {
@@ -188,8 +179,8 @@ const VisitorModal = ({ visibleModal, setVisibleModal, data, path, id }) => {
                   <CustomButton
                     handleClick={(event) => handleUpdate(event, data)}
                     buttonName={"Update"}
-                    bgColor={"#4A0D37"}
-                    color={"#F8F8F8"}
+                    bgColor={redColor}
+                    color={whiteColor}
                   />
                 </div>
               </Col>

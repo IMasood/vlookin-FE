@@ -45,7 +45,7 @@ const SuperAdminListVisitor = () => {
 
   const handleView = (record) => {
     setVisibleModal(true);
-    setId(record._id);
+    setId(record.ID);
     setData(record);
   };
 

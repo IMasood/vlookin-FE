@@ -134,7 +134,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
         });
     } catch (error) {
       setShowLoader(false);
-
       toast.error(error?.response?.data?.message);
     }
   };
@@ -277,7 +276,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
           {category === "tenant" ? (
             <CustomButton
               handleClick={handleGoTo}
-              buttonName={"Redirecting"}
+              buttonName={"Redirect"}
               bgColor={redColor}
               color={whiteColor}
             />

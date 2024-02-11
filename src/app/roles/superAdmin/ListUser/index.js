@@ -31,7 +31,7 @@ export const ListUser = () => {
   };
 
   const handleEdit = (record) => {
-    navigate(`/superAdmin/editUser/${record._id}`);
+    navigate(`/superAdmin/editUser/${record.ID}`);
     localStorage.setItem("buildingData", record);
   };
 
