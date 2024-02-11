@@ -37,7 +37,7 @@ const BuildingDropDown = ({
       axios.get(url).then((response) => {
         const data = response.data.data;
 
-        if(data.length == 0){
+        if(data.length === 0){
           toast.error('Create building first')
           SetDisableBuilding(true)
         }
@@ -55,10 +55,10 @@ const BuildingDropDown = ({
 
   const fetchBuildingData = async () => {
     try {
-        const url = role == 'admin' ? `${apiRoutes.getSelectedBuilding}userId=${userId}` : apiRoutes.getBuilding;
+        const url = role === 'admin' ? `${apiRoutes.getSelectedBuilding}userId=${userId}` : apiRoutes.getBuilding;
         axios.get(url).then((response) => {
           const data = response.data.data;
-          if(data.length == 0){
+          if(data.length === 0){
             toast.error('Create building first')
             SetDisableBuilding(true)
           }

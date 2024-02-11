@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SideBar from "../../components/Layouts/SideBar";
-import { AddSuperAdminUser } from "./AddUser";
 import { superAdminSidebar } from "../../utils/superAdminSideBar";
 import { Cookies } from "react-cookie";
 import NotificationForm from "../../components/Form/NotificationForm";

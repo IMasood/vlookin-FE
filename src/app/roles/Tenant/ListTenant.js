@@ -42,11 +42,18 @@ const ListTenant = () => {
 
   const handleDelete = async (record) => {
     try {
-      const url = `http://195.35.45.131:4000/tenant?id=${record._id}`;
-      await fetch(url, {
+      const url = `http://195.35.45.131:4000/tenant?id=${record.ID}`;
+     let response = await fetch(url, {
         method: "DELETE",
       });
-      toast.success("Tenant Deleted Successfully");
+      if(response){
+        setListData(listData.filter((data) => {
+          return(
+            data.ID !== record.ID
+          )          
+        }))
+        toast.success("Tenant Deleted Successfully");
+      }
     } catch (error) {
       toast.error(error);
     }
@@ -89,7 +96,7 @@ const ListTenant = () => {
       key: "Update",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined onClick={() => handleEdit(record)} />
+          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),

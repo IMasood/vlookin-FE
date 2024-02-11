@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
 import SideBar from "../../../components/Layouts/SideBar";
 import { FaEye } from "react-icons/fa";
-import ViewCompliantModal from "../../../components/Modal/ViewCompliantModal";
 import { DeleteModal } from "../../../components/Modal";
 import CusTable from "../../../components/Table/Table";
 import { CustomAlert } from "../../../components/Alert";
@@ -14,7 +12,6 @@ import SuperAdminCompliantModal from "../../../components/Modal/SuperAdminCompla
 import { Cookies } from "react-cookie";
 
 export const Maintenance = () => {
-  const navigate = useNavigate();
   const cookies = new Cookies();
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
@@ -39,18 +36,22 @@ export const Maintenance = () => {
     setOpen(true);
   };
 
-  const handleEdit = (record) => {
-    navigate(`/admin/editBuilding/${record._id}`);
-    localStorage.setItem("buildingData", record);
-  };
 
   const handleDelete = async (record) => {
     try {
-      const url = `http://195.35.45.131:4000/maintenance/deleteComplaint?id=${record._id}`;
+      const url = `http://195.35.45.131:4000/maintenance/deleteComplaint?id=${record.ID}`;
       const response = await fetch(url, {
         method: "DELETE",
       });
-      toast.success("Complaint Deleted Successfully");
+      if(response){
+        setData(data.filter((data) => {
+          return(
+            data.ID !== record.ID
+          )          
+        }))
+
+        toast.success("Complaint Deleted Successfully");
+      }
     } catch (error) {
       toast.error(error);
     }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Col, Input, Row, Select, Upload, Button, Dropdown } from "antd";
+import { Form, Col, Input, Row, Dropdown } from "antd";
 import { CustomButton } from '../Button';
 import './style.css';
 import { Header } from '../Header';
@@ -9,7 +9,6 @@ import { CustomAlert } from '../Alert';
 import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
 import MobileHeader from '../Header/MobileHeader';
-import { UploadOutlined } from '@ant-design/icons';
 import { apiRoutes, routePaths } from '../../routes/config';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { Cookies } from 'react-cookie';
@@ -107,7 +106,7 @@ const ComplaintForm = ({ showDrawer }) => {
                     }
                     , config)
                 .then((response) => {
-                    if (response.data.message == "Successfully added complaint.") {
+                    if (response.data.message === "Successfully added complaint.") {
                         setShowLoader(false)
                         navigate(routePaths.User.complaintList)
                     } 

@@ -15,16 +15,9 @@ export const AdminListComplaint = () => {
   const cookies = new Cookies();
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
-  const buildingId = cookies.get('buildingId');
-
+  
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([
-    {
-      complaintTitle: "",
-      fullName: "",
-      description: "",
-    },
-  ]);
+  const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
   const [complaints, setComplaint] = useState([]);
@@ -38,11 +31,18 @@ export const AdminListComplaint = () => {
 
   const handleDelete = async (record) => {
     try {
-      const url = `http://195.35.45.131:4000/maintenance/deleteComplaint?id=${record._id}`;
+      const url = `http://195.35.45.131:4000/maintenance/deleteComplaint?id=${record.ID}`;
       const response = await fetch(url, {
         method: "DELETE",
       });
-      toast.success("Complaint Deleted Successfully");
+      if(response){
+        setData(data.filter((data) => {
+          return(
+            data.ID !== record.ID
+          )          
+        }))
+        toast.success("Complaint Deleted Successfully");
+      }
     } catch (error) {
       toast.error(error);
     }

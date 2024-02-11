@@ -1,4 +1,4 @@
-import { FaThList, FaWarehouse, FaBuilding, FaEye } from "react-icons/fa";
+import { FaThList, FaWarehouse } from "react-icons/fa";
 import { MdOutlineReceiptLong } from "react-icons/md";
 import { CgPlayListAdd } from "react-icons/cg";
 import { RiFileList2Line } from "react-icons/ri";

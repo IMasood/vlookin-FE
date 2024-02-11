@@ -17,7 +17,6 @@ export const ListAppartment = () => {
   const cookies = new Cookies();
   const role = cookies.get("role"); 
   const userName = cookies.get('name');
-  const buildingId = cookies.get('buildingId')
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -36,11 +35,17 @@ export const ListAppartment = () => {
 
   const handleDelete = async (record) => {
     try {
-      const url = `http://195.35.45.131:4000/apartment?id=${record._id}`;
+      const url = `http://195.35.45.131:4000/apartment?id=${record.ID}`;
       const response = await fetch(url, {
         method: "DELETE",
       });
-
+      if (response) {
+        setData(data.filter((data) => {
+          return(
+            data.ID !== record.ID
+          )          
+        }))
+      }
     } catch (error) {
       toast.error(error);
     }
@@ -82,7 +87,7 @@ export const ListAppartment = () => {
       key: "Update",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined onClick={() => handleEdit(record)} />
+          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),
@@ -155,7 +160,7 @@ export const ListAppartment = () => {
             setSelectedBuilding={setSelectedBuilding}
           />
         }
-        items={role == 'admin' ? adminSidebar : superAdminSidebar}
+        items={role ==='admin' ? adminSidebar : superAdminSidebar}
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}

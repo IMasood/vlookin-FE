@@ -19,7 +19,6 @@ import { redColor, whiteColor } from '../../../assets/colors';
 const BuildingForm = ({showDrawer}) => {
     const cookie = new Cookies()
     const userId = cookie.get("userId");
-    const { TextArea } = Input;
     const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({
@@ -82,7 +81,7 @@ const BuildingForm = ({showDrawer}) => {
                     "userId": userId
                  } ,config)
             .then((response) => {
-                if(response.data.status == 200){
+                if(response.data.status === 200){
                     setShowLoader(false)
                     toast.success('Building Created Successfully')
                     navigate(routePaths.Admin.addAppartment);

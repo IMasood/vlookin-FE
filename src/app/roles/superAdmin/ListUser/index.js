@@ -3,8 +3,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import SideBar from "../../../components/Layouts/SideBar";
-import { FaEye } from "react-icons/fa";
-import ViewCompliantModal from "../../../components/Modal/ViewCompliantModal";
 import { DeleteModal } from "../../../components/Modal";
 import CusTable from "../../../components/Table/Table";
 import { CustomAlert } from "../../../components/Alert";
@@ -39,11 +37,18 @@ export const ListUser = () => {
 
   const handleDelete = async (record) => {
     try {
-      const url = `http://195.35.45.131:4000/user?id=${record._id}`;
+      const url = `http://195.35.45.131:4000/user?id=${record.ID}`;
       const response = await fetch(url, {
         method: "DELETE",
       });
-      toast.success("User Deleted Successfully");
+      if(response){
+        setData(data.filter((data) => {
+          return(
+            data.ID !== record.ID
+          )          
+        }))
+        toast.success("User Deleted Successfully");
+      }
     } catch (error) {
       toast.error(error);
     }
@@ -81,7 +86,7 @@ export const ListUser = () => {
       key: "action",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined onClick={() => handleEdit(record)} />
+          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),

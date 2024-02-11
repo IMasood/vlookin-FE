@@ -1,4 +1,4 @@
-import { FaThList, FaWarehouse, FaBuilding, FaEye } from 'react-icons/fa';
+import { FaThList, FaWarehouse, FaBuilding } from 'react-icons/fa';
 import { HiUserAdd } from 'react-icons/hi';
 import { MdApartment, MdOutlineDomainDisabled } from 'react-icons/md';
 import { RiWalkFill } from 'react-icons/ri';

@@ -13,7 +13,7 @@ export const CustomButton = ({ buttonName, handleClick, bgColor, color, loading,
                 type="submit"
                 variant='contained'
                 onClick={handleClick}
-                style={{ backgroundColor: bgColor, color, color }}
+                style={{ backgroundColor: bgColor, color: color }}
                 className='button'
                 disabled={disabled}
             >

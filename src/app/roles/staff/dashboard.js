@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { getItem } from '../../utils/functions';
-import { FaThList} from 'react-icons/fa';
 import { HiUserAdd } from 'react-icons/hi';
 import { RiWalkFill } from 'react-icons/ri';
 import SideBar from '../../components/Layouts/SideBar';

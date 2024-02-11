@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { FaEye, FaThList } from "react-icons/fa";
-import { HiUserAdd } from "react-icons/hi";
-import { RiWalkFill } from "react-icons/ri";
+import { FaEye} from "react-icons/fa";
 import axios from "axios";
-import { useNavigate } from "react-router";
-import { EditOutlined } from "@ant-design/icons";
 import { DeleteModal } from "../../../components/Modal";
 import CusTable from "../../../components/Table/Table";
 import { apiRoutes, routePaths } from "../../../routes/config";
-import { getItem } from "../../../utils/functions";
 import SideBar from "../../../components/Layouts/SideBar";
 import { superAdminSidebar } from "../../../utils/superAdminSideBar";
 import VisitorModal from "../../../components/Modal/VisitorModal";
@@ -32,19 +27,19 @@ const SuperAdminListVisitor = () => {
     setOpen(true);
   };
 
-  const navigate = useNavigate();
-
-  const handleEdit = (record) => {
-    navigate(`/visitor/edit/${record._id}`);
-    localStorage.setItem("visitorData", record);
-  };
-
   const handleDelete = async (record) => {
     try {
-      const url = `http://195.35.45.131:4000/visitor?id=${record._id}`;
+      const url = `http://195.35.45.131:4000/visitor?id=${record.ID}`;
       const response = await fetch(url, {
         method: "DELETE",
       });
+      if(response){
+        setVisitor(visitor.filter((data) => {
+          return(
+            data.ID !== record.ID
+          )          
+        }))
+      }
     } catch (error) {}
   };
 

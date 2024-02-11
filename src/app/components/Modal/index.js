@@ -19,10 +19,8 @@ export const DeleteModal = ({handleDelete}) => {
         });
       };
     return(
-        <div>
-            <Space wrap>
-                <DeleteOutlined onClick={showDeleteConfirm}/>
-              </Space>
-        </div>
+        <Space>
+            <DeleteOutlined style={{marginBottom:'10px'}} onClick={showDeleteConfirm}/>
+          </Space>
     )
 }

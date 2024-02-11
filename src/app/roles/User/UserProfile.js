@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Dashboard from "./Dashboard";
-import ComplaintForm from "../../components/Form/ComplaintForm";
 import Profile from "../../components/Form/userProfileForm";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { CustomAlert } from "../../components/Alert";
-import { useMediaQuery } from "react-responsive";
 import { getItem } from '../../utils/functions';
-import { FaThList, FaWarehouse, FaBuilding } from 'react-icons/fa';
+import { FaThList, FaWarehouse } from 'react-icons/fa';
 import { HiUserAdd } from 'react-icons/hi';
 import { BiMessageError } from 'react-icons/bi';
 import { MdOutlineDomainDisabled } from 'react-icons/md';
-import { routePaths } from '../../routes/config';
-import MobileHeader from '../../components/Header/MobileHeader';
 import SideBar from "../../components/Layouts/SideBar";
 import { Cookies, useCookies } from "react-cookie";
 
@@ -34,8 +29,7 @@ const UserProfile = () => {
       [getItem('List Receipts', 'receiptList', <BiMessageError />)]
       ),
   ];
-  const isMobile = useMediaQuery({ query: '(max-width: 700px)' })
-  const [cookies, setCookies, removeCookie] = useCookies();
+  const [setCookies] = useCookies();
 
   const getUsers = async (tenantId) => {
     axios

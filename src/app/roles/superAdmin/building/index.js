@@ -34,11 +34,18 @@ export const Building = () => {
 
   const handleDelete = async (record) => {
     try {
-      const url = `http://195.35.45.131:4000/building?id=${record._id}`;
+      const url = `http://195.35.45.131:4000/building?id=${record.ID}`;
       const response = await fetch(url, {
         method: "DELETE",
       });
-      toast.success("Building Deleted Successfully");
+      if(response){
+          setData(data.filter((data) => {
+            return(
+              data.ID !== record.ID
+            )          
+          }))
+          toast.success("Building Deleted Successfully");
+      }
     } catch (error) {
       toast.error(error);
     }
@@ -80,7 +87,7 @@ export const Building = () => {
       key: "Update",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined onClick={() => handleEdit(record)} />
+          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),

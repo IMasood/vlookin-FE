@@ -26,7 +26,7 @@ const UserDropDown = ({
 
   const fetchUsers = async (buildingId) => {
     try {
-      const apiEndpoint = role == 'tenant' ? `${apiRoutes.getTenant}buildingId=${buildingId}` : `${apiRoutes.getUsers}realEstate=${buildingId}&role=admin`;
+      const apiEndpoint = role === 'tenant' ? `${apiRoutes.getTenant}buildingId=${buildingId}` : `${apiRoutes.getUsers}realEstate=${buildingId}&role=admin`;
       axios.get(apiEndpoint).then((response) => {
         const data = response.data.data;
         if(data.length > 0){

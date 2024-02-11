@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Checkbox, Col, Input, Radio, Row } from "antd";
+import { Col, Input, Row } from "antd";
 import { CustomButton } from "../Button";
 import "./style.css";
 import { Header } from "../Header";
-import { apiRoutes, routePaths } from "../../routes/config";
+import { routePaths } from "../../routes/config";
 import CounterBtn from "../CounterBtn/CounterBtn";
 import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
@@ -12,10 +12,8 @@ import axios from "axios";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../Header/MobileHeader";
 
-const EditBuildingForm = ({ title, showDrawer }) => {
+const EditBuildingForm = ({ showDrawer }) => {
   const { id } = useParams();
-
-  const { TextArea } = Input;
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
@@ -42,7 +40,7 @@ const EditBuildingForm = ({ title, showDrawer }) => {
   const handleSave = (e) => {
     e.preventDefault();
     try {
-      const res = editBuilding(inputs);
+      editBuilding(inputs);
       navigate(routePaths.Admin.listBuilding);
     } catch (error) {}
   };
@@ -70,7 +68,7 @@ const EditBuildingForm = ({ title, showDrawer }) => {
 
     try {
       const res = await fetch(url, requestOptions);
-      if (res.status == 200) {
+      if (res.status === 200) {
         setShowLoader(true);
         toast.success("Building Edited Successfully");
         navigate(routePaths.Admin.listBuilding);

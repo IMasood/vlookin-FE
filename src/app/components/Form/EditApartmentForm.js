@@ -3,16 +3,15 @@ import { Col, Form, Input, Radio, Row } from "antd";
 import { CustomButton } from "../Button";
 import "./style.css";
 import { Header } from "../Header";
-import { apiRoutes, routePaths } from "../../routes/config";
+import { routePaths } from "../../routes/config";
 import CounterBtn from "../CounterBtn/CounterBtn";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../Header/MobileHeader";
-import { ApartmentModal } from "../Modal/ApartmentModal";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 
-const EditAppartmentForm = ({ title, showDrawer }) => {
+const EditAppartmentForm = ({ showDrawer }) => {
   const { id } = useParams();
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
   const navigate = useNavigate();
@@ -38,10 +37,6 @@ const EditAppartmentForm = ({ title, showDrawer }) => {
   const [showLoader, setShowLoader] = useState(false)
 
 
-  const handleBuildingChange = (value) => {
-    setSelectedBuilding(value);
-  };
-
   const handleRadioChange = (e) => {
     setInputs({ furnished: e.target.value });
   };
@@ -65,7 +60,7 @@ const EditAppartmentForm = ({ title, showDrawer }) => {
   const handleSave = (e) => {
     e.preventDefault();
     try {
-      const res = editApartments(inputs);
+      editApartments(inputs);
       navigate(routePaths.Admin.listBuilding);
     } catch (error) {}
   };
@@ -93,7 +88,7 @@ const EditAppartmentForm = ({ title, showDrawer }) => {
 
     try {
       const res = await fetch(url, requestOptions);
-      if (res.status == 200) {
+      if (res.status === 200) {
         setShowLoader(true)
         toast.success("Building Edited Successfully");
         navigate(routePaths.Admin.listBuilding);

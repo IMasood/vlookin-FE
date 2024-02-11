@@ -158,7 +158,7 @@ const SuperAdminCompliantModal = ({
                     <p style={{ marginLeft: "10px" }}> {data.status}</p>
                     <EditOutlined
                       onClick={handleEdit}
-                      style={{ marginLeft: "10px" }}
+                      style={{ marginLeft: "10px", paddingTop:'10px' }}
                     />
                   </div>
                   {editStatus && (

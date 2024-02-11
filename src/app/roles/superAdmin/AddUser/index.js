@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Dropdown, Form, Input, Layout, Radio, Row, theme } from "antd";
+import { Col, Dropdown, Form, Input, Radio, Row } from "antd";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../../../components/Header/MobileHeader";
 import { apiRoutes, routePaths } from "../../../routes/config";
@@ -11,7 +11,6 @@ import { CustomAlert } from "../../../components/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import BuildingDropDown from "../../../components/DropDown";
-import { Cookies } from "react-cookie";
 import RealEstateDropDown from "../../../components/DropDown/RealEstateDropDown";
 import { redColor, whiteColor } from "../../../../assets/colors";
 export const AddSuperAdminUser = ({ showDrawer }) => {
@@ -19,9 +18,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
   const navigate = useNavigate();
 
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
   const [selectedBuilding, setSelectedBuilding] = useState("");
 
   const [gender, setGender] = useState(1);
@@ -34,23 +30,23 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
     contact: "", //052104885
     realEstate: "",
   });
-  const [allowSubUsers, setAllowSubUsers] = useState(false);
-  const [allowMultipleBuildings, setAllowMultipleBuildings] = useState(false);
+  // const [allowSubUsers, setAllowSubUsers] = useState(false);
+  // const [allowMultipleBuildings, setAllowMultipleBuildings] = useState(false);
   const [selectedRealEstate, setSelectedRealEstate] = useState('');
   const [showLoader, setShowLoader] = useState(false)
 
   const onChange = (e) => {
     setGender(e.target.value);
-    setAllowSubUsers(e.target.value);
+    // setAllowSubUsers(e.target.value);
   };
 
-  const handleMultipleBuildings = (e) => {
-    setAllowMultipleBuildings(e.target.value);
-  };
+  // const handleMultipleBuildings = (e) => {
+  //   setAllowMultipleBuildings(e.target.value);
+  // };
 
-  const handleSubUsers = (e) => {
-    setAllowSubUsers(e.target.value);
-  };
+  // const handleSubUsers = (e) => {
+  //   // setAllowSubUsers(e.target.value);
+  // };
 
   const items = [
     {
@@ -122,7 +118,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
           config
         )
         .then((response) => {
-          if (response.data.success == true) {
+          if (response.data.success === true) {
             setShowLoader(false);
             toast.success("User Created Successfully");
             navigate(routePaths.SuperAdmin.listUser);
@@ -147,9 +143,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
     toast.info("Redirecting to Add Tenant Page");
     navigate(routePaths.Tenant.dashboard);
   };
-
-  const cookies = new Cookies();
-  const role = cookies.get("role");
 
   return (
     <>
@@ -182,7 +175,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               {category}
             </Dropdown.Button>
             <br />
-            {category == 'admin' && (
+            {category === 'admin' && (
               <>
                 <div className="form-check d-flex align-items-end col-md-6 w-100">
                   <input
@@ -213,7 +206,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               name="userName"
               value={inputs.userName}
               onChange={handleInputs}
-              disabled={category == "tenant" ? true : false}
+              disabled={category === "tenant" ? true : false}
             />
             <Input
               placeholder="Email"
@@ -221,7 +214,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               name="email"
               value={inputs.email}
               onChange={handleInputs}
-              disabled={category == "tenant" ? true : false}
+              disabled={category === "tenant" ? true : false}
             />
             <Input
               placeholder="Password"
@@ -229,7 +222,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               name="password"
               value={inputs.password}
               onChange={handleInputs}
-              disabled={category == "tenant" ? true : false}
+              disabled={category === "tenant" ? true : false}
             />
             <Input
               placeholder="User Id"
@@ -237,7 +230,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               name="userId"
               value={inputs.userId}
               onChange={handleInputs}
-              disabled={category == "tenant" ? true : false}
+              disabled={category === "tenant" ? true : false}
             />
               <Input
                 placeholder="Contact"
@@ -245,7 +238,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 name="contact"
                 value={inputs.contact}
                 onChange={handleInputs}
-                disabled={category == "tenant" ? true : false}
+                disabled={category === "tenant" ? true : false}
               />
 
           </Col>
@@ -255,23 +248,23 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 <Radio.Group
                   onChange={onChange}
                   value={gender}
-                  disabled={category == "tenant" ? true : false}
+                  disabled={category === "tenant" ? true : false}
                 >
                   <Radio value={"male"}>Male</Radio>
                   <Radio value={"female"}>Female</Radio>
                 </Radio.Group>
               <br />
               {
-                category != 'admin' && 
+                category !== 'admin' && 
                 <>
                   <p style={{ color: "#4A0D37" }}>Real Estate</p>
                   <RealEstateDropDown
-                    disabled={category == "tenant" ? true : false}
+                    disabled={category === "tenant" ? true : false}
                     setSelectedRealEstate={setSelectedRealEstate}/>
                   <p style={{ color: "#4A0D37" }}>Building</p>
                   <BuildingDropDown
                     setSelectedBuilding={setSelectedBuilding}
-                    disabled={category == "tenant" ? true : false}
+                    disabled={category === "tenant" ? true : false}
                     realEstateId={selectedRealEstate}
                   />
                 </>
@@ -281,7 +274,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
           </Col>
         </Row>
         <div>
-          {category == "tenant" ? (
+          {category === "tenant" ? (
             <CustomButton
               handleClick={handleGoTo}
               buttonName={"Redirecting"}

@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
 } from "react-router-dom";
 import { Login } from "../components/Login";
 import { routePaths } from "./config";
@@ -17,14 +16,12 @@ import { ListAppartment } from "../roles/admin/ListApartment";
 import { ListBuilding } from "../roles/admin/ListBuilding";
 import AdminDashboard from "../roles/admin/dashboard";
 import AddAppartment from "../roles/admin/AddAppartment";
-import EditTenantForm from "../components/Form/EditTenantForm";
 import { EditTenant } from "../roles/Tenant/EditTenant";
 import AddBuilding from "../roles/admin/AddBuilding";
 import AddUsers from "../roles/admin/AddUser";
 import EditBuilding from "../roles/admin/EditBuilding";
 import Receipt from "../roles/staff/Receipt";
 import EditApartment from "../roles/admin/EditApartment";
-import Dashboard from "../roles/User/Dashboard";
 import AddComplaint from "../roles/User/AddComplaint";
 import { ListComplaint } from "../roles/User/ListComplaint";
 import MaintanceDashboard from "../roles/Maintenance/Dashboard";
@@ -37,8 +34,7 @@ import SuperAdminListVisitor from "../roles/superAdmin/Visitor";
 import { Building } from "../roles/superAdmin/building";
 import EditSuperAdmin from "../roles/superAdmin/editUser";
 import UserProfile from "../roles/User/UserProfile";
-import { LoginForm } from "../components/Login/form";
-import { Cookies } from "react-cookie";
+// import { Cookies } from "react-cookie";
 import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceipt";
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
 import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/JournalVoucher";
@@ -49,8 +45,8 @@ import NotifyTenant from "../roles/admin/NotifyTenant";
 import NotifyAdmin from "../roles/superAdmin/NotifyAdmin";
 
 const WebRoutes = () => {
-  const cookies = new Cookies();
-  const token = cookies.get("token");
+  // const cookies = new Cookies();
+  // const token = cookies.get("token");
 
 
   return (

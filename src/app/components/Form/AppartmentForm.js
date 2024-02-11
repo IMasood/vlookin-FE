@@ -96,7 +96,7 @@ const AppartmentForm = ({ title, showDrawer }) => {
                 data,
                 config)
                 .then((response) => {
-                    if (response.data.status == 200) {
+                    if (response.data.status === 200) {
                         setShowLoader(false)
                         toast.success('Apartment Created Successfully')
                         navigate(routePaths.Admin.listAppartment);
