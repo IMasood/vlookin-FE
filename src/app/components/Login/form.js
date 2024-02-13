@@ -19,7 +19,7 @@ export const LoginForm = (props) => {
     password: "",
   });
   const [role, setRole] = useState("tenant");
-  const [ setCookies] = useCookies();
+  const [cookies, setCookies, removeCookie] = useCookies();
 
   const cookie = new Cookies();
 
@@ -54,7 +54,7 @@ export const LoginForm = (props) => {
   useEffect(() => {
     cookie.get('token');
         
-  });
+  }, []);
 
   const userSignUp = async (inputs) => {
     const config = {
@@ -182,7 +182,7 @@ export const LoginForm = (props) => {
           </Form.Item>
           <RolesSelector handleChange={roleChange} value={role} />
           <Form.Item 
-          valuePropName="checked">
+              valuePropName="checked">
             <Checkbox onChange={onChange} style={{ color: "#ffffff" }}>
               Remember me
             </Checkbox>
