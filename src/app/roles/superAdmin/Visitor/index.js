@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FaEye} from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import axios from "axios";
 import { DeleteModal } from "../../../components/Modal";
+import { EyeOutlined } from "@ant-design/icons";
 import CusTable from "../../../components/Table/Table";
 import { apiRoutes, routePaths } from "../../../routes/config";
 import SideBar from "../../../components/Layouts/SideBar";
@@ -11,8 +12,8 @@ import { Cookies } from "react-cookie";
 
 const SuperAdminListVisitor = () => {
   const cookies = new Cookies();
-  const role = cookies.get("role"); 
-  const userName = cookies.get('name');
+  const role = cookies.get("role");
+  const userName = cookies.get("name");
 
   const [visitor, setVisitor] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ const SuperAdminListVisitor = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [data, setData] = useState([]);
   const [id, setId] = useState("");
-  const [selectedBuilding, setSelectedBuilding] = useState('')
+  const [selectedBuilding, setSelectedBuilding] = useState("");
 
   const showDrawer = () => {
     setOpen(true);
@@ -33,12 +34,12 @@ const SuperAdminListVisitor = () => {
       const response = await fetch(url, {
         method: "DELETE",
       });
-      if(response){
-        setVisitor(visitor.filter((data) => {
-          return(
-            data.ID !== record.ID
-          )          
-        }))
+      if (response) {
+        setVisitor(
+          visitor.filter((data) => {
+            return data.ID !== record.ID;
+          })
+        );
       }
     } catch (error) {}
   };
@@ -79,8 +80,22 @@ const SuperAdminListVisitor = () => {
       title: "Update",
       key: "Update",
       render: (_, record) => (
-        <div className="icon">
-          <FaEye onClick={() => handleView(record)} />
+        <div className="d-flex align-items-center">
+          {/* <FaEye
+            className="pt-1"
+            style={{
+              maxHeight: "20px",
+              minHeight: "20px",
+              maxWidth: "20px",
+              minWidth: "20px",
+            }}
+            onClick={() => handleView(record)}
+          /> */}
+          <EyeOutlined
+            className="me-1"
+            style={{ fontSize: "20px" }}
+            onClick={() => handleView(record)}
+          />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),
@@ -89,33 +104,33 @@ const SuperAdminListVisitor = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `${apiRoutes.getVisitor}buildingId=${selectedBuilding}`
+    const url = `${apiRoutes.getVisitor}buildingId=${selectedBuilding}`;
     axios
       .get(url)
       .then((response) => {
-        if(response?.data.data.length > 0){
+        if (response?.data.data.length > 0) {
           const data = response?.data.data;
-          setVisitor(data.map((row,id ) => (
-            { 
-                key:id,
-                visitorName: row.visitorName,
-                buildingName: row.buildingName, 
-                visitDate:row.visitDate,
-                flatNo: row.flatNo,
-                email:row.email,
-                ID: row._id,
-              }
-            )));
-            setLoading(false);
-        }else{
+          setVisitor(
+            data.map((row, id) => ({
+              key: id,
+              visitorName: row.visitorName,
+              buildingName: row.buildingName,
+              visitDate: row.visitDate,
+              flatNo: row.flatNo,
+              email: row.email,
+              ID: row._id,
+            }))
+          );
+          setLoading(false);
+        } else {
           setLoading(false);
           setVisitor([]);
         }
         setLoading(false);
-        })
+      })
       .catch((e) => {
         setLoading(false);
-        setVisitor([]);      
+        setVisitor([]);
       });
   }, [selectedBuilding]);
 
@@ -131,7 +146,7 @@ const SuperAdminListVisitor = () => {
             columns={columns}
             data={filteredData ? filteredData : visitor}
             heading={"View Visitors"}
-            subHeading={"welcome to Super Admin panel"}
+            subHeading={"Welcome to super admin panel"}
             route={routePaths.Visitor.login}
             loading={loading}
             showDrawer={showDrawer}
@@ -144,8 +159,8 @@ const SuperAdminListVisitor = () => {
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
-        role = {role}
-        userName = {userName}
+        role={role}
+        userName={userName}
       />
       <VisitorModal
         id={id}

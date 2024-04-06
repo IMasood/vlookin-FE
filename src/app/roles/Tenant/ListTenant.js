@@ -21,14 +21,14 @@ import { superAdminSidebar } from "../../utils/superAdminSideBar";
 const ListTenant = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
-  const role = cookies.get("role"); 
-  const userName = cookies.get('name');
-  const buildingId = cookies.get('buildingId');
+  const role = cookies.get("role");
+  const userName = cookies.get("name");
+  const buildingId = cookies.get("buildingId");
 
   const [listData, setListData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [selectedBuilding, setSelectedBuilding] = useState('')
+  const [selectedBuilding, setSelectedBuilding] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   const showDrawer = () => {
@@ -43,15 +43,15 @@ const ListTenant = () => {
   const handleDelete = async (record) => {
     try {
       const url = `http://195.35.45.131:4000/tenant?id=${record.ID}`;
-     let response = await fetch(url, {
+      let response = await fetch(url, {
         method: "DELETE",
       });
-      if(response){
-        setListData(listData.filter((data) => {
-          return(
-            data.ID !== record.ID
-          )          
-        }))
+      if (response) {
+        setListData(
+          listData.filter((data) => {
+            return data.ID !== record.ID;
+          })
+        );
         toast.success("Tenant Deleted Successfully");
       }
     } catch (error) {
@@ -65,18 +65,16 @@ const ListTenant = () => {
       dataIndex: "tenantName",
     },
     {
-        title: 'Building Name',
-        dataIndex: 'buildingName',
+      title: "Building Name",
+      dataIndex: "buildingName",
     },
     {
       title: "Email",
       dataIndex: "email",
-      
     },
     {
       title: "MobileNo",
       dataIndex: "contact",
-
     },
     {
       title: "Flat No",
@@ -89,14 +87,17 @@ const ListTenant = () => {
     {
       title: "Nationality",
       dataIndex: "nationality",
-    },    
+    },
 
     {
       title: "Update",
       key: "Update",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
+          <EditOutlined
+            style={{ paddingTop: "10px" }}
+            onClick={() => handleEdit(record)}
+          />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),
@@ -105,29 +106,31 @@ const ListTenant = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = selectedBuilding ? `${apiRoutes.getTenant}buildingId=${selectedBuilding}` : `${apiRoutes.getTenant}buildingId=${buildingId}`
+    const url = selectedBuilding
+      ? `${apiRoutes.getTenant}buildingId=${selectedBuilding}`
+      : `${apiRoutes.getTenant}buildingId=${buildingId}`;
     axios
       .get(url)
       .then((res) => {
-        setListData(res?.data.data.map((row,id ) => (
-          { 
-              key:id,
-              tenantName: row.tenantName,
-              email: row.email, 
-              contact: row.contact,
-              flatNo:row.flatNo,
-              officeNo:row.officeNo,
-              nationality:row.nationality,
-              buildingName:row.buildingId?.buildingName,
-              flatNo:row.apartmentId?.flatNo,
-              _id: row._id,
-              ID: row._id,
-            }
-          )));
+        setListData(
+          res?.data.data.map((row, id) => ({
+            key: id,
+            tenantName: row.tenantName,
+            email: row.email,
+            contact: row.contact,
+            flatNo: row.flatNo,
+            officeNo: row.officeNo,
+            nationality: row.nationality,
+            buildingName: row.buildingId?.buildingName,
+            flatNo: row.apartmentId?.flatNo,
+            _id: row._id,
+            ID: row._id,
+          }))
+        );
         setLoading(false);
       })
       .catch((e) => {
-        setLoading(false)
+        setLoading(false);
       });
   }, [selectedBuilding]);
 
@@ -143,7 +146,7 @@ const ListTenant = () => {
             columns={columns}
             data={filteredData ? filteredData : listData}
             heading={"View Tenant"}
-            subHeading={"Welcome to Tenant panel"}
+            subHeading={"Welcome to tenant panel"}
             loading={loading}
             showDrawer={showDrawer}
             searchQuery={searchQuery}
@@ -151,12 +154,12 @@ const ListTenant = () => {
             setSelectedBuilding={setSelectedBuilding}
           />
         }
-        items={role == 'admin' ? adminSidebar : superAdminSidebar}
+        items={role == "admin" ? adminSidebar : superAdminSidebar}
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
-        role={role ? role : ''} 
-        userName={userName ? userName : ''}
+        role={role ? role : ""}
+        userName={userName ? userName : ""}
       />
       <CustomAlert />
     </div>

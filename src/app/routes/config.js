@@ -7,104 +7,103 @@
 //just check
 
 const admin = {
-  login: "/login",
-  dashboard: "/admin/dashboard",
-  addUser: "/admin/addUser",
-  listUser: "/admin/listUser",
-  listBuilding: "/admin/listBuilding",
-  listAppartment: "/admin/listApartment",
-  addbuilding: "/admin/addBuilding",
-  addAppartment: "/admin/addAppartment",
-  editBuilding: "/admin/editBuilding/:id",
-  editApartment: "/admin/editApartment/:id",
-  adminListComplaint: "/admin/adminlistcomplaint",
-  notifyTenant : '/admin/notifyTenant'
+  login: `/login`,
+  dashboard: `/admin/dashboard`,
+  addUser: `/admin/addUser`,
+  listUser: `/admin/listUser`,
+  listBuilding: `/admin/listBuilding`,
+  listAppartment: `/admin/listApartment`,
+  addbuilding: `/admin/addBuilding`,
+  addAppartment: `/admin/addAppartment`,
+  editBuilding: `/admin/editBuilding/:id`,
+  editApartment: `/admin/editApartment/:id`,
+  adminListComplaint: `/admin/adminlistcomplaint`,
+  notifyTenant: "/admin/notifyTenant",
 };
 
 const superAdmin = {
-  login: "/superAdmin/login",
-  addUser: "/superAdmin/addUser",
-  editUser: "/superAdmin/editUser/:id",
-  listUser: "/superAdmin/listUser",
-  building: "/superAdmin/building",
-  maintenance: "/superAdmin/maintenance/complaints",
-  visitor: "/superAdmin/visitor",
-  tenant: "/superAdmin/tenant",
-  apartment: "/superAdmin/apartment",
-  addReceipt: "/superAdmin/addReceipt",
-  listReceipt: "/superAdmin/listReceipt",
-  accountsDirectory: "/superAdmin/accountsDirectory",
-  bankPaymentVoucher: "/superAdmin/bankPaymentVoucher",
-  journalVoucher: "/superAdmin/journalVoucher",
-  tenancyExpiryList: "/superAdmin/tenancyExpiryList",
-  notifyAdmin : '/superAdmin/notifyAdmin'
+  login: `/superAdmin/login`,
+  addUser: `/superAdmin/addUser`,
+  editUser: `/superAdmin/editUser/:id`,
+  listUser: `/superAdmin/listUser`,
+  building: `/superAdmin/building`,
+  maintenance: `/superAdmin/maintenance/complaints`,
+  visitor: `/superAdmin/visitor`,
+  tenant: `/superAdmin/tenant`,
+  apartment: `/superAdmin/apartment`,
+  addReceipt: `/superAdmin/addReceipt`,
+  listReceipt: `/superAdmin/listReceipt`,
+  accountsDirectory: `/superAdmin/accountsDirectory`,
+  bankPaymentVoucher: `/superAdmin/bankPaymentVoucher`,
+  journalVoucher: `/superAdmin/journalVoucher`,
+  tenancyExpiryList: `/superAdmin/tenancyExpiryList`,
+  notifyAdmin: "/superAdmin/notifyAdmin",
 };
 
 // tenant is a role assigned to the user afterwards by the admin
 const tenant = {
-  login: "/tenant/login",
-  dashboard: "/tenant/dashboard",
-  listTenant: "/tenant/list",
-  editTenant: "/tenant/edit/:id",
+  login: `/tenant/login`,
+  dashboard: `/tenant/dashboard`,
+  listTenant: `/tenant/list`,
+  editTenant: `/tenant/edit/:id`,
 };
 
 const maintenance = {
-  dashboard: "/maintenance/dashboard",
-  complaintList: "/maintenance/complaints",
+  dashboard: `/maintenance/dashboard`,
+  complaintList: `/maintenance/complaints`,
 };
 
 const visitor = {
-  login: "/visitor/login",
-  dashboard: "/visitor/dashboard",
-  listVisitor: "/visitor/list",
-  editVisitor: "/visitor/edit/:id",
-  receipt: "/visitor/receipt",
+  login: `/visitor/login`,
+  dashboard: `/visitor/dashboard`,
+  listVisitor: `/visitor/list`,
+  editVisitor: `/visitor/edit/:id`,
+  receipt: `/visitor/receipt`,
 };
 
 // user is not the same as admin
 const user = {
-  dashboard: "/user/dashboard",
-  complaintForm: "/user/complaint-form",
-  complaintList: "/user/complaint-list",
-  receiptList: "/user/receipts",
+  dashboard: `/user/dashboard`,
+  complaintForm: `/user/complaint-form`,
+  complaintList: `/user/complaint-list`,
+  receiptList: `/user/receipts`,
 };
 
 const upkeeper = {
-  login: "upkeeper/login",
+  login: `upkeeper/login`,
 };
 
 const home = {
-  home: "/",
+  home: `/`,
 };
 
-export const BASE_URL = 'http://195.35.45.131:4000';
+export const BASE_URL = "http://195.35.45.131:4000";
 
 export const apiRoutes = {
-  postUser: "http://195.35.45.131:4000/auth/login",
-  getUsers: "http://195.35.45.131:4000/user?",
-  createUsers: "http://195.35.45.131:4000/user",
-  createVisitor: "http://195.35.45.131:4000/visitor/createVisit",
-  getVisitor: `http://195.35.45.131:4000/visitor?`, //all=true
-  deleteVisitor: "http://195.35.45.131:4000/visitor/",
-  getTenant: "http://195.35.45.131:4000/tenant?",
-  postTenant: "http://195.35.45.131:4000/tenant",
-  getBuilding: "http://195.35.45.131:4000/building?all=true",
-  getApartment: "http://195.35.45.131:4000/apartment?all=true",
-  createBuilding: "http://195.35.45.131:4000/building",
-  createApartment: "http://195.35.45.131:4000/apartment",
-  getComplaints: "http://195.35.45.131:4000/maintenance/getComplaint",
-  createComplaints: "http://195.35.45.131:4000/maintenance/addComplaint",
-  getReceipts: "http://195.35.45.131:4000/receipt?all=true",
-  createRealEstate: "http://195.35.45.131:4000/realEstate",
-  getRealEstate: "http://195.35.45.131:4000/realEstate?all=true",
-  getSelectedBuilding: "http://195.35.45.131:4000/building?",
-  postReceipt : "http://195.35.45.131:4000/receipt",
-  myBuilding: "http://195.35.45.131:4000/building/details",
-  getSelectedApartment: "http://195.35.45.131:4000/apartment?",
-  notifyTenant : "http://195.35.45.131:4000/notify/tenant?",
-  notifyAdmin: "http://195.35.45.131:4000/notify/admin?",
-  uploadImage: "http://195.35.45.131:4000/maintenance/uploadImage",
-
+  postUser: `${BASE_URL}/auth/login`,
+  getUsers: `${BASE_URL}/user?`,
+  createUsers: `${BASE_URL}/user`,
+  createVisitor: `${BASE_URL}/visitor/createVisit`,
+  getVisitor: `${BASE_URL}/visitor?`, //all=true
+  deleteVisitor: `http://195.35.45.131:4000/visitor/`,
+  getTenant: `http://195.35.45.131:4000/tenant?`,
+  postTenant: `http://195.35.45.131:4000/tenant`,
+  getBuilding: `http://195.35.45.131:4000/building?all=true`,
+  getApartment: `http://195.35.45.131:4000/apartment?all=true`,
+  createBuilding: `http://195.35.45.131:4000/building`,
+  createApartment: `http://195.35.45.131:4000/apartment`,
+  getComplaints: `http://195.35.45.131:4000/maintenance/getComplaint`,
+  createComplaints: `http://195.35.45.131:4000/maintenance/addComplaint`,
+  getReceipts: `${BASE_URL}/receipt?all=true`,
+  createRealEstate: `http://195.35.45.131:4000/realEstate`,
+  getRealEstate: `http://195.35.45.131:4000/realEstate?all=true`,
+  getSelectedBuilding: `http://195.35.45.131:4000/building?`,
+  postReceipt: `http://195.35.45.131:4000/receipt`,
+  myBuilding: `http://195.35.45.131:4000/building/details`,
+  getSelectedApartment: `http://195.35.45.131:4000/apartment?`,
+  notifyTenant: `http://195.35.45.131:4000/notify/tenant?`,
+  notifyAdmin: `http://195.35.45.131:4000/notify/admin?`,
+  uploadImage: `http://195.35.45.131:4000/maintenance/uploadImage`,
 };
 
 export const routePaths = {

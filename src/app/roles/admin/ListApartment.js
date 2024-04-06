@@ -15,13 +15,13 @@ import { superAdminSidebar } from "../../utils/superAdminSideBar";
 export const ListAppartment = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
-  const role = cookies.get("role"); 
-  const userName = cookies.get('name');
+  const role = cookies.get("role");
+  const userName = cookies.get("name");
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
-  const [selectedBuilding, setSelectedBuilding] = useState('')
+  const [selectedBuilding, setSelectedBuilding] = useState("");
 
   const showDrawer = () => {
     setOpen(true);
@@ -40,11 +40,11 @@ export const ListAppartment = () => {
         method: "DELETE",
       });
       if (response) {
-        setData(data.filter((data) => {
-          return(
-            data.ID !== record.ID
-          )          
-        }))
+        setData(
+          data.filter((data) => {
+            return data.ID !== record.ID;
+          })
+        );
       }
     } catch (error) {
       toast.error(error);
@@ -87,53 +87,54 @@ export const ListAppartment = () => {
       key: "Update",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
+          <EditOutlined
+            style={{ paddingTop: "10px" }}
+            onClick={() => handleEdit(record)}
+          />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),
     },
   ];
 
-  const fetchSelectedApartmentData = async(selectedBuilding) =>
-  {
-    try{
-      axios.get(`${apiRoutes.getApartment}&buildingId=${selectedBuilding}`).then((response) => {
-        if(response?.data.data.length > 0){
-          const data = response?.data.data;
-          setData(data.map((row,id ) => (
-            { 
-                key:id,
+  const fetchSelectedApartmentData = async (selectedBuilding) => {
+    try {
+      axios
+        .get(`${apiRoutes.getApartment}&buildingId=${selectedBuilding}`)
+        .then((response) => {
+          if (response?.data.data.length > 0) {
+            const data = response?.data.data;
+            setData(
+              data.map((row, id) => ({
+                key: id,
                 apartmentType: row.apartmentType,
-                floorNo: row.floorNo, 
-                area:row.area,
+                floorNo: row.floorNo,
+                area: row.area,
                 rent: row.rent,
-                furnished:row.furnished,
-                flatNo:row.flatNo,
+                furnished: row.furnished,
+                flatNo: row.flatNo,
                 ID: row._id,
-              }
-            )));
-          setData(data);
+              }))
+            );
+            setData(data);
+            setLoading(false);
+          } else {
+            setLoading(false);
+            setData([]);
+          }
           setLoading(false);
-        }else{
-          setLoading(false);
-          setData([]);
-        }
-        setLoading(false);
-
-      });
-
-    }catch(error){
-        setLoading(false);
-        console.error("Error fetching apartment data:", error);
+        });
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching apartment data:", error);
     }
-
-  }
+  };
 
   useEffect(() => {
     setLoading(true);
-    if(selectedBuilding){
-      fetchSelectedApartmentData(selectedBuilding)
-    }else{
+    if (selectedBuilding) {
+      fetchSelectedApartmentData(selectedBuilding);
+    } else {
       setLoading(false);
       setData([]);
     }
@@ -151,7 +152,7 @@ export const ListAppartment = () => {
             columns={columns}
             data={filteredData ? filteredData : data}
             heading={"View Apartments"}
-            subHeading={"admin panel"}
+            subHeading={"Admin panel"}
             loading={loading}
             route={routePaths.Admin.login}
             showDrawer={showDrawer}
@@ -160,12 +161,12 @@ export const ListAppartment = () => {
             setSelectedBuilding={setSelectedBuilding}
           />
         }
-        items={role ==='admin' ? adminSidebar : superAdminSidebar}
+        items={role === "admin" ? adminSidebar : superAdminSidebar}
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
-        role = {role}
-        userName = {userName}
+        role={role}
+        userName={userName}
       />
       <CustomAlert />
     </div>

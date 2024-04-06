@@ -14,13 +14,13 @@ import { Cookies } from "react-cookie";
 
 const ListVisitor = () => {
   const cookies = new Cookies();
-  const role = cookies.get("role"); 
-  const userName = cookies.get('name');
+  const role = cookies.get("role");
+  const userName = cookies.get("name");
   const [visitor, setVisitor] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedBuilding, setSelectedBuilding] = useState('')
+  const [selectedBuilding, setSelectedBuilding] = useState("");
 
   const showDrawer = () => {
     setOpen(true);
@@ -46,12 +46,12 @@ const ListVisitor = () => {
       const response = await fetch(url, {
         method: "DELETE",
       });
-      if(response){
-        setVisitor(visitor.filter((data) => {
-          return(
-            data.ID !== record.ID
-          )          
-        }))
+      if (response) {
+        setVisitor(
+          visitor.filter((data) => {
+            return data.ID !== record.ID;
+          })
+        );
       }
     } catch (error) {}
   };
@@ -87,7 +87,10 @@ const ListVisitor = () => {
       key: "Update",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
+          <EditOutlined
+            style={{ paddingTop: "10px" }}
+            onClick={() => handleEdit(record)}
+          />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),
@@ -96,36 +99,35 @@ const ListVisitor = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `${apiRoutes.getVisitor}buildingId=${selectedBuilding}`
+    const url = `${apiRoutes.getVisitor}buildingId=${selectedBuilding}`;
     axios
       .get(url)
       .then((response) => {
-        if(response?.data.data.length > 0){
+        if (response?.data.data.length > 0) {
           const data = response?.data.data;
-          setVisitor(data.map((row,id ) => (
-            { 
-                key:id,
-                visitorName: row.visitorName,
-                buildingName: row.buildingName, 
-                visitDate:row.visitDate,
-                flatNo: row.flatNo,
-                email:row.email,
-                ID: row._id,
-              }
-            )));
+          setVisitor(
+            data.map((row, id) => ({
+              key: id,
+              visitorName: row.visitorName,
+              buildingName: row.buildingName,
+              visitDate: row.visitDate,
+              flatNo: row.flatNo,
+              email: row.email,
+              ID: row._id,
+            }))
+          );
           setLoading(false);
-        }else{
+        } else {
           setLoading(false);
           setVisitor([]);
         }
         setLoading(false);
-        })
+      })
       .catch((e) => {
         setLoading(false);
-        setVisitor([]);      
+        setVisitor([]);
       });
   }, [selectedBuilding]);
-
 
   const filteredData = visitor.filter((item) =>
     item?.email?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -152,9 +154,8 @@ const ListVisitor = () => {
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
-        role = {role}
-        userName = {userName}
-
+        role={role}
+        userName={userName}
       />
     </div>
   );

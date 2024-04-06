@@ -1,11 +1,5 @@
 import { CloseOutlined, RightOutlined } from "@ant-design/icons";
-import {
-  Layout,
-  Menu,
-  theme,
-  Avatar,
-  Drawer,
-} from "antd";
+import { Layout, Menu, theme, Avatar, Drawer } from "antd";
 import { useState } from "react";
 import { Images } from "../../../../assets";
 import { useNavigate } from "react-router";
@@ -145,12 +139,20 @@ const SideBar = ({
             className="User_avatar_container"
             style={{ display: collapsed ? "none" : "flex" }}
           >
-            <Avatar style={{ backgroundColor: whiteColor, color: blackColor }}>
+            <Avatar style={{ backgroundColor: "#4A0D37", color: "white" }}>
               {userName ? userName.charAt(0) : ""}
             </Avatar>
             <div className="user_role">
-              <p>{data?.userName ?? data?.userName ?? userName}</p>
-              <small> {data?.role ?? data?.role ?? role}</small>
+              <div
+                className="px-2 pt-1 pb-2"
+                style={{ fontSize: "15px", fontWeight: "500" }}
+              >
+                {data?.userName ?? data?.userName ?? userName}
+              </div>
+              <div className="ps-2" style={{ textTransform: "capitalize" }}>
+                {" "}
+                {data?.role ?? data?.role ?? role}
+              </div>
             </div>
           </div>
           {collapsed && (
@@ -164,7 +166,7 @@ const SideBar = ({
             defaultSelectedKeys={["1"]}
             mode="inline"
             items={items}
-            style={{ backgroundColor: whiteColor, color:blackColor }}
+            style={{ backgroundColor: whiteColor, color: blackColor }}
           />
         </Sider>
       ) : (
@@ -190,9 +192,7 @@ const SideBar = ({
                 backgroundColor: whiteColor,
               }}
             >
-              <div
-                className="logo_sidebar"
-              >
+              <div className="logo_sidebar">
                 <img src={Images.logo}></img>
                 <CloseOutlined
                   onClick={() => {
@@ -200,9 +200,7 @@ const SideBar = ({
                   }}
                 />
               </div>
-              <div
-                className="User_avatar_container"
-              >
+              <div className="User_avatar_container">
                 <Avatar
                   style={{ backgroundColor: whiteColor, color: blackColor }}
                 >
@@ -219,7 +217,7 @@ const SideBar = ({
                 defaultSelectedKeys={["1"]}
                 mode="inline"
                 items={items}
-                style={{ backgroundColor: whiteColor, color:blackColor }}
+                style={{ backgroundColor: whiteColor, color: blackColor }}
               />
             </Sider>
           </Drawer>
@@ -228,7 +226,7 @@ const SideBar = ({
       <Content
         style={{
           padding: `${isMobile ? 0 : "0 0 0 245px"}`,
-          background:'white'
+          background: "white",
         }}
       >
         {children}

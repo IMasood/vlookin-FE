@@ -32,8 +32,8 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
   });
   // const [allowSubUsers, setAllowSubUsers] = useState(false);
   // const [allowMultipleBuildings, setAllowMultipleBuildings] = useState(false);
-  const [selectedRealEstate, setSelectedRealEstate] = useState('');
-  const [showLoader, setShowLoader] = useState(false)
+  const [selectedRealEstate, setSelectedRealEstate] = useState("");
+  const [showLoader, setShowLoader] = useState(false);
 
   const onChange = (e) => {
     setGender(e.target.value);
@@ -99,7 +99,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
     let url = apiRoutes.createUsers;
 
     try {
-      setShowLoader(true)
+      setShowLoader(true);
       await axios
         .post(
           url,
@@ -112,8 +112,8 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
             userId: inputs.userId,
             gender: gender,
             allowAMS: checked,
-            realEstate: selectedRealEstate || '',
-            buildingId: selectedBuilding || '',
+            realEstate: selectedRealEstate || "",
+            buildingId: selectedBuilding || "",
           },
           config
         )
@@ -127,9 +127,9 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               email: "",
               password: "",
               userId: "",
-              contact: "", 
+              contact: "",
               realEstate: "",
-            })
+            });
           }
         });
     } catch (error) {
@@ -154,13 +154,13 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
         ) : (
           <Header
             title={"Add User Details"}
-            subtitle={"welcome to Super Admin panel"}
+            subtitle={"Welcome to Super Admin panel"}
             route={routePaths.Admin.login}
           />
         )}
         <div className="mb_form_heading">
           <h2>Add User Details</h2>
-          <p className="headerText">welcome to Super admin panel</p>
+          <p className="headerText">Welcome to Super admin panel</p>
         </div>
       </div>
       <div className="body">
@@ -174,7 +174,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               {category}
             </Dropdown.Button>
             <br />
-            {category === 'admin' && (
+            {category === "admin" && (
               <>
                 <div className="form-check d-flex align-items-end col-md-6 w-100">
                   <input
@@ -199,76 +199,112 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 <br />
               </>
             )}
-            <Input
-              placeholder="Username"
-              className="form_input"
-              name="userName"
-              value={inputs.userName}
-              onChange={handleInputs}
-              disabled={category === "tenant" ? true : false}
-            />
-            <Input
-              placeholder="Email"
-              className="form_input"
-              name="email"
-              value={inputs.email}
-              onChange={handleInputs}
-              disabled={category === "tenant" ? true : false}
-            />
-            <Input
-              placeholder="Password"
-              className="form_input"
-              name="password"
-              value={inputs.password}
-              onChange={handleInputs}
-              disabled={category === "tenant" ? true : false}
-            />
-            <Input
-              placeholder="User Id"
-              className="form_input"
-              name="userId"
-              value={inputs.userId}
-              onChange={handleInputs}
-              disabled={category === "tenant" ? true : false}
-            />
+            <div>
+              <label htmlFor="userName">User Name</label>
               <Input
-                placeholder="Contact"
+                placeholder="Enter username"
                 className="form_input"
+                name="userName"
+                style={{ borderColor: "gray" }}
+                size="large"
+                value={inputs.userName}
+                onChange={handleInputs}
+                disabled={category === "tenant" ? true : false}
+              />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <Input
+                placeholder="Enter email"
+                className="form_input"
+                style={{ borderColor: "gray" }}
+                name="email"
+                size="large"
+                value={inputs.email}
+                onChange={handleInputs}
+                disabled={category === "tenant" ? true : false}
+              />
+            </div>
+            <div>
+              <label htmlFor="email">Password</label>
+              <Input
+                placeholder="Enter password"
+                className="form_input"
+                style={{ borderColor: "gray" }}
+                name="password"
+                size="large"
+                value={inputs.password}
+                onChange={handleInputs}
+                disabled={category === "tenant" ? true : false}
+              />
+            </div>
+            <div>
+              <label htmlFor="email">User Id</label>
+              <Input
+                placeholder="Enter user id"
+                className="form_input"
+                style={{ borderColor: "gray" }}
+                name="userId"
+                size="large"
+                value={inputs.userId}
+                onChange={handleInputs}
+                disabled={category === "tenant" ? true : false}
+              />
+            </div>
+            <div>
+              <label htmlFor="email">Contact</label>
+              <Input
+                placeholder="Enter contact"
+                className="form_input"
+                style={{ borderColor: "gray" }}
                 name="contact"
+                size="large"
                 value={inputs.contact}
                 onChange={handleInputs}
                 disabled={category === "tenant" ? true : false}
               />
-
+            </div>
           </Col>
-          <Col offset={isMobile ? 0 : 4} md={10} sm={16} style={{marginTop:'68px'}}>
+          <Col
+            offset={isMobile ? 0 : 4}
+            md={10}
+            sm={16}
+            style={{ marginTop: "68px" }}
+          >
             <Form.Item>
-                <p>Gender</p>
-                <Radio.Group
-                  onChange={onChange}
-                  value={gender}
-                  disabled={category === "tenant" ? true : false}
-                >
-                  <Radio value={"male"}>Male</Radio>
-                  <Radio value={"female"}>Female</Radio>
-                </Radio.Group>
+              <p>Gender</p>
+              <Radio.Group
+                onChange={onChange}
+                value={gender}
+                disabled={category === "tenant" ? true : false}
+              >
+                <Radio value={"male"}>Male</Radio>
+                <Radio value={"female"}>Female</Radio>
+              </Radio.Group>
               <br />
-              {
-                category !== 'admin' && 
+              {category !== "admin" && (
                 <>
-                  <p style={{ color: "#4A0D37" }}>Real Estate</p>
-                  <RealEstateDropDown
-                    disabled={category === "tenant" ? true : false}
-                    setSelectedRealEstate={setSelectedRealEstate}/>
-                  <p style={{ color: "#4A0D37" }}>Building</p>
-                  <BuildingDropDown
-                    setSelectedBuilding={setSelectedBuilding}
-                    disabled={category === "tenant" ? true : false}
-                    realEstateId={selectedRealEstate}
-                  />
+                  <div className="mt-3">
+                    <div className="pb-3" style={{ color: "#4A0D37" }}>
+                      Real Estate
+                    </div>
+                    <RealEstateDropDown
+                      disabled={category === "tenant" ? true : false}
+                      setSelectedRealEstate={setSelectedRealEstate}
+                    />
+                  </div>
+                  <div className="mt-3">
+                    <div className="pb-3" style={{ color: "#4A0D37" }}>
+                      Building
+                    </div>
+                    <BuildingDropDown
+                      setSelectedBuilding={setSelectedBuilding}
+                      disabled={category === "tenant" ? true : false}
+                      realEstateId={selectedRealEstate}
+                    />
+                  </div>
                 </>
-                
-              }
+              )}
             </Form.Item>
           </Col>
         </Row>
@@ -286,7 +322,8 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
               buttonName={"Save"}
               bgColor={redColor}
               color={whiteColor}
-              loading={showLoader} disabled={showLoader}
+              loading={showLoader}
+              disabled={showLoader}
             />
           )}
         </div>

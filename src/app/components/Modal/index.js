@@ -1,26 +1,29 @@
-import React from 'react';
-import { ExclamationCircleFilled } from '@ant-design/icons';
-import { Space, Button, Modal } from 'antd';
+import React from "react";
+import { ExclamationCircleFilled } from "@ant-design/icons";
+import { Space, Button, Modal } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const { confirm } = Modal;
 
-export const DeleteModal = ({handleDelete}) => {
-
-    const showDeleteConfirm = () => {
-        confirm({
-          title: 'Are you sure to delete this record?',
-          okText: 'Yes',
-          okType: 'danger',
-          cancelText: 'No',
-          onOk() {
-            handleDelete();
-          }
-        });
-      };
-    return(
-        <Space>
-            <DeleteOutlined style={{marginBottom:'10px'}} onClick={showDeleteConfirm}/>
-          </Space>
-    )
-}
+export const DeleteModal = ({ handleDelete }) => {
+  const showDeleteConfirm = () => {
+    confirm({
+      title: "Are you sure to delete this record?",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        handleDelete();
+      },
+    });
+  };
+  return (
+    <Space>
+      <DeleteOutlined
+        className="ms-1"
+        style={{ fontSize: "20px", paddingTop: "1px" }}
+        onClick={showDeleteConfirm}
+      />
+    </Space>
+  );
+};

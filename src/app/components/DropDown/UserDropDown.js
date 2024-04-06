@@ -10,13 +10,11 @@ const UserDropDown = ({
   value,
   // handleChange,
   placeholder,
-  setSelectedUser ,
+  setSelectedUser,
   className,
   buildingId,
-  role
-
+  role,
 }) => {
-
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -26,34 +24,37 @@ const UserDropDown = ({
 
   const fetchUsers = async (buildingId) => {
     try {
-      const apiEndpoint = role === 'tenant' ? `${apiRoutes.getTenant}buildingId=${buildingId}` : `${apiRoutes.getUsers}realEstate=${buildingId}&role=admin`;
+      const apiEndpoint =
+        role === "tenant"
+          ? `${apiRoutes.getTenant}buildingId=${buildingId}`
+          : `${apiRoutes.getUsers}realEstate=${buildingId}&role=admin`;
       axios.get(apiEndpoint).then((response) => {
         const data = response.data.data;
-        if(data.length > 0){
+        if (data.length > 0) {
           setUsers(data);
-        }else{
-          setUsers([])
+        } else {
+          setUsers([]);
         }
-    });
+      });
     } catch (error) {
       console.error("Error fetching real estates:", error);
     }
   };
 
   const handleChange = (value) => {
-    setSelectedUser (value);
+    setSelectedUser(value);
   };
 
   return (
     <Select
+      size="large"
+      style={{ border: "none" }}
       placeholder={placeholder ? placeholder : "Choose User"}
       onChange={handleChange}
       className={className ? className : "building_selector"}
     >
       {users?.map((user) => (
-        <Option 
-          key={user._id} 
-          value={user._id} >
+        <Option key={user._id} value={user._id}>
           {user.tenantName ? user.tenantName : user.userName}
         </Option>
       ))}

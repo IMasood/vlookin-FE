@@ -17,18 +17,15 @@ const BuildingDropDown = ({
   setSelectedBuilding,
   realEstateId,
   isBuildingSelected,
-  className
+  className,
   // setSelectedBuildingName
 }) => {
-
   const cookies = new Cookies();
   const role = cookies.get("role");
   const userId = cookies.get("userId");
 
   const [buildingData, setBuildingData] = useState([]);
   const [disableBuilding, SetDisableBuilding] = useState(false);
-
-
 
   const fetchSelectedEstateBuildingData = async (realEstateId) => {
     try {
@@ -37,55 +34,52 @@ const BuildingDropDown = ({
       axios.get(url).then((response) => {
         const data = response.data.data;
 
-        if(data.length === 0){
-          toast.error('Create building first')
-          SetDisableBuilding(true)
+        if (data.length === 0) {
+          toast.error("Create building first");
+          SetDisableBuilding(true);
         }
-        if(data.length > 0){
-            SetDisableBuilding(false)
-            setBuildingData(data);        
-          }  
+        if (data.length > 0) {
+          SetDisableBuilding(false);
+          setBuildingData(data);
+        }
       });
-    
-    } catch (error) {
-      
-    }
-  }
-
+    } catch (error) {}
+  };
 
   const fetchBuildingData = async () => {
     try {
-        const url = role === 'admin' ? `${apiRoutes.getSelectedBuilding}userId=${userId}` : apiRoutes.getBuilding;
-        axios.get(url).then((response) => {
-          const data = response.data.data;
-          if(data.length === 0){
-            toast.error('Create building first')
-            SetDisableBuilding(true)
-          }
-          if(data.length > 0){
-              setBuildingData(data);        
-            }  
-        });
-
+      const url =
+        role === "admin"
+          ? `${apiRoutes.getSelectedBuilding}userId=${userId}`
+          : apiRoutes.getBuilding;
+      axios.get(url).then((response) => {
+        const data = response.data.data;
+        if (data.length === 0) {
+          toast.error("Create building first");
+          SetDisableBuilding(true);
+        }
+        if (data.length > 0) {
+          setBuildingData(data);
+        }
+      });
     } catch (error) {
       console.error("Error fetching building data:", error);
     }
   };
 
   useEffect(() => {
-    if(realEstateId){
-      fetchSelectedEstateBuildingData(realEstateId)
-    }else{
+    if (realEstateId) {
+      fetchSelectedEstateBuildingData(realEstateId);
+    } else {
       fetchBuildingData();
     }
     // Fetch building data from the API and update state
   }, [realEstateId]);
 
-
   const handleChange = (value, option) => {
-    setSelectedBuilding(value);    
-    if(isBuildingSelected){
-      isBuildingSelected(true)
+    setSelectedBuilding(value);
+    if (isBuildingSelected) {
+      isBuildingSelected(true);
       // setSelectedBuildingName(option.children); // Storing building name
     }
   };
@@ -93,21 +87,21 @@ const BuildingDropDown = ({
   return (
     <>
       <Select
+        size="large"
         placeholder={placeholder ? placeholder : "Select a building"}
         onChange={handleChange}
-        className={className ? className :"building_selector"}
+        className={className ? className : "building_selector my-0"}
         disabled={disabled ? disabled : disableBuilding}
-        style={{border:'1px solid #373333'}}
-        optionLabelProp="children" 
+        style={{ border: "none" }}
+        optionLabelProp="children"
       >
-        
         {buildingData.map((building) => (
-          <Option key={building._id} value={building._id} >
+          <Option key={building._id} value={building._id}>
             {building.buildingName} - {building.buildingCode}
           </Option>
         ))}
       </Select>
-      <CustomAlert/>
+      <CustomAlert />
     </>
   );
 };
