@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-  Outlet,
 } from "react-router-dom";
 import { Login } from "../components/Login";
 import { routePaths } from "./config";
@@ -36,7 +35,6 @@ import SuperAdminListVisitor from "../roles/superAdmin/Visitor";
 import { Building } from "../roles/superAdmin/building";
 import EditSuperAdmin from "../roles/superAdmin/editUser";
 import UserProfile from "../roles/User/UserProfile";
-import { Cookies } from "react-cookie";
 import AddReceipt from "../roles/superAdmin/AccountingManagementSystem/AddReceipt";
 import ListReceipt from "../roles/superAdmin/AccountingManagementSystem/ListReceipt";
 import JournalVoucher from "../roles/superAdmin/AccountingManagementSystem/JournalVoucher";
@@ -47,13 +45,8 @@ import NotifyTenant from "../roles/admin/NotifyTenant";
 import NotifyAdmin from "../roles/superAdmin/NotifyAdmin";
 
 const WebRoutes = () => {
-  const cookies = new Cookies();
-  const token = cookies.get("token");
-
-  const PrivateRoutes = () => {
-    return token ? <Outlet /> : <Navigate to="/login" exact />;
-  };
-
+  const token = sessionStorage.getItem("token");
+  console.log(token);
   return (
     <>
       <Router>
@@ -184,7 +177,6 @@ const WebRoutes = () => {
           />
 
           {/* SuperAdmin  Route*/}
-
           <Route
             path={routePaths.SuperAdmin.addUser}
             exact

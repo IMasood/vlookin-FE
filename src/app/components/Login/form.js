@@ -9,7 +9,12 @@ import { RolesSelector } from "../DropDown/rolesSelector";
 import { toast } from "react-toastify";
 import { CustomAlert } from "../Alert";
 import { Cookies, useCookies } from "react-cookie";
-import { blackColor, grayColor, redColor, whiteColor } from "../../../assets/colors";
+import {
+  blackColor,
+  grayColor,
+  redColor,
+  whiteColor,
+} from "../../../assets/colors";
 
 export const LoginForm = (props) => {
   const navigate = useNavigate();
@@ -23,7 +28,6 @@ export const LoginForm = (props) => {
 
   const cookie = new Cookies();
 
-
   const handleChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
   };
@@ -32,18 +36,17 @@ export const LoginForm = (props) => {
     setRole(value);
   };
 
-  const onChange = (e) => {
-  };
+  const onChange = (e) => {};
 
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
     try {
-      if(inputs.userId && inputs.password && role){
+      if (inputs.userId && inputs.password && role) {
         userSignUp(inputs);
-      }else{
+      } else {
         setLoading(false);
-        toast.error('Please enter email and password')
+        toast.error("Please enter email and password");
       }
     } catch (er) {
       setLoading(false);
@@ -52,8 +55,7 @@ export const LoginForm = (props) => {
 
   //test token and add token in signup fun in use effect just like use rprofile and then test it
   useEffect(() => {
-    cookie.get('token');
-        
+    cookie.get("token");
   }, []);
 
   const userSignUp = async (inputs) => {
@@ -69,7 +71,7 @@ export const LoginForm = (props) => {
         {
           email: inputs.userId,
           password: inputs.password,
-          role: role === 'tenant' ? role : ''
+          role: role === "tenant" ? role : "",
         },
         config
       )
@@ -79,10 +81,10 @@ export const LoginForm = (props) => {
           setLoading(false);
           const expirationDate = new Date();
           expirationDate.setTime(expirationDate.getTime() + 8 * 60 * 60 * 1000); // 8 hours in milliseconds
-          setCookies("token", response.data.token,
-          {
+          sessionStorage.setItem("token", response.data.token);
+          setCookies("token", response.data.token, {
             expires: expirationDate,
-          });           // your token
+          }); // your token
           setCookies("name", response.data.data.userName, {
             expires: expirationDate,
           }); // optional data
@@ -90,11 +92,11 @@ export const LoginForm = (props) => {
           //will update it later by using redux
 
           setCookies("role", response.data.data.role);
-          setCookies("userId", response.data.data.id)
-          setCookies("buildingId", response.data.data.buildingId)
+          setCookies("userId", response.data.data.id);
+          setCookies("buildingId", response.data.data.buildingId);
 
           const role = cookie.get("role");
-        
+
           switch (role) {
             case "admin":
               navigate(routePaths.Admin.addbuilding);
@@ -110,7 +112,7 @@ export const LoginForm = (props) => {
               break;
             case "superadmin":
             case "superAdmin":
-              navigate( routePaths.SuperAdmin.addUser);
+              navigate(routePaths.SuperAdmin.addUser);
               break;
             default:
               break;
@@ -120,7 +122,7 @@ export const LoginForm = (props) => {
         }
       })
       .catch((error) => {
-        console.log('error', error)
+        console.log("error", error);
         setLoading(false);
         toast.error(error?.response?.data?.message);
       });
@@ -181,8 +183,7 @@ export const LoginForm = (props) => {
             />
           </Form.Item>
           <RolesSelector handleChange={roleChange} value={role} />
-          <Form.Item 
-              valuePropName="checked">
+          <Form.Item valuePropName="checked">
             <Checkbox onChange={onChange} style={{ color: "#ffffff" }}>
               Remember me
             </Checkbox>
