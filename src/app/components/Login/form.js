@@ -81,10 +81,12 @@ export const LoginForm = (props) => {
           setLoading(false);
           const expirationDate = new Date();
           expirationDate.setTime(expirationDate.getTime() + 8 * 60 * 60 * 1000); // 8 hours in milliseconds
+          sessionStorage.clear("token");
           sessionStorage.setItem("token", response.data.token);
-          setCookies("token", response.data.token, {
-            expires: expirationDate,
-          }); // your token
+          // setCookies("token", response.data.token, {
+          //   expires: expirationDate,
+          // });
+          // your token
           setCookies("name", response.data.data.userName, {
             expires: expirationDate,
           }); // optional data
@@ -99,20 +101,25 @@ export const LoginForm = (props) => {
 
           switch (role) {
             case "admin":
-              navigate(routePaths.Admin.addbuilding);
+              sessionStorage.getItem("token") &&
+                window.location.assign(routePaths.Admin.addbuilding);
               break;
             case "tenant":
-              navigate(routePaths.User.dashboard);
+              sessionStorage.getItem("token") &&
+                window.location.assign(routePaths.User.dashboard);
               break;
             case "visitor":
-              navigate(routePaths.Visitor.dashboard);
+              sessionStorage.getItem("token") &&
+                window.location.assign(routePaths.Visitor.dashboard);
               break;
             case "maintenance":
-              navigate(routePaths.Maintenance.dashboard);
+              sessionStorage.getItem("token") &&
+                window.location.assign(routePaths.Maintenance.dashboard);
               break;
             case "superadmin":
             case "superAdmin":
-              navigate(routePaths.SuperAdmin.addUser);
+              sessionStorage.getItem("token") &&
+                window.location.assign(routePaths.SuperAdmin.addUser);
               break;
             default:
               break;

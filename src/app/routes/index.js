@@ -46,7 +46,6 @@ import NotifyAdmin from "../roles/superAdmin/NotifyAdmin";
 
 const WebRoutes = () => {
   const token = sessionStorage.getItem("token");
-  console.log(token);
   return (
     <>
       <Router>
@@ -181,7 +180,11 @@ const WebRoutes = () => {
             path={routePaths.SuperAdmin.addUser}
             exact
             element={
-              token ? <SuperAdminDashboard /> : <Navigate to="/login" exact />
+              sessionStorage.getItem("token") ? (
+                <SuperAdminDashboard />
+              ) : (
+                <Navigate to="/login" exact />
+              )
             }
           />
           <Route
