@@ -14,14 +14,14 @@ import { Cookies } from "react-cookie";
 export const Building = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
-  const role = cookies.get("role"); 
-  const userName = cookies.get('name');
+  const role = cookies.get("role");
+  const userName = cookies.get("name");
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedRealEstate, setSelectedRealEstate] = useState('');
+  const [selectedRealEstate, setSelectedRealEstate] = useState("");
 
   const showDrawer = () => {
     setOpen(true);
@@ -38,13 +38,13 @@ export const Building = () => {
       const response = await fetch(url, {
         method: "DELETE",
       });
-      if(response){
-          setData(data.filter((data) => {
-            return(
-              data.ID !== record.ID
-            )          
-          }))
-          toast.success("Building Deleted Successfully");
+      if (response) {
+        setData(
+          data.filter((data) => {
+            return data.ID !== record.ID;
+          })
+        );
+        toast.success("Building Deleted Successfully");
       }
     } catch (error) {
       toast.error(error);
@@ -87,7 +87,10 @@ export const Building = () => {
       key: "Update",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
+          <EditOutlined
+            style={{ paddingTop: "0.5px" }}
+            onClick={() => handleEdit(record)}
+          />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),
@@ -99,30 +102,30 @@ export const Building = () => {
     axios
       .get(`${apiRoutes.getSelectedBuilding}realEstateId=${selectedRealEstate}`)
       .then((response) => {
-        if(response?.data.data.length > 0){
+        if (response?.data.data.length > 0) {
           const data = response?.data.data;
-          setData(data.map((row,id ) => (
-            { 
-                key:id,
-                fullName: row.fullName,
-                buildingName: row.buildingName, 
-                buildingCode:row.buildingCode,
-                landmark: row.landmark,
-                floorCount:row.floorCount,
-                parkingCount:row.parkingCount,
-                ID: row._id,
-              }
-            )));
-        }else{
+          setData(
+            data.map((row, id) => ({
+              key: id,
+              fullName: row.fullName,
+              buildingName: row.buildingName,
+              buildingCode: row.buildingCode,
+              landmark: row.landmark,
+              floorCount: row.floorCount,
+              parkingCount: row.parkingCount,
+              ID: row._id,
+            }))
+          );
+        } else {
           setLoading(false);
           setData([]);
         }
         setLoading(false);
       })
-        .catch((e) => {
-          setLoading(false);
-        });
-    }, [selectedRealEstate]);
+      .catch((e) => {
+        setLoading(false);
+      });
+  }, [selectedRealEstate]);
 
   const filteredData = data.filter((item) =>
     item?.buildingName?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -149,8 +152,8 @@ export const Building = () => {
         open={open}
         setOpen={setOpen}
         items={superAdminSidebar}
-        role = {role}
-        userName = {userName}
+        role={role}
+        userName={userName}
       />
       <CustomAlert />
     </div>

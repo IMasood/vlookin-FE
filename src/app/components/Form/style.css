@@ -144,3 +144,9 @@ border-color: #333333;
     /* padding: 8px; */;
 }
 
+.required-field::after {
+    content: "*";
+    color: red;
+    margin-left:2px
+  }
+

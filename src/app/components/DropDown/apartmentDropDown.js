@@ -12,37 +12,36 @@ const ApartmentsDropdown = ({
   placeholder,
   disabled,
   setSelectedApartment,
-  buildingId = ''
+  buildingId = "",
 }) => {
   const [apartments, setApartments] = useState([]);
 
   useEffect(() => {
     // Fetch building data from the API and update state
-    if(buildingId){
-      fetchSingleApartmentData(buildingId)
-    }else{
+    if (buildingId) {
+      fetchSingleApartmentData(buildingId);
+    } else {
       fetchApartmentData();
     }
   }, [buildingId]);
 
-  const fetchSingleApartmentData = async(buildingId) =>
-  {
-    try{
-      axios.get(`http://195.35.45.131:4000/apartment?buildingId=${buildingId}`).then((response) => {
-        const data = response.data.data;
-        setApartments(data);
-      });
-
-    }catch(error){
+  const fetchSingleApartmentData = async (buildingId) => {
+    try {
+      axios
+        .get(`http://195.35.45.131:4000/apartment?buildingId=${buildingId}`)
+        .then((response) => {
+          const data = response.data.data;
+          setApartments(data);
+        });
+    } catch (error) {
       console.error("Error fetching apartment data:", error);
     }
-
-  }
+  };
 
   const fetchApartmentData = async () => {
     try {
       axios.get(apiRoutes.getApartment).then((response) => {
-        if(response?.data.data.length > 0){
+        if (response?.data.data.length > 0) {
           const data = response?.data.data;
           setApartments(data);
         }
@@ -58,13 +57,19 @@ const ApartmentsDropdown = ({
 
   return (
     <Select
+      size="large"
       placeholder={placeholder ? placeholder : "Select an Apartment"}
       onChange={handleChange}
       className="building_selector"
       disabled={disabled && disabled}
+      style={{ border: "none" }}
     >
       {apartments?.map((apartment) => (
-        <Option key={apartment._id} value={apartment._id} disabled={apartment.reserved}>
+        <Option
+          key={apartment._id}
+          value={apartment._id}
+          disabled={apartment.reserved}
+        >
           {apartment.flatNo} - Floor: {apartment.floorNo}
         </Option>
       ))}

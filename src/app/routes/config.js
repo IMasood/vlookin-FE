@@ -87,7 +87,7 @@ export const apiRoutes = {
   getVisitor: `${BASE_URL}/visitor?`, //all=true
   deleteVisitor: `http://195.35.45.131:4000/visitor/`,
   getTenant: `http://195.35.45.131:4000/tenant?`,
-  postTenant: `http://195.35.45.131:4000/tenant`,
+  postTenant: `${BASE_URL}/tenant`,
   getBuilding: `http://195.35.45.131:4000/building?all=true`,
   getApartment: `http://195.35.45.131:4000/apartment?all=true`,
   createBuilding: `http://195.35.45.131:4000/building`,

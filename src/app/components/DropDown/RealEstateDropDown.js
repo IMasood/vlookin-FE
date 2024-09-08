@@ -20,7 +20,7 @@ const RealEstateDropDown = ({
   useEffect(() => {
     // Fetch building data from the API and update state
     fetchRealEstate();
-  });
+  }, []);
 
   const fetchRealEstate = async () => {
     try {

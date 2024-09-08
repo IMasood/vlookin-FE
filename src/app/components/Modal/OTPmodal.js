@@ -1,24 +1,22 @@
-import { Modal } from 'antd'
-import React, {useState} from 'react'
-import './style.css'
-import { CustomButton } from '../Button'
-import axios from 'axios'
-import { toast } from 'react-toastify'
-import { redColor, whiteColor } from '../../../assets/colors'
+import { Modal } from "antd";
+import React, { useState } from "react";
+import "./style.css";
+import { CustomButton } from "../Button";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { redColor, whiteColor } from "../../../assets/colors";
 
-const OTPmodal = ({open, onCancel, setReceiptModal, setModalOpen}) => {
-
+const OTPmodal = ({ open, onCancel, setReceiptModal, setModalOpen }) => {
   const [otpValues, setOtpValues] = useState({
-    digit1:'',
-    digit2:'',
-    digit:'',
-    digit4:''
-  })
-
+    digit1: "",
+    digit2: "",
+    digit: "",
+    digit4: "",
+  });
 
   const handleVerify = async () => {
-    setModalOpen(false)
-    setReceiptModal(true)
+    setModalOpen(false);
+    setReceiptModal(true);
     // const config = {
     //     headers: {
     //         'Content-Type': 'application/json'
@@ -31,17 +29,16 @@ const OTPmodal = ({open, onCancel, setReceiptModal, setModalOpen}) => {
     //   .then((response) => {
     //       if (response?.data?.status == 200) {
     //         props.setReceiptModal(true)
-              
-    //       } 
+
+    //       }
     //   }).catch((error)=>{
     //       toast.error(error.response.data.message)
     //   });
 
     // } catch (error) {
-    //     toast.error('erooooooo')        
+    //     toast.error('erooooooo')
     // }
-}
-
+  };
 
   return (
     <>
@@ -61,21 +58,30 @@ const OTPmodal = ({open, onCancel, setReceiptModal, setModalOpen}) => {
           },
         }}
       >
-        <div className='modal_container'>
-          <h2>Please enter the OTP to verify your account</h2>
-          <p>A OTP is send to your email</p>
-          <div className='otp_input_grp'>
-            <input type='text' minLength={1} maxLength={1} />
-            <input type='text' minLength={1} maxLength={1} />
-            <input type='text' minLength={1} maxLength={1} />
-            <input type='text' minLength={1} maxLength={1} />
+        <div className="modal_container">
+          <h2 className="text-center pt-3">
+            Please enter the OTP to verify your account
+          </h2>
+          <h5>A OTP is send to your email</h5>
+          <div className="otp_input_grp">
+            <input type="text" minLength={1} maxLength={1} />
+            <input type="text" minLength={1} maxLength={1} />
+            <input type="text" minLength={1} maxLength={1} />
+            <input type="text" minLength={1} maxLength={1} />
           </div>
-          <p className='resend'>Didn't receive OTP?<a className='resend_link'>Resend OTP</a></p>
-          <CustomButton handleClick={handleVerify}  buttonName={'Verify'} bgColor={redColor} color={whiteColor} />
+          <p className="resend" style={{ fontSize: "16px" }}>
+            Didn't receive OTP?<a className="resend_link">Resend OTP</a>
+          </p>
+          <CustomButton
+            handleClick={handleVerify}
+            buttonName={"Verify"}
+            bgColor={redColor}
+            color={whiteColor}
+          />
         </div>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default OTPmodal
+export default OTPmodal;

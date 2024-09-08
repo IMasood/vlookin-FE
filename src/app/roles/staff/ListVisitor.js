@@ -141,7 +141,7 @@ const ListVisitor = () => {
             columns={columns}
             data={filteredData ? filteredData : visitor}
             heading={"View Visitors"}
-            subHeading={"welcome to admin panel"}
+            subHeading={"Welcome to admin panel"}
             route={routePaths.Visitor.login}
             loading={loading}
             showDrawer={showDrawer}

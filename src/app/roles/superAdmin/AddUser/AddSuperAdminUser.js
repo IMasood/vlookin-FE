@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Col, Dropdown, Form, Input, Radio, Row } from "antd";
 import { useMediaQuery } from "react-responsive";
 import MobileHeader from "../../../components/Header/MobileHeader";
@@ -18,6 +17,7 @@ import { useFormik } from "formik";
 import { AddUserInitialValues } from "../../../utils/schemas/addUser/initalValues";
 import { addUserSchemas } from "../../../utils/schemas/addUser/addUserSchemas";
 import AddUserService from "../../../utils/services/addUser/addUser.service";
+
 export const AddSuperAdminUser = ({ showDrawer }) => {
   const [checked, setChecked] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
@@ -42,34 +42,31 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
 
   const onChange = (e) => {
     setGender(e.target.value);
-    setFieldValue("gender", e.target.value);
     // setAllowSubUsers(e.target.value);
   };
 
   // const handleMultipleBuildings = (e) => {
   //   setAllowMultipleBuildings(e.target.value);
   // };
-
   // const handleSubUsers = (e) => {
   //   // setAllowSubUsers(e.target.value);
   // };
-
   const items = [
     {
       label: "Tenant",
-      key: "Tenant",
+      key: "tenant",
     },
     {
       label: "Visitor",
-      key: "Visitor",
+      key: "visitor",
     },
     {
       label: "Admin",
-      key: "Admin",
+      key: "admin",
     },
     {
       label: "Maintenance",
-      key: "Maintenance",
+      key: "maintenance",
     },
   ];
 
@@ -162,16 +159,10 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
     validationSchema: addUserSchemas,
     onSubmit: async (values) => {
       try {
-        setShowLoader(true);
         let response = await AddUserService.addUser(values);
-        if (response.data.success === true) {
-          setShowLoader(false);
-          toast.success("User Created Successfully");
-          navigate(routePaths.SuperAdmin.listUser);
-        }
+        console.log(response);
       } catch (error) {
-        setShowLoader(false);
-        toast.error(error?.response?.data?.message);
+        console.log(error);
       }
     },
   });
@@ -183,18 +174,6 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
   useEffect(() => {
     setFieldValue("buildingId", selectedBuilding);
   }, [selectedBuilding]);
-
-  useEffect(() => {
-    if (category === "Role") {
-      setFieldValue("role", "");
-    } else {
-      setFieldValue("role", category);
-    }
-  }, [category]);
-
-  useEffect(() => {
-    setFieldValue("allowAMS", checked);
-  }, [checked]);
 
   return (
     <>
@@ -221,27 +200,21 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
           <Row>
             <Col md={10} sm={16}>
               <Dropdown.Button
-                className="text-capitalize"
                 menu={menuProps}
                 trigger={["click"]}
                 icon={<IoMdArrowDropdown />}
               >
                 {category}
               </Dropdown.Button>
-              {errors.allowAMS && touched.allowAMS && (
-                <p className="text-danger mb-0 pt-3">{errors?.category}</p>
-              )}
-
-              {category === "Admin" && (
+              <br />
+              {category === "admin" && (
                 <>
-                  <div className="form-check d-flex align-items-end col-md-6 w-100 pt-3">
+                  <div className="form-check d-flex align-items-end col-md-6 w-100">
                     <input
                       className="form-check-input"
-                      name="allowAMS"
                       type="checkbox"
                       style={{ width: "20px", height: "20px" }}
-                      // checked={inputs.allowAMS}
-                      checked={values.allowAMS}
+                      checked={inputs.allowAMS}
                       // value={inputs.allowAMS}
                       onChange={() => {
                         setChecked(!checked);
@@ -256,12 +229,14 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                       Allow Accounting Management System
                     </label>
                   </div>
-                  {errors.allowAMS && touched.allowAMS && (
-                    <p className="text-danger">{errors?.allowAMS}</p>
+                  <br />
+                  {console.log(errors.allowAMS)}
+                  {errors.allowAMS && (
+                    <p className="text-danger">{errors.allowAMS}</p>
                   )}
                 </>
               )}
-              <div className="pt-3">
+              <div>
                 <label htmlFor="userName">User Name</label>
                 <Input
                   placeholder="Enter username"
@@ -269,15 +244,10 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                   name="userName"
                   style={{ borderColor: "gray" }}
                   size="large"
-                  // value={inputs.userName}
-                  value={values.userName}
-                  // onChange={handleInputs}
-                  onChange={handleChange}
-                  disabled={category === "Tenant" ? true : false}
+                  value={inputs.userName}
+                  onChange={handleInputs}
+                  disabled={category === "tenant" ? true : false}
                 />
-                {errors.userName && touched.userName && (
-                  <p className="text-danger">{errors?.userName}</p>
-                )}
               </div>
               <div>
                 <label htmlFor="email">Email</label>
@@ -287,36 +257,23 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                   style={{ borderColor: "gray" }}
                   name="email"
                   size="large"
-                  value={values.email}
-                  // value={inputs.email}
-                  // onChange={handleInputs}
-                  onChange={handleChange}
-                  disabled={category === "Tenant" ? true : false}
+                  value={inputs.email}
+                  onChange={handleInputs}
+                  disabled={category === "tenant" ? true : false}
                 />
-                {errors.email && touched.email && (
-                  <p className="text-danger">{errors?.email}</p>
-                )}
               </div>
               <div>
                 <label htmlFor="email">Password</label>
-                <Input.Password
+                <Input
                   placeholder="Enter password"
                   className="form_input"
                   style={{ borderColor: "gray" }}
                   name="password"
                   size="large"
-                  value={values.password}
-                  iconRender={(visible) =>
-                    visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                  }
-                  // value={inputs.password}
-                  // onChange={handleInputs}
-                  onChange={handleChange}
-                  disabled={category === "Tenant" ? true : false}
+                  value={inputs.password}
+                  onChange={handleInputs}
+                  disabled={category === "tenant" ? true : false}
                 />
-                {errors.password && touched.password && (
-                  <p className="text-danger">{errors?.password}</p>
-                )}
               </div>
               <div>
                 <label htmlFor="email">User Id</label>
@@ -326,15 +283,10 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                   style={{ borderColor: "gray" }}
                   name="userId"
                   size="large"
-                  value={values.userId}
-                  // value={inputs.userId}
-                  onChange={handleChange}
-                  // onChange={handleInputs}
-                  disabled={category === "Tenant" ? true : false}
+                  value={inputs.userId}
+                  onChange={handleInputs}
+                  disabled={category === "tenant" ? true : false}
                 />
-                {errors.userId && touched.userId && (
-                  <p className="text-danger">{errors?.userId}</p>
-                )}
               </div>
               <div>
                 <label htmlFor="email">Contact</label>
@@ -344,15 +296,10 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                   style={{ borderColor: "gray" }}
                   name="contact"
                   size="large"
-                  value={values.contact}
-                  // value={inputs.contact}
-                  onChange={handleChange}
-                  // onChange={handleInputs}
-                  disabled={category === "Tenant" ? true : false}
+                  value={inputs.contact}
+                  onChange={handleInputs}
+                  disabled={category === "tenant" ? true : false}
                 />
-                {errors.contact && touched.contact && (
-                  <p className="text-danger">{errors?.contact}</p>
-                )}
               </div>
             </Col>
             <Col
@@ -365,30 +312,23 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 <p>Gender</p>
                 <Radio.Group
                   onChange={onChange}
-                  value={values.gender}
-                  // value={gender}
-                  disabled={category === "Tenant" ? true : false}
+                  value={gender}
+                  disabled={category === "tenant" ? true : false}
                 >
                   <Radio value={"male"}>Male</Radio>
                   <Radio value={"female"}>Female</Radio>
                 </Radio.Group>
-                {errors.gender && touched.gender && (
-                  <p className="text-danger pt-2">{errors?.gender}</p>
-                )}
                 <br />
-                {category !== "Admin" && (
+                {category !== "admin" && (
                   <>
                     <div className="mt-3">
                       <div className="pb-3" style={{ color: "#4A0D37" }}>
                         Real Estate
                       </div>
                       <RealEstateDropDown
-                        disabled={category === "Tenant" ? true : false}
+                        disabled={category === "tenant" ? true : false}
                         setSelectedRealEstate={setSelectedRealEstate}
                       />
-                      {errors.realEstate && touched.realEstate && (
-                        <p className="text-danger pt-3">{errors?.realEstate}</p>
-                      )}
                     </div>
                     <div className="mt-3">
                       <div className="pb-3" style={{ color: "#4A0D37" }}>
@@ -396,12 +336,9 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                       </div>
                       <BuildingDropDown
                         setSelectedBuilding={setSelectedBuilding}
-                        disabled={category === "Tenant" ? true : false}
+                        disabled={category === "tenant" ? true : false}
                         realEstateId={selectedRealEstate}
                       />
-                      {errors.buildingId && touched.buildingId && (
-                        <p className="text-danger pt-3">{errors?.buildingId}</p>
-                      )}
                     </div>
                   </>
                 )}
@@ -409,7 +346,7 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
             </Col>
           </Row>
           <div>
-            {category === "Tenant" ? (
+            {category === "tenant" ? (
               <CustomButton
                 handleClick={handleGoTo}
                 buttonName={"Redirect"}
@@ -421,8 +358,8 @@ export const AddSuperAdminUser = ({ showDrawer }) => {
                 // handleClick={handleSave}
                 handleClick={() => {
                   handleSubmit();
-                  console.log(values);
                   console.log(errors);
+                  console.log(values);
                 }}
                 buttonName={"Save"}
                 bgColor={redColor}

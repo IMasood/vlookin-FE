@@ -1,10 +1,9 @@
 import React from "react";
 import { CustomButton } from "../Button";
-import {DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import { redColor, whiteColor } from "../../../assets/colors";
 
-const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
-
+const ReceiptTable = ({ tableData, setTableData, handleSubmit }) => {
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedData = [...tableData];
@@ -33,10 +32,9 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
     setTableData(updatedData);
   };
 
-
   return (
-    <div className='receipt-table'>
-    <table>
+    <div className="receipt-table">
+      <table>
         <thead>
           <tr>
             <th>Cheque Date</th>
@@ -46,7 +44,7 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
             <th>Deposit Bank</th>
             <th>Drawn Bank</th>
             <th>Debit Account</th>
-        
+
             <th>Actions</th>
           </tr>
         </thead>
@@ -55,6 +53,7 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
             <tr key={index}>
               <td>
                 <input
+                  className="border border-secondary rounded"
                   type="text"
                   name="chequeDate"
                   value={data.chequeDate}
@@ -63,6 +62,7 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
               </td>
               <td>
                 <input
+                  className="border border-secondary rounded"
                   type="text"
                   name="chequeNo"
                   value={data.chequeNo}
@@ -71,6 +71,7 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
               </td>
               <td>
                 <input
+                  className="border border-secondary rounded"
                   type="text"
                   name="Amount"
                   value={data.Amount}
@@ -79,6 +80,7 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
               </td>
               <td>
                 <input
+                  className="border border-secondary rounded"
                   type="text"
                   name="bankName"
                   value={data.bankName}
@@ -87,6 +89,7 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
               </td>
               <td>
                 <input
+                  className="border border-secondary rounded"
                   type="text"
                   name="depositBank"
                   value={data.depositBank}
@@ -95,6 +98,7 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
               </td>
               <td>
                 <input
+                  className="border border-secondary rounded"
                   type="text"
                   name="drawnBank"
                   value={data.drawnBank}
@@ -103,24 +107,35 @@ const ReceiptTable = ({tableData, setTableData, handleSubmit}) => {
               </td>
               <td>
                 <input
+                  className="border border-secondary rounded"
                   type="text"
                   name="debitAccount"
                   value={data.debitAccount}
                   onChange={(event) => handleInputChange(index, event)}
                 />
               </td>
-              <td>
-                  <DeleteOutlined  onClick={() => removeRow(index)}/>
+              <td className="text-center">
+                <DeleteOutlined onClick={() => removeRow(index)} />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className='receipt-table-footer'>
-        <CustomButton handleClick={addRow} buttonName={'Add Row'} bgColor={redColor} color={whiteColor} />
-        <CustomButton handleClick={handleSubmit} buttonName={'Submit'} bgColor={redColor} color={whiteColor} />
+      <div className="d-flex flex-row receipt-table-footer m-0 pt-3 justify-content-end">
+        <CustomButton
+          handleClick={addRow}
+          buttonName={"Add Row"}
+          bgColor={redColor}
+          color={whiteColor}
+        />
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <CustomButton
+          handleClick={handleSubmit}
+          buttonName={"Submit"}
+          bgColor={redColor}
+          color={whiteColor}
+        />
       </div>
-
     </div>
   );
 };

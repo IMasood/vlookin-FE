@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Space,
-  Modal,
-  Row,
-  Radio,
-  Col,
-  Input,
-} from "antd";
+import { Space, Modal, Row, Radio, Col, Input } from "antd";
 import { useMediaQuery } from "react-responsive";
 import TextArea from "antd/es/input/TextArea";
 import "./style.css";
@@ -14,7 +7,6 @@ import { CustomButton } from "../Button";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { redColor, whiteColor } from "../../../assets/colors";
-
 
 const VisitorModal = ({ visibleModal, setVisibleModal, data, id }) => {
   const [inputs, setInputs] = useState({
@@ -34,8 +26,6 @@ const VisitorModal = ({ visibleModal, setVisibleModal, data, id }) => {
   const handleCancel = () => {
     setVisibleModal(false);
   };
-
-
 
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
@@ -97,7 +87,7 @@ const VisitorModal = ({ visibleModal, setVisibleModal, data, id }) => {
 
   useEffect(() => {
     getUsers(data);
-  });
+  }, []);
 
   return (
     <div>

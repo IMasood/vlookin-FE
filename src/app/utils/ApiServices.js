@@ -1,6 +1,6 @@
 import axios from "axios";
 
- // Replace with your API base URL
+// Replace with your API base URL
 
 const ApiServices = {
   // Example GET request
@@ -17,7 +17,11 @@ const ApiServices = {
   // Example POST request
   post: async (endpoint, data) => {
     try {
-      const response = await axios.post(endpoint, data);
+      const response = await axios.post(endpoint, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return response.data;
     } catch (error) {
       console.error("Error making POST request:", error);

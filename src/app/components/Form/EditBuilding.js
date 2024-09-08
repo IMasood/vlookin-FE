@@ -30,8 +30,7 @@ const EditBuildingForm = ({ showDrawer }) => {
 
   const [floor, setFloor] = useState("");
   const [parkingFloor, setParkingFloor] = useState("");
-  const [showLoader, setShowLoader] = useState(false)
-
+  const [showLoader, setShowLoader] = useState(false);
 
   const handleChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -112,13 +111,13 @@ const EditBuildingForm = ({ showDrawer }) => {
         ) : (
           <Header
             title={"Edit Building Details"}
-            subtitle={"welcome to admin panel"}
+            subtitle={"Welcome to admin panel"}
             route={routePaths.Admin.login}
           />
         )}
         <div className="mb_form_heading">
           <h2>Edit Building Details</h2>
-          <p className="headerText">welcome to admin panel</p>
+          <p className="headerText">Welcome to admin panel</p>
         </div>
       </div>
       <div className="body">
@@ -178,7 +177,8 @@ const EditBuildingForm = ({ showDrawer }) => {
             buttonName={"Save"}
             bgColor={"#4A0D37"}
             color={"#F8F8F8"}
-            loading={showLoader} disabled={showLoader}
+            loading={showLoader}
+            disabled={showLoader}
           />
           <CustomAlert />
         </div>

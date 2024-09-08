@@ -15,8 +15,8 @@ import { Cookies } from "react-cookie";
 export const ListUser = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
-  const role = cookies.get("role"); 
-  const userName = cookies.get('name');
+  const role = cookies.get("role");
+  const userName = cookies.get("name");
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -24,7 +24,7 @@ export const ListUser = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [complaints, setComplaint] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedBuilding, setSelectedBuilding] = useState('')
+  const [selectedBuilding, setSelectedBuilding] = useState("");
 
   const showDrawer = () => {
     setOpen(true);
@@ -41,19 +41,18 @@ export const ListUser = () => {
       const response = await fetch(url, {
         method: "DELETE",
       });
-      if(response){
-        setData(data.filter((data) => {
-          return(
-            data.ID !== record.ID
-          )          
-        }))
+      if (response) {
+        setData(
+          data.filter((data) => {
+            return data.ID !== record.ID;
+          })
+        );
         toast.success("User Deleted Successfully");
       }
     } catch (error) {
       toast.error(error);
     }
   };
-
 
   const columns = [
     {
@@ -86,7 +85,10 @@ export const ListUser = () => {
       key: "action",
       render: (_, record) => (
         <div className="icon">
-          <EditOutlined style={{paddingTop:'10px'}} onClick={() => handleEdit(record)} />
+          <EditOutlined
+            style={{ paddingTop: "2px" }}
+            onClick={() => handleEdit(record)}
+          />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),
@@ -95,30 +97,30 @@ export const ListUser = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `${apiRoutes.getUsers}buildingId=${selectedBuilding}`
+    const url = `${apiRoutes.getUsers}buildingId=${selectedBuilding}`;
     axios
-    .get(url)
-    .then((response) => {
-      if(response?.data.data.length > 0){
-        const data = response?.data.data;
-        setData(data.map((row,id ) => (
-          { 
-              key:id,
+      .get(url)
+      .then((response) => {
+        if (response?.data.data.length > 0) {
+          const data = response?.data.data;
+          setData(
+            data.map((row, id) => ({
+              key: id,
               userName: row.userName,
-              email: row.email, 
-              role:row.role,
+              email: row.email,
+              role: row.role,
               contact: row.contact,
-              gender:row.gender,
+              gender: row.gender,
               ID: row._id,
-            }
-          )));
+            }))
+          );
+          setLoading(false);
+        } else {
+          setLoading(false);
+          setData([]);
+        }
         setLoading(false);
-      }else{
-        setLoading(false);
-        setData([]);
-      }
-      setLoading(false);
-    })
+      })
       .catch((e) => {
         setLoading(false);
       });
@@ -143,15 +145,14 @@ export const ListUser = () => {
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             setSelectedBuilding={setSelectedBuilding}
-
           />
         }
         showDrawer={showDrawer}
         open={open}
         setOpen={setOpen}
         items={superAdminSidebar}
-        role = {role}
-        userName = {userName}
+        role={role}
+        userName={userName}
       />
       <CustomAlert />
       <SuperAdminCompliantModal

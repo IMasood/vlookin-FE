@@ -25,8 +25,8 @@ const EditAppartmentForm = ({ showDrawer }) => {
     rent: "",
     area: "",
     comments: "",
-    buildingId:"",
-    flatNo:""
+    buildingId: "",
+    flatNo: "",
   });
   const [bed, setBed] = useState("");
   const [pantry, setPantry] = useState("");
@@ -35,7 +35,7 @@ const EditAppartmentForm = ({ showDrawer }) => {
   const [dining, setDining] = useState("");
   const [living, setLiving] = useState("");
   const [balcony, setBalcony] = useState(false);
-  const [showLoader, setShowLoader] = useState(false)
+  const [showLoader, setShowLoader] = useState(false);
 
   const handleRadioChange = (e) => {
     setInputs({ furnished: e.target.value });
@@ -53,7 +53,6 @@ const EditAppartmentForm = ({ showDrawer }) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
   };
 
-
   const handleSave = (e) => {
     e.preventDefault();
     try {
@@ -68,22 +67,22 @@ const EditAppartmentForm = ({ showDrawer }) => {
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Methods", "PATCH");
     const data = {
-      "buildingId" : inputs.buildingId,
-      "apartmentType":inputs.apartmentType,
-      "area":inputs.area,
-      "rent":inputs.rent,
-      "furnished":inputs.furnished,
-      "isStudio": false,
-      "balcony":balcony,
-      "rooms":{
-        "bedRoom": bed,
-        "dining": dining,
-        "laundry": laundry,
-        "bath": bathroom
-    },      
-    "floorNo":inputs.floorNo,
-    "comments":inputs.comments,
-    "flatNo":inputs.flatNo,
+      buildingId: inputs.buildingId,
+      apartmentType: inputs.apartmentType,
+      area: inputs.area,
+      rent: inputs.rent,
+      furnished: inputs.furnished,
+      isStudio: false,
+      balcony: balcony,
+      rooms: {
+        bedRoom: bed,
+        dining: dining,
+        laundry: laundry,
+        bath: bathroom,
+      },
+      floorNo: inputs.floorNo,
+      comments: inputs.comments,
+      flatNo: inputs.flatNo,
     };
 
     const requestOptions = {
@@ -95,14 +94,14 @@ const EditAppartmentForm = ({ showDrawer }) => {
     try {
       const res = await fetch(url, requestOptions);
       if (res.status === 200) {
-        setShowLoader(true)
+        setShowLoader(true);
         toast.success("Building Edited Successfully");
         navigate(routePaths.Admin.listAppartment);
       } else {
         toast.error("Something went wrong");
       }
     } catch (error) {
-      setShowLoader(false)
+      setShowLoader(false);
       toast.error(error);
     }
   };
@@ -111,7 +110,7 @@ const EditAppartmentForm = ({ showDrawer }) => {
     axios
       .get(`http://195.35.45.131:4000/apartment?id=${id}`)
       .then((res) => {
-        console.log(res, 'ressssssssssssssss')
+        console.log(res, "ressssssssssssssss");
         let data = res.data.data;
         setInputs({
           apartmentType: data.apartmentType,
@@ -130,7 +129,7 @@ const EditAppartmentForm = ({ showDrawer }) => {
         // setBathroom(data.rooms.bathroom)
         // setDining(data.rooms.dining)
         // setLiving (data.rooms.living)
-        })
+      })
       .catch((e) => toast.error(e));
   };
 
@@ -149,13 +148,13 @@ const EditAppartmentForm = ({ showDrawer }) => {
         ) : (
           <Header
             title={"Add Appartment Details"}
-            subtitle={"welcome to admin panel"}
+            subtitle={"Welcome to admin panel"}
             route={routePaths.Admin.login}
           />
         )}
         <div className="mb_form_heading">
           <h2>Add Appartment Details</h2>
-          <p className="headerText">welcome to admin panel</p>
+          <p className="headerText">Welcome to admin panel</p>
         </div>
       </div>
       <div className="body">
@@ -326,8 +325,10 @@ const EditAppartmentForm = ({ showDrawer }) => {
           <CustomButton
             handleClick={handleSave}
             buttonName={"Save"}
-            bgColor={redColor} color={whiteColor}
-            loading={showLoader} disabled={showLoader}
+            bgColor={redColor}
+            color={whiteColor}
+            loading={showLoader}
+            disabled={showLoader}
           />
           {/* <ApartmentModal open={open} onCancel = {onCancel} selectedBuilding={selectedBuilding} 
                         handleBuildingChange={handleBuildingChange} handleChange = {handleChange}

@@ -95,7 +95,7 @@ const ListTenant = () => {
       render: (_, record) => (
         <div className="icon">
           <EditOutlined
-            style={{ paddingTop: "10px" }}
+            style={{ paddingTop: "0.5px" }}
             onClick={() => handleEdit(record)}
           />
           <DeleteModal handleDelete={() => handleDelete(record)} />

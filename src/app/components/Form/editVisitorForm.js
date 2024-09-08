@@ -83,7 +83,7 @@ const EditVisitorForm = ({ title, showDrawer }) => {
 
   useEffect(() => {
     getUsers();
-  });
+  }, []);
 
   return (
     <>
@@ -97,13 +97,13 @@ const EditVisitorForm = ({ title, showDrawer }) => {
         ) : (
           <Header
             title={"Edit Visitor Details"}
-            subtitle={"welcome to visitor panel"}
+            subtitle={"Welcome to visitor panel"}
             route={routePaths.Visitor.login}
           />
         )}
         <div className="mb_form_heading">
           <h2>Edit Visitor Details</h2>
-          <p className="headerText">welcome to visitor panel</p>
+          <p className="headerText">Welcome to visitor panel</p>
         </div>
       </div>
       <div className="body">

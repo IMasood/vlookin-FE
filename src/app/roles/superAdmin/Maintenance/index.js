@@ -13,9 +13,8 @@ import { Cookies } from "react-cookie";
 
 export const Maintenance = () => {
   const cookies = new Cookies();
-  const role = cookies.get("role"); 
-  const userName = cookies.get('name');
-
+  const role = cookies.get("role");
+  const userName = cookies.get("name");
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([
@@ -29,13 +28,11 @@ export const Maintenance = () => {
   const [visibleModal, setVisibleModal] = useState(false);
   const [complaints, setComplaint] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedBuilding, setSelectedBuilding] = useState('')
-
+  const [selectedBuilding, setSelectedBuilding] = useState("");
 
   const showDrawer = () => {
     setOpen(true);
   };
-
 
   const handleDelete = async (record) => {
     try {
@@ -43,12 +40,12 @@ export const Maintenance = () => {
       const response = await fetch(url, {
         method: "DELETE",
       });
-      if(response){
-        setData(data.filter((data) => {
-          return(
-            data.ID !== record.ID
-          )          
-        }))
+      if (response) {
+        setData(
+          data.filter((data) => {
+            return data.ID !== record.ID;
+          })
+        );
 
         toast.success("Complaint Deleted Successfully");
       }
@@ -89,32 +86,35 @@ export const Maintenance = () => {
       key: "status",
       filters: [
         {
-          text: 'CLOSED',
-          value: 'CLOSED',
+          text: "CLOSED",
+          value: "CLOSED",
         },
         {
-          text: 'SUBMITTED',
-          value: 'SUBMITTED',
+          text: "SUBMITTED",
+          value: "SUBMITTED",
         },
         {
-          text: '	IN PROGRESS',
-          value: '	IN PROGRESS',
+          text: "	IN PROGRESS",
+          value: "	IN PROGRESS",
         },
         {
-          text: 'HOLD',
-          value: 'HOLD',
+          text: "HOLD",
+          value: "HOLD",
         },
       ],
 
       ellipsis: true,
       onFilter: (value, record) => record.status.indexOf(value) === 0,
-    },    
+    },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <div className="icon">
-          <FaEye onClick={() => handleView(record)} />
+          <FaEye
+            style={{ marginTop: "8px" }}
+            onClick={() => handleView(record)}
+          />
           <DeleteModal handleDelete={() => handleDelete(record)} />
         </div>
       ),
@@ -123,30 +123,30 @@ export const Maintenance = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `${apiRoutes.getComplaints}?buildingId=${selectedBuilding}`
+    const url = `${apiRoutes.getComplaints}?buildingId=${selectedBuilding}`;
     axios
-    .get(url)
-    .then((response) => {
-      if(response?.data.data.length > 0){
-        const data = response?.data.data;
-        setData(data.map((row,id ) => (
-          { 
-              key:id,
+      .get(url)
+      .then((response) => {
+        if (response?.data.data.length > 0) {
+          const data = response?.data.data;
+          setData(
+            data.map((row, id) => ({
+              key: id,
               complaintId: row.complaintId,
-              description: row.description, 
-              createdBy:row.createdBy,
+              description: row.description,
+              createdBy: row.createdBy,
               category: row.category,
-              status:row.status,
+              status: row.status,
               ID: row._id,
-            }
-          )));
+            }))
+          );
+          setLoading(false);
+        } else {
+          setLoading(false);
+          setData([]);
+        }
         setLoading(false);
-      }else{
-        setLoading(false);
-        setData([]);
-      }
-      setLoading(false);
-    })
+      })
       .catch((e) => {
         setLoading(false);
       });
@@ -177,8 +177,8 @@ export const Maintenance = () => {
         open={open}
         setOpen={setOpen}
         items={superAdminSidebar}
-        role = {role}
-        userName = {userName}
+        role={role}
+        userName={userName}
       />
       <CustomAlert />
       <SuperAdminCompliantModal
