@@ -27,7 +27,7 @@ const CusTable = ({
   setSelectedRealEstate,
 }) => {
   const cookies = new Cookies();
-  const role = cookies.get("role").toLowerCase();
+  const role = cookies.get("role")?.toLowerCase();
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
   let location = useLocation();
   const handleSearchChange = (event) => {

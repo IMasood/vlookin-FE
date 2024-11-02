@@ -57,113 +57,218 @@ const WebRoutes = () => {
             path={routePaths.Admin.dashboard}
             exact
             element={
-              token ? <AdminDashboard /> : <Navigate to="/login" exact />
+               <AdminDashboard /> 
             }
           />
-          <Route
+          {/* <Route
+            path={routePaths.Admin.dashboard}
+            exact
+            element={
+              token ? <AdminDashboard /> : <Navigate to="/login" exact />
+            }
+          /> */}
+          {/* <Route
             path={routePaths.Admin.addUser}
             exact
             element={token ? <AddUsers /> : <Navigate to="/login" exact />}
-          />
+          /> */}
           <Route
+            path={routePaths.Admin.addUser}
+            exact
+            element={ <AddUsers /> }
+          />
+
+          {/* <Route
             path={routePaths.Admin.listUser}
             exact
             element={token ? <ListUser /> : <Navigate to="/login" exact />}
-          />
+          /> */}
           <Route
+            path={routePaths.Admin.listUser}
+            exact
+            element={ <ListUser />}
+          />
+          {/* <Route
             path={routePaths.Admin.listAppartment}
             exact
             element={
               token ? <ListAppartment /> : <Navigate to="/login" exact />
             }
-          />
+          /> */}
           <Route
+            path={routePaths.Admin.listAppartment}
+            exact
+            element={
+               <ListAppartment />
+            }
+          />
+          {/* <Route
             path={routePaths.Admin.listBuilding}
             exact
             element={token ? <ListBuilding /> : <Navigate to="/login" exact />}
-          />
+          /> */}
           <Route
+            path={routePaths.Admin.listBuilding}
+            exact
+            element={ <ListBuilding />}
+          />
+          {/* <Route
             path={routePaths.Admin.addAppartment}
             exact
             element={token ? <AddAppartment /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.Admin.addAppartment}
+            exact
+            element={ <AddAppartment />}
           />
-          <Route
+          {/* <Route
             path={routePaths.Admin.addbuilding}
             exact
             element={token ? <AddBuilding /> : <Navigate to="/login" exact />}
-          />
+          /> */}
           <Route
+            path={routePaths.Admin.addbuilding}
+            exact
+            element={ <AddBuilding /> }
+          />
+          {/* <Route
             path={routePaths.Admin.editBuilding}
             exact
             element={token ? <EditBuilding /> : <Navigate to="/login" exact />}
-          />
+          /> */}
           <Route
+            path={routePaths.Admin.editBuilding}
+            exact
+            element={ <EditBuilding /> }
+          />
+          {/* <Route
             path={routePaths.Admin.editApartment}
             exact
             element={token ? <EditApartment /> : <Navigate to="/login" exact />}
-          />
+          /> */}
           <Route
+            path={routePaths.Admin.editApartment}
+            exact
+            element={ <EditApartment />}
+          />
+          {/* <Route
             path={routePaths.Admin.adminListComplaint}
             exact
             element={
               token ? <AdminListComplaint /> : <Navigate to="/login" exact />
             }
-          />
+          /> */}
           <Route
+            path={routePaths.Admin.adminListComplaint}
+            exact
+            element={
+             <AdminListComplaint /> 
+            }
+          />
+          {/* <Route
             path={routePaths.Tenant.dashboard}
             exact
             element={token ? <DashboardScr /> : <Navigate to="/login" exact />}
+          /> */}
+          <Route
+            path={routePaths.Tenant.dashboard}
+            exact
+            element={ <DashboardScr /> }
           />
           {/* <Route path={routePaths.Admin.login} exact element={<LoginScr />} /> */}
-          <Route
+          {/* <Route
             path={routePaths.Tenant.listTenant}
             exact
             element={token ? <ListTenant /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.Tenant.listTenant}
+            exact
+            element={ <ListTenant />}
           />
-          <Route
+          {/* <Route
             path={routePaths.Tenant.editTenant}
             exact
             element={token ? <EditTenant /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.Tenant.editTenant}
+            exact
+            element={ <EditTenant /> }
           />
-          <Route
+          {/* <Route
             path={routePaths.Admin.notifyTenant}
             exact
             element={token ? <NotifyTenant /> : <Navigate to="/login" exact />}
+          /> */}
+
+<Route
+            path={routePaths.Admin.notifyTenant}
+            exact
+            element={ <NotifyTenant /> }
           />
 
           {/* User  Route*/}
 
-          <Route
+          {/* <Route
             path={routePaths.User.dashboard}
             exact
             element={token ? <UserProfile /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.User.dashboard}
+            exact
+            element={ <UserProfile /> }
           />
-          <Route
+          {/* <Route
             path={routePaths.User.complaintForm}
             exact
             element={token ? <AddComplaint /> : <Navigate to="/login" exact />}
-          />
+          /> */}
           <Route
+            path={routePaths.User.complaintForm}
+            exact
+            element={ <AddComplaint /> }
+          />
+          {/* <Route
             path={routePaths.User.complaintList}
             exact
             element={token ? <ListComplaint /> : <Navigate to="/login" exact />}
-          />
+          /> */}
           <Route
+            path={routePaths.User.complaintList}
+            exact
+            element={ <ListComplaint /> }
+          />
+          {/* <Route
             path={routePaths.User.receiptList}
             exact
             element={token ? <ListReceipts /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.User.receiptList}
+            exact
+            element={ <ListReceipts />}
           />
 
           {/* Maintenance  Route*/}
 
-          <Route
+          {/* <Route
             path={routePaths.Maintenance.dashboard}
             exact
             element={
               token ? <MaintanceDashboard /> : <Navigate to="/login" exact />
             }
-          />
+          /> */}
           <Route
+            path={routePaths.Maintenance.dashboard}
+            exact
+            element={
+             <MaintanceDashboard />
+            }
+          />
+          {/* <Route
             path={routePaths.Maintenance.complaintList}
             exact
             element={
@@ -173,10 +278,32 @@ const WebRoutes = () => {
                 <Navigate to="/login" exact />
               )
             }
+          /> */}
+          <Route
+            path={routePaths.Maintenance.complaintList}
+            exact
+            element={
+              // token ? (
+                <MaintenanceListComplaint />
+              // ) : (
+              //   <Navigate to="/login" exact />
+              // )
+            }
           />
 
           {/* SuperAdmin  Route*/}
           <Route
+            path={routePaths.SuperAdmin.addUser}
+            exact
+            element={
+              // sessionStorage.getItem("token") ? (
+                <SuperAdminDashboard />
+              // ) : (
+                // <Navigate to="/login" exact />
+              // )
+            }
+          />
+          {/* <Route
             path={routePaths.SuperAdmin.addUser}
             exact
             element={
@@ -186,109 +313,215 @@ const WebRoutes = () => {
                 <Navigate to="/login" exact />
               )
             }
-          />
-          <Route
+          /> */}
+          {/* <Route
             path={routePaths.SuperAdmin.maintenance}
             exact
             element={token ? <Maintenance /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.SuperAdmin.maintenance}
+            exact
+            element={ <Maintenance /> }
           />
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.visitor}
             exact
             element={
               token ? <SuperAdminListVisitor /> : <Navigate to="/login" exact />
             }
+          /> */}
+           <Route
+            path={routePaths.SuperAdmin.visitor}
+            exact
+            element={
+             <SuperAdminListVisitor />
+            }
           />
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.listUser}
             exact
             element={token ? <ListUser /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.SuperAdmin.listUser}
+            exact
+            element={<ListUser /> }
           />
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.editUser}
             exact
             element={
               token ? <EditSuperAdmin /> : <Navigate to="/login" exact />
             }
+          /> */}
+           <Route
+            path={routePaths.SuperAdmin.editUser}
+            exact
+            element={
+             <EditSuperAdmin /> 
+            }
           />
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.building}
             exact
-            element={token ? <Building /> : <Navigate to="/login" exact />}
+            element={
+              // token ? 
+              <Building /> 
+              // : <Navigate to="/login" exact />
+            }
+          /> */}
+           <Route
+            path={routePaths.SuperAdmin.building}
+            exact
+            element={
+             
+              <Building /> 
+            
+            }
           />
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.addReceipt}
             exact
             element={token ? <AddReceipt /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.SuperAdmin.addReceipt}
+            exact
+            element={
+               <AddReceipt />}
           />
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.listReceipt}
             exact
             element={token ? <ListReceipt /> : <Navigate to="/login" exact />}
+          /> */}
+            <Route
+            path={routePaths.SuperAdmin.listReceipt}
+            exact
+            element={
+               <ListReceipt />}
           />
           {/* <Route
             path={routePaths.SuperAdmin.listReceipt} exact
             element={   //    <ListReceipt />   //  }
           /> */}
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.accountsDirectory}
             exact
             element={
               token ? <AccountsDirectory /> : <Navigate to="/login" exact />
             }
+          /> */}
+           <Route
+            path={routePaths.SuperAdmin.accountsDirectory}
+            exact
+            element={
+              <AccountsDirectory /> 
+            }
           />
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.journalVoucher}
             exact
             element={
               token ? <JournalVoucher /> : <Navigate to="/login" exact />
             }
+          /> */}
+          <Route
+            path={routePaths.SuperAdmin.journalVoucher}
+            exact
+            element={
+            <JournalVoucher />
+            }
           />
           {/* Routes Present */}
-          <Route
+
+          {/* <Route
             path={routePaths.SuperAdmin.tenancyExpiryList}
             exact
             element={
               token ? <TenancyExpiryList /> : <Navigate to="/login" exact />
             }
-          />
+          /> */}
           <Route
+            path={routePaths.SuperAdmin.tenancyExpiryList}
+            exact
+            element={
+             <TenancyExpiryList />
+            }
+          />
+          {/* <Route
             path={routePaths.SuperAdmin.bankPaymentVoucher}
             exact
             element={
               token ? <BankPaymentVoucher /> : <Navigate to="/login" exact />
             }
+          /> */}
+            <Route
+            path={routePaths.SuperAdmin.bankPaymentVoucher}
+            exact
+            element={
+             <BankPaymentVoucher /> 
+            }
           />
-          <Route
+          {/* <Route
             path={routePaths.SuperAdmin.notifyAdmin}
             exact
             element={token ? <NotifyAdmin /> : <Navigate to="/login" exact />}
+          /> */}
+
+<Route
+            path={routePaths.SuperAdmin.notifyAdmin}
+            exact
+            element={ <NotifyAdmin />}
           />
 
           {/* Visitor Routes */}
 
-          <Route
+          {/* <Route
             path={routePaths.Visitor.dashboard}
             exact
             element={
               token ? <VisitorDashboard /> : <Navigate to="/login" exact />
             }
+          /> */}
+           <Route
+            path={routePaths.Visitor.dashboard}
+            exact
+            element={
+             <VisitorDashboard />
+            }
           />
-          <Route
+          {/* <Route
             path={routePaths.Visitor.listVisitor}
             exact
             element={token ? <ListVisitor /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.Visitor.listVisitor}
+            exact
+            element={ <ListVisitor /> }
           />
           <Route path={routePaths.Visitor.login} exact element={<Login />} />
-          <Route
+          {/* <Route
             path={routePaths.Visitor.editVisitor}
             exact
             element={token ? <EditVisitor /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.Visitor.editVisitor}
+            exact
+            element={ <EditVisitor />}
           />
-          <Route
+          {/* <Route
             path={routePaths.Visitor.receipt}
             exact
             element={token ? <Receipt /> : <Navigate to="/login" exact />}
+          /> */}
+           <Route
+            path={routePaths.Visitor.receipt}
+            exact
+            element={ <Receipt /> }
           />
         </Routes>
       </Router>
